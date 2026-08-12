@@ -1,0 +1,346 @@
+@import 'https://fonts.googleapis.com/css2?family=Raleway&display=swap';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: #83d79b;
+  background: #e4e4e4;
+  transition: 0.3s ease-out;
+  font-size: 20px;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* ——— Page header (matches artfolio.css) ——— */
+.page-head{
+  max-width: 800px;
+  margin: 110px auto 0;
+  text-align: center;
+}
+.page-title{
+  font-size: 28px;
+  font-weight: 400;
+  color: #83d79b;
+}
+.page-sub{
+  font-size: 14px;
+  font-weight: 300;
+  color: #9a9a9a;
+  margin-top: 8px;
+}
+
+.wrapper {
+  margin: 30px auto 80px;
+  max-width: 800px;
+}
+
+.filter{
+  padding: 20px 0;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #d0d0d0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.filter a{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: #83d79b;
+  text-decoration: none;
+  padding: 4px 15px;
+  display: inline-block;
+  border-radius: 3px;
+  transition: background .2s ease, color .2s ease;
+}
+.filter a:hover { background: #d7f0dd; }
+
+.filter a.current {
+  background: #83d79b;
+  color: #ffffff;
+}
+
+.grid {
+  margin: 0 auto;
+  padding: 10px;
+  /* -webkit-perspective: 1000px;
+  perspective: 1000px; */
+  width: 100vw;
+  max-width: 1200;
+}
+
+.grid-item {
+  max-width: 360px;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.fancybox, .fbreplace {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.5s;
+}
+
+.grid-item:hover .fancybox, .grid-item:hover .fbreplace {
+  transform: scale(1.05);
+  filter: brightness(1);
+
+}
+
+/* links to items on click */
+/* yabla */
+.grid-item:nth-child(1) .fbreplace {
+  background-image: url(landingpage.jpg);
+}
+.grid-item:nth-child(2) .fbreplace {
+    background-image: url(davidwinter.jpg);
+
+}
+.grid-item:nth-child(3) .fbreplace {
+  background-image: url(dark-days.gif);
+}
+/* darkdays */
+.grid-item:nth-child(4) .fbreplace {
+  background-image: url(psprototypegif.gif);
+}
+/* .grid-item:nth-child(4) .fbreplace {
+  background-image: url(treachery2.jpg);
+} */
+.grid-item:nth-child(5) .fbreplace {
+  background-image: url(mywebsite.gif);
+}
+.grid-item:nth-child(6) .fbreplace {
+  background-image: url(sensmall.gif);
+}
+.grid-item:nth-child(7) .fbreplace {
+  background-image: url(ntpic.jpg);
+}
+/* Beginning of hamburger menu */
+
+#menuToggle {
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 40px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a {
+  text-decoration: none;
+  color: #6ed492;
+
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+  color: #ffffff;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #6ed492;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/*
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #6ed492;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  position: absolute;
+  width: 200px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  left: -40px;
+  background: #11111869;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  visibility: hidden;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), visibility 0s linear 0.5s;
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), visibility 0s;
+}
+#menuToggle:focus-within {
+  outline: 3px solid #83d79b;
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+.wrapthestickers {
+  display: flex;
+  width: 100vw;
+}
+.summary {
+  display: flex;
+  justify-content: center;
+}
+.summary p {
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  margin: 24px auto 24px auto;
+  line-height: 1.5;
+  max-width:  500px;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none !important;
+}
+
+.fancybox-skin {
+  max-width:  90vw;
+}
+
+.tabpic {
+  width: 100%;
+  height: 100%;
+    transition: .5s;
+  min-width: 220px;
+}
+.tabpic:hover {
+  transform: scale(1.1);
+  transition: .5s;
+
+}
+.hovertext {
+  position: absolute;
+opacity: 0;
+display: flex;
+z-index: 10;
+padding: 24px;
+  justify-content: left;
+  align-items: stretch;
+  flex-wrap: wrap;
+  font-size: 16px;
+  height: 100%;
+  text-align: left !important;
+  visibility: visible;
+
+  
+}
+.hovertext:hover,
+a.fbreplace:focus-visible .hovertext {
+position: absolute;
+width: 100%;
+;
+opacity: 1;
+background-color: #6ed492;
+color:#fff;
+
+}
+/* Make nav + toggle consistent across pages */
+nav#navMobile {
+  position: fixed;   /* anchor to viewport */
+  top: 0;
+  left: 0;
+  z-index: 10000;    /* above content */
+}
+
+/* Match index page offsets */
+#menuToggle {
+  position: fixed;   /* was relative */
+  top: 65px;
+  left: 50px;
+  z-index: 1200;     /* stay above the panel */
+}
+
+/* Keep the panel relative to the toggle, as before */
+#menu {
+  position: absolute; /* unchanged */
+  /* the rest of your #menu settings stay the same */
+}
