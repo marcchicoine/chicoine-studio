@@ -204,6 +204,45 @@ body{
   pointer-events: none;
 }
 
+/* ——— Teaching tab ——— */
+.teaching-section{
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+.teaching-section h2{
+  font-size: 14px;
+  font-weight: 600;
+  color: #83d79b;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-align: left;
+}
+.teaching-list{
+  list-style: none;
+}
+.teaching-list li{
+  padding: 12px 0;
+  border-bottom: solid 1px #e0e0e0;
+  font-size: 15px;
+  font-weight: 300;
+  color: #4a4a4a;
+  line-height: 1.6;
+  text-align: left;
+}
+.teaching-list li strong{ color: #232323; font-weight: 600; }
+.teaching-section .statement{
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.teaching-photos{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 /* ——— Hamburger menu (unchanged from your site) ——— */
 #menuToggle{
   display: block;
