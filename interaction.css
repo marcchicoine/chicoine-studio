@@ -356,3 +356,24 @@ nav#navMobile {
   position: absolute; /* unchanged */
   /* the rest of your #menu settings stay the same */
 }
+
+/* Discoverability: visible "Menu" label next to the hamburger icon.
+   Uses a ::after pseudo-element (not a real DOM sibling) so it can't
+   shift the :nth-last-child/:first-child bar-animation selectors above. */
+#menuToggle::after {
+  content: "Menu";
+  position: absolute;
+  left: 46px;
+  top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6ed492;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+#menuToggle:hover::after { color: #ffffff; }
+#menuToggle:has(input:checked)::after { opacity: 0; }
+#menuToggle input { width: 108px; }
