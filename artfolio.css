@@ -30,7 +30,7 @@ body{
   margin-top: 8px;
 }
 
-.wrapper { margin: 30px auto 80px; max-width: 800px; }
+.wrapper { margin: 30px auto 80px; max-width: 1200px; }
 
 .filter{
   padding: 20px 0;
@@ -53,37 +53,40 @@ body{
 .filter a.current { background: #83d79b; color: #fff; }
 
 .grid{
-  margin: 0 auto;
+  column-count: 3;
+  column-gap: 14px;
   padding: 10px;
-  perspective: 1000px;
+}
+@media (max-width: 900px) {
+  .grid { column-count: 2; }
+}
+@media (max-width: 560px) {
+  .grid { column-count: 1; }
 }
 
 .grid-item{
-  width: 180px;
-  height: 150px;
-  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 14px;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
-  position: relative;
 }
+.grid-item.hide { display: none; }
 
 .fancybox{
   display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  background-image: var(--bg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: all .5s;
   position: relative;
+  border-radius: 4px;
 }
-
-.grid-item:hover .fancybox { transform: scale(1.06); }
-
-.fancybox[data-loading="true"] { filter: blur(6px); }
+.fancybox img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform .5s;
+}
+.grid-item:hover .fancybox img { transform: scale(1.04); }
 
 /* ——— Caption overlay (new) ——— */
 .tile-caption{
@@ -115,10 +118,6 @@ body{
   text-transform: uppercase;
   margin-top: 2px;
 }
-
-.grid-item:nth-child(4n-5){ height: 200px; }
-.grid-item:nth-child(2n){ height: 300px; }
-.grid-item:nth-child(3n){ height: 180px; }
 
 /* ——— Hamburger menu (unchanged from your site) ——— */
 #menuToggle{
@@ -207,18 +206,6 @@ body{
 img.fancybox-image { width: 100%; }
 
 #menuToggle input:not(:checked) ~ #menu { pointer-events: none; }
-.grid, .grid-item, .grid-item a.fancybox { position: relative; z-index: 1; }
-.grid-item a.fancybox { display:block; pointer-events:auto; }
-.grid-item { position: relative; }
-.grid-item > a.fancybox{
-  position: absolute;
-  inset: 0;
-  display: block;
-  z-index: 2;
-  pointer-events: auto;
-}
-.grid-item::before,
-.grid-item::after { pointer-events: none; }
 
 nav#navMobile {
   position: fixed;
