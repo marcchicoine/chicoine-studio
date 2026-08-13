@@ -269,7 +269,7 @@ body{
   visibility: visible;
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), visibility 0s;
 }
-#menuToggle:focus-within {
+#menuToggle:has(input:focus-visible) {
   outline: 3px solid #83d79b;
   outline-offset: 6px;
   border-radius: 4px;

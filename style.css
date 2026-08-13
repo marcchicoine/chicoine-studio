@@ -943,7 +943,7 @@ transform: translate3d(0, 0, 0);             /* was: transform: none; */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
-#menuToggle:focus-within {
+#menuToggle:has(input:focus-visible) {
   outline: 3px solid #6ed492;
   outline-offset: 6px;
   border-radius: 4px;
