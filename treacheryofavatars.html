@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Treachery of Avatars — Marc Chicoine</title>
+    <meta name="description" content="The Treachery of Avatars: an experimental Three.js and ML5 Posenet body-tracking artwork by Marc Chicoine.">
+    <link rel="canonical" href="https://www.chicoine.studio/treacheryofavatars.html">
+
+    <link rel="icon" type="image/svg+xml" href="cstudio.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Marc Chicoine">
+    <meta property="og:title" content="The Treachery of Avatars — Marc Chicoine">
+    <meta property="og:description" content="The Treachery of Avatars: an experimental Three.js and ML5 Posenet body-tracking artwork by Marc Chicoine.">
+    <meta property="og:url" content="https://www.chicoine.studio/treacheryofavatars.html">
+    <meta property="og:image" content="https://www.chicoine.studio/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Treachery of Avatars — Marc Chicoine">
+    <meta name="twitter:description" content="The Treachery of Avatars: an experimental Three.js and ML5 Posenet body-tracking artwork by Marc Chicoine.">
+    <meta name="twitter:image" content="https://www.chicoine.studio/og-image.png">
+
+    <link rel="stylesheet" href="treacheryofavatars.css">
+  </head>
+<body>
+<header>
+<h1>
+The Treachery of Avatars  </h1>
+
+  <nav>
+  <a> Concept</a>
+      <a>Design</a>
+      <a>Development</a>
+  </nav>
+</header>
+
+<section class="hero">
+<h2>
+An exploratory artwork on 'the avatar', representation, and identity...  </h2>
+  <p>
+Class: Creative Coding <br>
+Length: 1 Month <br>
+Tasks: P5.js, ML5 Posenet, Three.JS integration. <br> (Motion tracking to 3d animation.)
+  </p>
+</section>
+<section class="contentful">
+<div class="image">
+  <img src="toa-pipe.jpg" loading="lazy" alt="Homage to Magritte's Pipe painting">
+  </div>
+  <div class="content">
+    <h2>
+ About The Artwork
+  </h2>
+  <p>
+Inspired by the 1929 painting, The Treachery of Images, by René Magritte, this coding final project aims to elicit the same message that René conveyed regarding the deceptiveness of representation.<br><br>
+    With the advent of the avatar, we discover a rare opportunity for the reinvention of 'self'. No longer bound to our physical vessel, we are invited to project imaginative boundaries, or reflect and re-assimilate our perceived and actualized 'me'. This double-edged sword offers a unique choice to the participant; a fork in the road based on intention and personal engagement.
+    <br><br>Is the avatar an act of deception, or a more honest representative reality? Like most technology, the avatar is amoral in nature until wielded from a participant's personal context and worldview. We discover each side of the coin. Is this fragmentation, deception, or liberation?
+  </p>
+  </div>
+</section>
+<!--   2nd paragraph -->
+  <section class="contentful">
+<div class="image">
+  <img src="toa-ts-ml5.png" loading="lazy" alt="p5.js canvas integrated with ML5 Posenet">
+  </div>
+  <div class="content">
+    <h2>
+Step 1: Integrating p5.js with ML5 Posenet </h2>
+  <p>
+I started by creating a p5.js canvas and integrating it with ml5.js. ml5.js is an open source project that builds off of Tensorflow.js to make browser based machine learning accessible. <br><br>It's maintained by "NYU's Interactive Telecommunications/Interactive Media Arts program and by artists, designers, students, technologists, and developers from all over the world." -ml5js website
+.  <br><br>
+  </p>
+  </div>
+</section>
+  <section class="contentful">
+<div class="image">
+ <video autoplay loop muted playsinline aria-label="Custom Posenet face tracking demo">
+  <source loading="lazy" src="toa-greenfacesmall.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="content">
+    <h2>
+Creating my own ml5.js posenet tracking
+  </h2>
+  <p>
+With Posenet working effectively inside p5.js, as depicted in this <a href="https://learn.ml5js.org/#/reference/posenet">documentation</a>, I was able to log the x,y coordinates of all my movements at 24 fps. <br><br>
+    I also was able to place the Magritte inspired apple logo over the user's face. This apple is both ironic as it is a technological icon, and pays homage to magrittes hidden figures, again pushing the analogy of representative identity.
+    <br><br> The graphic tracks over our webcam screen via the js nose class in Posenet. It grows and shrinks based on user distance to the camera. I achieved this by following the ratio of distance from the nose class to ear class. I also tracked the relative body gestures via a red outline created within p5, joined with the ml5.js data. More information about this process is available via web tutorial <a href="https://www.youtube.com/watch?v=EA3-k9mnLHs">here</a>
+  </p>
+  </div>
+</section>
+<section class="contentful">
+<div class="image">
+<iframe loading="lazy" height="300" style="width: 100%;" scrolling="no" title="Character Tutorial - Round 2" src="https://codepen.io/kylewetton/embed/jOONpLJ?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/kylewetton/pen/jOONpLJ">
+  Character Tutorial - Round 2</a> by Kyle Wetton (<a href="https://codepen.io/kylewetton">@kylewetton</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>  </div>
+  <div class="content">
+    <h2>
+Bridging the Technologies </h2>
+In order to achieve control of a model through webcam movement, I needed to utilize a THREE.js canvas that changes  based on a browser event. I am indebted to this tutorial from codepen on animating a 3d model based on the location of the mouse-pointer within the viewport.
+    <br><br>
+I 'piggybacked' off of this technique but instead of using the pointer as a measure of direction for model chest and face movement, I took x/y location data of the 'head', 'arms', and 'neck' attributes from our Posenet. I measured the ratio of the camera viewport and corresponded it to the measure of movement across the entire window. I then inputted these classes to replace the mousepointer values for the head and torso rotation.
+    <br><br> For the arm movement I correlated the lifting of the arms with the elbow and forearm keypoints in our ml5.js canvas.   </p>
+  </div>
+</section>
+  <section class="contentful">
+<div class="image">
+ <video autoplay loop muted playsinline aria-label="Custom rigged dancing avatar models">
+  <source src="toa-models4small.mp4" type="video/mp4">
+  </video>
+ </div>
+
+  <div class="content">
+    <h2>
+Custom Models
+    </h2>
+  <p>
+    To create my own dancing avatar group, I downloaded 4 rigged models from Adobe Mixamo that all had a dancing animation rig attached. I prepped these models and created a single file with saved fbx animations as well as textures. I also decimated the number of polygons for these models to save space, via Blender.
+    </p>
+  </div>
+</section>
+<section class="contentful">
+    <div class="image">
+ <img loading="lazy" src="toa-models.jpg" alt="THREE.js final scene setup homage to Magritte's Pipe painting">
+  </div>
+  <div class="content">
+    <h2>
+THREE.JS Final Scene Setup </h2>
+  <p>
+I set the THREE.js stage to pay homage to Magritte's Pipe painting. I added dance music and confetti to the animation, in order to give it comedic impact. I selected one of my models as the main dancer and made sure that their animation skeleton had classes that corresponded to the keypoints within ml5.js.
+
+    <br><br>
+    In JS, I made sure that the data recieved for placement of these limbs reacted on a frame by frame basis with our posenet measurements.
+  </p>
+  </div>
+</section>
+<section class="contentful">
+<div class="image">
+ <video autoplay loop muted playsinline aria-label="Final demo of the reactive avatar responding to webcam movement">
+  <source src="toa-finaldemosmall.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="content">
+    <h2>
+Final Output
+    </h2>
+  <p>
+After making sure that the data from ml5.js Posenet was correctly bridging with THREE.js via the console, my model interacted directly with the user! I was particularly impressed by how close to real time the animation reacted webcam data.
+   <br><br>
+    This proved to me that using different canvases and JS frameworks within the same browser window is possible, and that the data from one can impact the other. This will become ever more important with the advent of machine learning inputs. <br><br>
+    Moving forward I will clean up the jitter on the arm movement of my reactive character. I will also better compress my models and 3d environment so they are browser friendly. Finally, I will increase the movement outputs to other areas of the body (legs)
+    </p>
+  </div>
+</section>
+<!-- <section class="contentful">
+
+  <div class="content" style="padding-left: 80px">
+    <h2 style="padding-top: 40px">
+Try Full Project
+    </h2>
+  <p>
+Compatible browser with webcam required   </p>
+    <a href="https://mysite.pratt.edu/~mchicoin/bodytracking/character/young/index.html" target="_blank">
+    <button class="yablabtn">
+The Treachery of Avatars
+      </button>
+    </a>
+  </div>
+</section> -->
+<script src="fadin.js"></script>
+<script src="header.js"></script>
+</body>
+</html>
