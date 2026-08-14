@@ -11,12 +11,13 @@
 	<section class="wholeLayout">
 		<div class="blur"></div>
 		<section class="coverInfo">
-        <iframe class="heroPic" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.8111862527117!2d-73.85341910701143!3d40.68933397516277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25dfb1c3bf80f%3A0xe0166d777c9dffea!2s89-44%2092nd%20St%2C%20Jamaica%2C%20NY%2011421!5e0!3m2!1sen!2sus!4v1762265447439!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <iframe id="heroMap" class="heroPic" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.8111862527117!2d-73.85341910701143!3d40.68933397516277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25dfb1c3bf80f%3A0xe0166d777c9dffea!2s89-44%2092nd%20St%2C%20Jamaica%2C%20NY%2011421!5e0!3m2!1sen!2sus!4v1762265447439!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
 
 			<div class="heroImageblend"></div>
 			<div class="searchBox">
-				<div class="searchIcon"><img src="searchicon.svg"></div><input name="sentence" placeholder="Search..." type="text">
+				<div class="searchIcon"><img src="searchicon.svg"></div><input id="searchInput" name="sentence" placeholder="Search a NYC address..." type="text">
+				<p id="searchStatus" class="searchStatus"></p>
 			</div>
 			<div class="signUpBtn">
 				<a href="#">
@@ -24,14 +25,14 @@
 			</div>
 			<div class="coverData">
 				<div class="titleData">
-					<h1>WARREN STECKER</h1>
+					<h1 id="coverOwnerName">WARREN STECKER</h1>
 				</div>
 				<div class=" h2data">
 					<div class="locationData">
-						<h4>89-44 92 STREET 11421</h4>
+						<h4 id="coverAddress">89-44 92 STREET 11421</h4>
 					</div>
 					<div class="spaceData">
-						<h4>TWO STORIES - DETACHED SM OR MID.</h4>
+						<h4 id="coverSpace">TWO STORIES - DETACHED SM OR MID.</h4>
 					</div>
 				</div>
 			</div>
@@ -43,15 +44,15 @@
 		<section class="quickView">
 			<p class="smallTitle">Quick View</p>
 			<div class="yellowSquare">
-				<p class="marketValueData">$542,000</p>
+				<p id="qvMarketValue" class="marketValueData">$542,000</p>
 				<p class="marketValueData">Current Market Value</p>
-				<p class="AAValueTotalData">$32,520</p>
+				<p id="qvAssessedValue" class="AAValueTotalData">$32,520</p>
 				<p class="AAValueTotalData">Actual Assessed Value Total</p>
-				<p class="taxTotalAssValueData">$24,480</p>
+				<p id="qvTaxableValue" class="taxTotalAssValueData">$24,480</p>
 				<p class="taxTotalAssValueData">Taxable Total Assessed Value</p>
 			</div>
 			<div class="ownerData">
-				<p class="titleData">WARREN STECKER</p>
+				<p id="qvOwnerName" class="titleData">WARREN STECKER</p>
 				<p class="statusData">Owner</p>
 			</div>
 			<section class="similarListingsInfo">
@@ -101,54 +102,54 @@
 				<ul class="OverviewData">
 					<li class="Listed">
 						<p class="L1Label">Two Stories</p>
-						<p class="L1Description">| Detached Sm or Mid.</p>
+						<p class="L1Description" id="ovStories">| Detached Sm or Mid.</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Current Market Value</p>
-						<p class="L1Description">| $542,000</p>
+						<p class="L1Description" id="ovMarketValue">| $542,000</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Actual Assessed Value Total</p>
-						<p class="L1Description">| $32,520</p>
+						<p class="L1Description" id="ovAssessedValue">| $32,520</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Tax Class</p>
-						<p class="L1Description">| 1</p>
+						<p class="L1Description" id="ovTaxClass">| 1</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Current Taxable Total Assessed Value</p>
-						<p class="L1Description">| $24,480</p>
+						<p class="L1Description" id="ovTaxableValue">| $24,480</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Actual Assessed Value Total (As of the Final Roll)</p>
-						<p class="L1Description">| $32,520</p>
+						<p class="L1Description" id="ovFinalAssessedValue">| $32,520</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Final Market Value</p>
-						<p class="L1Description">| $542,000</p>
+						<p class="L1Description" id="ovFinalMarketValue">| $542,000</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Highest House Number</p>
-						<p class="L1Description">| 89-44</p>
+						<p class="L1Description" id="ovHighestHouse">| 89-44</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Lowest House Number</p>
-						<p class="L1Description">| 89-44</p>
+						<p class="L1Description" id="ovLowestHouse">| 89-44</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Year Built</p>
-						<p class="L1Description">| 1920</p>
+						<p class="L1Description" id="ovYearBuilt">| 1920</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Zoning</p>
-						<p class="L1Description">| R3A</p>
+						<p class="L1Description" id="ovZoning">| R3A</p>
 					</li>
 					<li class="Listed">
 						<p class="L1Label">Borough Block and Lot ID</p>
-						<p class="L1Description">| 4089730028</p>
+						<p class="L1Description" id="ovBBL">| 4089730028</p>
 					</li>
 					<li class="Listed">
-						<p class="L1Label"><a href="https://a836-edms.nyc.gov/dctm-rest/repositories/dofedmspts/StatementSearch?bbl=4089730028&stmtDate=20201121&stmtType=SOA">Recent Property Bill</a></p>
+						<p class="L1Label"><a id="ovBillLink" href="https://a836-edms.nyc.gov/dctm-rest/repositories/dofedmspts/StatementSearch?bbl=4089730028&stmtDate=20201121&stmtType=SOA">Recent Property Bill</a></p>
 					</li>
 				</ul>
 				<div class="WhoAreWeSummary">
@@ -169,7 +170,12 @@
 						<input id="submitBtn" type="submit" value="Submit">
 					</form>
 				</div>
-				<div class="MapCoverStr"></div>
+				<div class="MapCoverStr">
+					<img id="mapStreetViewImg" class="mapCoverLive" alt="Street-level photo near this property">
+					<iframe id="mapBirdsEyeFrame" class="mapCoverLive" loading="lazy" style="border:0;"></iframe>
+					<iframe id="mapThemeFrame" class="mapCoverLive" loading="lazy" style="border:0;"></iframe>
+					<div id="mapThemeBadge" class="mapThemeBadge"></div>
+				</div>
 				<div class="MapButtons">
 					<div class="MB1">
 						<p>Opportunity Zone</p>
