@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap');
+ html {
+    background: linear-gradient(173.62deg, rgba(131, 196, 255, 1) -5.85%, rgba(152, 206, 255, 1) -5.83%, rgba(106, 148, 233, 1) 128.53%);
+}
+ body {
+     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+    background-image: url(svg.svg);
+    background-repeat: no-repeat;
+     background-size:cover;
+    height: 100%;
+}
+ section {
+    display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     color: #fff;
+     min-height: 100vh;
+     align-content: stretch;
+     background: none;
+     max-width: 1400px;
+}
+ section * {
+    margin: 8px;
+}
+ div {
+    text-align: center;
+     display:flex;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+ a {
+    text-decoration:none;
+     color:#ffffff;
+}
+ nav {
+      display:flex;
+     width: 100%;
+     height: 24px;
+    justify-content:left;
+     align-items: center;
+}
+ .input {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     text-align: left;
+}
+ .Logo {
+     width: 140px;
+     height: 44.83px;
+}
+.Logo img {
+  width: 124px;
+  height: 41px;
+}
+ .sm{
+     padding: 8px 16px;
+    font-size: 20px;
+     display: inline;
+     min-width: 160px;
+     margin: 8px
+}
+ .btn {
+     box-shadow: 2.85px -2.85px 5.7px rgba(20, 74, 133, 0.2), inset 0px 1px 1px rgba(145, 189, 229, 0.3);
+    border-radius: 40px;
+     transition:.5s;
+     text-align: right;
+}
+ .btnWrap {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 0 24px;
+     width: 100%;
+}
+ .signupbtn:hover, .btnsquare:hover, .btn:hover {
+     transform: scale(1.05);
+     transition:.5s;
+}
+ .orange {
+     background: linear-gradient(180deg, #FFC592 0%, #F6822B 100%);
+     color: #fff;
+}
+ .qs {
+    font-family: 'Quicksand', sans-serif;
+     margin:0;
+     text-align: center;
+}
+ .ppl {
+     background: linear-gradient(173.62deg, #FFEB83 -5.85%, #E7A82D 128.53%);
+}
+ .gPay {
+     background: linear-gradient(173.62deg, #5C5C5C -5.85%, #333333 128.53%);
+}
+ .aplPay {
+    background: linear-gradient(180deg, #ECECEC 0%, #CFCDCD 100%);
+}
+ .signupbtn{
+    transition:.5s;
+    border-radius: 24px;
+     width: 280px;
+    height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    filter: drop-shadow(0px 4px 10px rgba(0, 12, 117, 0.16));
+    margin: 4px 16px;
+}
+ #input {
+    border: none;
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     background: linear-gradient(180deg, #FFFFFF 0%, #ECECEC 100%);
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 24px;
+    width: 64%;
+    height: 40px;
+     padding-left: 40px;
+}
+ .input2 #input {
+     padding: 0 20px;
+     min-width: 40%;
+}
+ .accept {
+    width: 100%;
+     justify-content: flex-start;
+     font-size: 12px;
+}
+ input:focus, select:focus, textarea:focus, button:focus {
+     outline: none;
+}
+ .sm.orange.btn.qs {
+     margin: 8px;
+}
+ .lrgSize {
+     font-size: 40px;
+     text-align: center;
+     width: 100%;
+     font-weight: bold;
+}
+ .midSize {
+     font-weight:400;
+     font-size: 24px;
+     width:100%;
+     margin: 8px;
+}
+ .smallSize {
+     margin-top: 8px;
+     font-size: 20px;
+     font-weight: 300;
+}
+ .block {
+     display: flex;
+     justify-content: space-evenly;
+     width: 64%;
+}
+ .input2 #input {
+    width: 120px;
+}
+.spacer {
+  display: block;
+  width: 100%;
+  height: 50px;
+}

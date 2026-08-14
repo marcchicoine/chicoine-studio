@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap');
+ html {
+    background: linear-gradient(173.62deg, rgba(131, 196, 255, 1) -5.85%, rgba(152, 206, 255, 1) -5.83%, rgba(106, 148, 233, 1) 128.53%);
+}
+ body {
+     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+    background-image: url(svg.svg);
+    background-repeat: no-repeat;
+     background-size:cover;
+    height: 100%;
+}
+ section * {
+    margin: 8px;
+}
+ .accept {
+    display: flex;
+     align-items: center;
+}
+ section {
+    display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     color: #fff;
+    height: 100%;
+    align-content: stretch;
+    max-width: 1400px;
+    min-height: 100vh;
+}
+ div {
+    text-align: center;
+     display: block;
+}
+ nav {
+     display:flex;
+     width: 100%;
+     height: 24px;
+    justify-content:left;
+     align-items: center;
+}
+ a {
+    text-decoration:none;
+     color:#ffffff;
+}
+ .input {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+ .Logo {
+     width: 140px;
+     height: 44.83px;
+}
+ .lg {
+     padding:16px 56px;
+     font-size: 20px;
+     display: inline;
+    width: 72%;
+}
+ .btn {
+     box-shadow: 2.85px -2.85px 5.7px rgba(20, 74, 133, 0.2), inset 0px 1px 1px rgba(145, 189, 229, 0.3);
+}
+ .btnsquare {
+     box-shadow: 2.85px -2.85px 5.7px rgba(20, 74, 133, 0.2), inset 0px 1px 1px rgba(145, 189, 229, 0.3);
+    border-radius: 4px;
+     transition:.5s;
+     padding: 16px 32px;
+}
+ .btn:hover, .signupbtn:hover {
+    transform: scale(1.05);
+     transition:.5s;
+}
+ .orange {
+     background: linear-gradient(180deg, #FFC592 0%, #F6822B 100%);
+     color: #fff;
+     border-radius: 40px;
+     transition:.5s;
+     text-align: right;
+}
+ .qs {
+    font-family: 'Quicksand', sans-serif;
+}
+.lrgSize {
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+.midSize {
+    font-weight:400;
+    font-size: 24px;
+    width:100%
+}
+ .smallSize {
+   margin-top: 8px;
+     font-size: 20px;
+      font-weight: 300;
+}
+ .fb {
+     background: linear-gradient(173.62deg, #83C4FF -5.85%, #2D6BE7 128.53%);
+}
+ .ggl {
+     background: linear-gradient(163.87deg, #E4F5A3 -25.07%, #3DA741 100%);
+}
+ .signupbtn{
+    transition:.5s;
+    border-radius: 24px;
+     width: 280px;
+    height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 8px 16px;
+    ;
+    filter: drop-shadow(0px 4px 10px rgba(0, 12, 117, 0.16));
+}
+ .input {
+    height: 72px;
+}
+ #input {
+    border: none;
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     margin:0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #ECECEC 100%);
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 24px;
+    width: 64%;
+    height: 40px;
+     padding-left: 40px;
+}
+ .heroTxt, .qs {
+    width: 100%;
+     text-align: center;
+}
+ .sm{
+     padding: 8px 16px;
+     font-size: 20px;
+     display: inline;
+}
+ .btnWrap {
+     display: flex;
+     justify-content: right;
+    align-items: center;
+    margin: 0 24px;
+}
+ .gs {
+    filter: grayscale(1);
+     transition: .32s;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.spacer {
+  display: block;
+  width: 100%;
+  height: 200px;
+}
+.Logo img {
+  width: 124px;
+  height: 41px;
+}

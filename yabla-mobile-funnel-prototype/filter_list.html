@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="filter-list-style.css">
+  <title>Welcome to Yabla! Filter By Your Interest</title>
+</head>
+
+<body>
+  <section class="aboveFold">
+
+    <nav>
+ 
+      <div class="Logo" >
+        <img src="yablalogo2021.svg" onerror="this.src='yablalogo2021.png'">
+      </div>
+     
+    </nav>
+    <div class="heroTxt">
+      <h1 class="qs lrgSize"> Welcome to Yabla! </h1>
+      <h2 class="midSize"> You can start binging Spanish Now :) </h2>
+    </div>
+  <div class="block">
+      <h2 class="midSize qs"> Filter By Your Interest </h2>
+    </div>
+    <div class="filter interest">
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"> <img src="dramaIcon.svg"> <p>Drama</p></div>
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="actionIcon.svg"><p>Action</p></div>
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="lessonsIcon.svg"><p>Lesson</p></div>
+<div class="button"><img class="filtered art" src="artMusicHover.svg"><img src="artMusicIcon.svg"><p>Art/Music</p></div>
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="travelIcon.svg"><p>Travel</p></div>
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="documentaryIcon.svg"><p>Documentary</p></div>
+    </div>
+      <div class="block">
+    <h2 class="midSize qs f"> Or Filter By Your Level </h2>
+  </div>
+    <div class="filter level">
+      <div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="newbieIcon.svg"><p>Beginner</p></div>
+  <div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="intermediateIcon.svg"><p>Intermediate</p></div>
+<div class="button"><img class="filtered" src="orangeBtnFilter.svg"><img src="advancedIcon.svg"><p>Advanced</p></div>
+</div>
+    <div class="sm orange btn qs" >
+<a href="https://german.yabla.com/videos.php"> Start Watching </a>
+    </div>
+    <div class="spacer">
+      
+    </div>
+  </section>
+  <script>
+  const bball = document.querySelectorAll("img.filtered")
+bball.forEach(ball => {
+ ball.addEventListener("click", dribble => {
+    if (ball.classList.contains("op1")) {
+      ball.classList.remove ("op1");
+    }
+    else {ball.classList.add ("op1");}
+})
+})
+  </script>
+</body>
+</html>
