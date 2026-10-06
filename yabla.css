@@ -117,6 +117,12 @@ section.contentful:nth-child(odd) div.content {
 
   text-align: right;
 }
+section.results {
+  max-width: 640px;
+  margin: 0 auto 96px auto;
+  padding: 0 16px;
+  text-align: center;
+}
 .yablabtn {
   filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.16));
   background: linear-gradient(180deg, #FFC592 0%, #F6822B 100%);
