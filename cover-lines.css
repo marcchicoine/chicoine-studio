@@ -1,0 +1,44 @@
+/* Animated outline rectangles from the cover page (see .poster__rules in style.css). */
+.cover-lines {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.cover-lines__rules {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cover-lines__rules:not(.cover-lines__rules--white) {
+  gap: 120px;
+}
+.cover-lines__rules svg {
+  display: block;
+  max-width: none;
+  width: auto;
+  height: auto;
+}
+.cover-lines__rules--white {
+  animation: cover-lines-show 8s;
+}
+.cover-lines rect {
+  stroke-dasharray: 1000;
+  animation: cover-lines-dash 8s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate;
+}
+@keyframes cover-lines-dash {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 3000; }
+}
+@keyframes cover-lines-show {
+  0%, 40% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-lines rect,
+  .cover-lines__rules--white { animation: none; }
+}

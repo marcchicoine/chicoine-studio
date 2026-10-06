@@ -566,6 +566,10 @@ svg:hover rect {
   animation-duration: 8s;
 }
 
+.poster__rules svg {
+  opacity: 0.4;
+}
+
 .poster__rules div rect,
 .poster__rules2 div rect {
   stroke-dasharray: 1000;
