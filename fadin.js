@@ -42,3 +42,6 @@ window.addEventListener("resize", function(){
 
 
 
+
+//on load, fade in whatever is already on screen
+fadeIn()

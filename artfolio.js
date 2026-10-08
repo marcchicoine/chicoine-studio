@@ -23,9 +23,4 @@ $(function () {
     var selector = $(this).data('filter') || '*';
     $grid.isotope({ filter: selector }); // use arrange/update, not re-init
   });
-
-  // Fancybox
-  $('.fancybox').fancybox({
-    helpers: { overlay: { locked: false } }
-  });
 });
