@@ -123,15 +123,8 @@ section.results {
   padding: 0 16px;
   text-align: center;
 }
-section.results img {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  height: auto;
-  margin-top: 24px;
-}
-section.results a {
+section.results a,
+a.text-link {
   color: #F6822B;
   text-decoration: underline;
 }
