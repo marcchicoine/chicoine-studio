@@ -161,3 +161,14 @@ section.contentful:nth-child(odd) div.content {
   text-align: center;
 }
 }
+/* below ~900px the hero text overlaps the white phone illustration */
+@media only screen and (max-width: 900px) {
+  section.hero h2,
+  section.hero p {
+    color: #000;
+    width: fit-content;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.82);
+  }
+}
