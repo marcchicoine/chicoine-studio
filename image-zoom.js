@@ -1,5 +1,6 @@
 // Click a case study image to view it full size; click anywhere or press Esc to close.
 // Skips images inside links, headers, navs, and click-to-advance slideshows (.slides).
+// An image with data-full opens that higher-resolution file instead.
 (function () {
   var style = document.createElement('style');
   style.textContent =
@@ -26,7 +27,7 @@
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-label', img.alt || 'Expanded image');
     var big = document.createElement('img');
-    big.src = img.currentSrc || img.src;
+    big.src = img.dataset.full || img.currentSrc || img.src;
     big.alt = img.alt;
     overlay.appendChild(big);
     overlay.addEventListener('click', close);
