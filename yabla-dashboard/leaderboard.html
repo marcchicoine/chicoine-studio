@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yabla German - Leaderboard - High Scores</title>
+<link href="assets/css/fonts.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="assets/css/all.css">
+<link rel="stylesheet" href="assets/css/v4-shims.css">
+<link rel="stylesheet" type="text/css" href="assets/css/yabla-styles.css">
+<style>
+	.all_scores {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+
+	}
+	.score_block {
+		padding: 10px 0 45px 0;
+		width: 400px;
+		max-width: 90vw;
+
+	}
+	.score_block li {
+		margin-top: 4px;
+		padding: 4px 0 0px;
+		font-size: 15px;
+		position: relative;
+		border-bottom: 1px dotted #eee;
+		max-width: 300px;
+	}
+	.score_block li.is_leader {
+		font-weight: bold;
+		background-color: #FF9;
+	}
+	.score_block .score {
+		position: absolute;
+		font-weight: bold;
+		color:#4176a6;
+		right:0;
+		top:4px;
+	}
+	.score_block h2 {
+		margin-bottom: 3px;
+	}
+	.score_block p {
+		font-size: 14px;
+		color: #666;
+	}
+	span.period {
+		color:#666;
+		font-size: 20px;
+		font-weight: normal;
+	}
+	.notes {
+		text-align: center;
+		padding: 20px 6px;
+	}
+	.notes.top {
+		color:#888;
+	}
+	.period_selector {
+		padding: 0 0 8px 0;
+	}
+	.period_selector a {
+		display: inline-block;
+		padding: 4px 10px;
+		border-radius: 10px;
+
+	}
+	.period_selector a.selected {
+		background-color: #4176a6;
+		color:#fff;
+	}
+	.period_selector a:hover {
+		background-color: #ccc;
+	}
+	.period_selector a:hover.selected {
+		background-color: #224a9a;
+	}
+	.rank {
+		display:inline-block;
+		width:20px;
+		font-weight: bold;
+	}
+	.points {
+		display: none;
+	}
+	.points.points_30 {
+		display: block;
+	}
+	.xp {
+		display: none;
+	}
+	.xp.xp_30 {
+		display: block;
+	}
+	.dictation {
+		display: none;
+	}
+	.dictation.dictation_30 {
+		display: block;
+	}
+	.mc {
+		display: none;
+	}
+	.mc.mc_30 {
+		display: block;
+	}
+	.vocab {
+		display: none;
+	}
+	.vocab.vocab_30 {
+		display: block;
+	}
+	.comprehension {
+		display: none;
+	}
+	.comprehension.comprehension_30 {
+		display: block;
+	}
+	.rev_translate {
+		display: none;
+	}
+	.rev_translate.rev_trans_30 {
+		display: block;
+	}
+	.speak {
+		display: none;
+	}
+	.speak.speak_30 {
+		display: block;
+	}
+	li.user_score {
+		margin-top: 10px;
+		font-weight: bold;
+			}
+	li.user_score.on_board {
+		visibility: hidden;
+	}
+	.trophy {
+		/*width:50px;*/
+		height:50px;
+		vertical-align: middle;
+	}
+
+	.xp_details {
+		margin-bottom: 15px;
+		display: none;
+	}
+	.xp_details ol {
+		padding: 0 0 0 25px;
+	}
+	.xp_details li {
+		padding:3px 0;
+		max-width: 330px;
+		font-size:14px;
+		border-bottom: 1px solid #eee;
+		clear:both;
+	}
+	.xp_details .score_label {
+		display: inline-block;
+		float: left;
+	}
+	.xp_details .xp_award {
+		display:inline-block;
+		float:right;
+		color:#4176a6;
+		font-weight: bold;
+		font-size: 12px;
+	}
+	.xp_details_link {
+		display: inline-block;
+		font-size:12px;
+		margin-left:9px;
+	}
+	.score_link_wrap {
+		text-align: center;
+	}
+	.score_history_link {
+		display: inline-block;
+		font-size: 17px;
+		text-align: center;
+		margin:15px 0;
+		font-weight: 600;
+		color:#fff;
+		background-color: #4176a6;
+		padding:9px 24px;
+		border-radius: 3px;
+	}
+	.score_history_link:hover {
+		color:#eee;
+	}
+</style>
+</head>
+<body class="page ">
+<script>
+	// handle overlapping of username with page-nav
+	document.addEventListener('DOMContentLoaded', function () {
+		var absoluteDiv = document.querySelector('.user-opts');
+		var relativeDiv = document.querySelector('#page-nav ul li:last-child');
+		if (absoluteDiv && relativeDiv) { 
+			function checkOverlap(relativeDiv, absoluteDiv) {
+				var relativeRect = relativeDiv.getBoundingClientRect();
+				var absoluteRect = absoluteDiv.getBoundingClientRect();
+
+				return !(relativeRect.right < absoluteRect.left ||
+							 relativeRect.left > absoluteRect.right ||
+							 relativeRect.bottom < absoluteRect.top ||
+							 relativeRect.top > absoluteRect.bottom);
+			}
+
+			function handleOverlap() {
+				if (checkOverlap(relativeDiv, absoluteDiv)) {
+					$('header.logged-in').addClass('username_overlap_fix');
+					$('#site-title').addClass('username_overlap_fix');
+					$('#page-nav').addClass('username_overlap_fix');
+					$('#user-opts').addClass('username_overlap_fix');
+					window.removeEventListener('resize', handleOverlap)
+				}
+			}
+			window.addEventListener('resize', handleOverlap)
+			handleOverlap();
+		}
+	})
+</script>
+<header class="logged-in  nav-items-7">
+	<div class="container">
+		<div id="site-title"><a href="index.html"><svg width="130" height="45" viewBox="0 0 130 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="letters" d="M47.1004 33.7999L41.2004 19.7C41.0004 19.2 40.9004 18.8 40.9004 18.4C40.9004 17.8 41.2004 17.2999 41.7004 16.7999C42.2004 16.3999 42.8004 16.2 43.4004 16.2C44.0004 16.2 44.6004 16.4 45.0004 16.7C45.5004 17 45.8004 17.5 46.0004 18L49.6004 27.6L53.5004 18C53.7004 17.4 54.1004 17 54.5004 16.7C55.0004 16.4 55.5004 16.2 56.1004 16.2C56.7004 16.2 57.3004 16.3999 57.8004 16.7999C58.3004 17.1999 58.6004 17.7 58.6004 18.4C58.6004 18.9 58.5004 19.3 58.3004 19.7L49.7004 41C49.1004 42.3 48.3004 43 47.2004 43C46.4004 43 45.7004 42.7999 45.2004 42.2999C44.7004 41.8999 44.4004 41.2999 44.4004 40.7999C44.4004 40.3999 44.5004 39.8999 44.7004 39.2999L47.1004 33.7999Z" fill="#224A9A"></path>
+<path class="letters" d="M78.1006 19.6V32.2C78.1006 33.2 78.0006 34 77.7006 34.6C77.4006 35.2 76.7006 35.5 75.6006 35.5C74.9006 35.5 74.3006 35.3 73.9006 35C73.5006 34.6 73.2006 34.1 73.0006 33.4C71.6006 35 69.9006 35.8 67.9006 35.8C66.3006 35.8 64.8006 35.4 63.4006 34.5C62.1006 33.7 61.0006 32.5 60.2006 31C59.4006 29.5 59.1006 27.8 59.1006 25.9C59.1006 24.1 59.5006 22.4 60.3006 20.9C61.1006 19.4 62.1006 18.2 63.5006 17.3C64.8006 16.4 66.3006 16 67.9006 16C68.9006 16 69.8006 16.2 70.8006 16.6C71.7006 17 72.4006 17.6 73.0006 18.3C73.1006 17.7 73.4006 17.2 73.8006 16.8C74.3006 16.4 74.9006 16.2 75.5006 16.2C76.6006 16.2 77.3006 16.5 77.6006 17.1C78.0006 17.8 78.1006 18.6 78.1006 19.6ZM64.5006 25.9C64.5006 26.8 64.7006 27.6 65.0006 28.4C65.3006 29.2 65.8006 29.8 66.4006 30.3C67.0006 30.8 67.8006 31 68.7006 31C70.0006 31 71.0006 30.5 71.7006 29.4C72.4006 28.4 72.8006 27.2 72.8006 25.8C72.8006 24.9 72.6006 24.1 72.3006 23.3C72.0006 22.5 71.5006 21.8 70.9006 21.3C70.3006 20.8 69.5006 20.5 68.7006 20.5C67.8006 20.5 67.0006 20.8 66.4006 21.3C65.8006 21.8 65.3006 22.5 65.0006 23.3C64.7006 24.2 64.5006 25.1 64.5006 25.9Z" fill="#224A9A"></path>
+<path class="letters" d="M80.8008 32.7V10.9C80.8008 10.1 81.0008 9.4 81.5008 8.9C82.0008 8.3 82.7008 8 83.5008 8C84.0008 8 84.5008 8.1 84.9008 8.4C85.3008 8.6 85.6008 9 85.8008 9.4C86.0008 9.8 86.1008 10.3 86.1008 10.9V17.8C86.8008 17.2 87.6008 16.8 88.4008 16.5C89.3008 16.2 90.2008 16 91.1008 16C92.9008 16 94.5008 16.5 95.8008 17.4C97.1008 18.4 98.1008 19.6 98.7008 21.2C99.4008 22.7 99.7008 24.4 99.7008 26.1C99.7008 27.7 99.3008 29.3 98.6008 30.7C97.9008 32.2 96.8008 33.4 95.5008 34.3C94.2008 35.2 92.6008 35.7 90.9008 35.7C89.9008 35.7 89.0008 35.5 88.1008 35.1C87.2008 34.7 86.5008 34.1 86.0008 33.4C85.6008 34.8 84.7008 35.5 83.3008 35.5C82.5008 35.5 81.9008 35.2 81.4008 34.7C81.0008 34.2 80.8008 33.5 80.8008 32.7ZM86.1008 25.7C86.1008 27.1 86.5008 28.3 87.2008 29.4C87.9008 30.5 88.9008 31 90.3008 31C91.2008 31 91.9008 30.7 92.6008 30.2C93.2008 29.7 93.7008 29 94.0008 28.3C94.3008 27.5 94.5008 26.7 94.5008 25.9C94.5008 25 94.3008 24.2 94.0008 23.4C93.7008 22.6 93.2008 21.9 92.6008 21.4C92.0008 20.9 91.2008 20.6 90.3008 20.6C89.4008 20.6 88.6008 20.8 88.0008 21.3C87.4008 21.8 86.9008 22.4 86.6008 23.2C86.3008 24 86.1008 24.9 86.1008 25.7Z" fill="#224A9A"></path>
+<path class="letters" d="M101.601 32.7V10.9C101.601 10.1 101.801 9.39997 102.301 8.89997C102.801 8.39997 103.401 8.09998 104.201 8.09998C104.701 8.09998 105.201 8.19998 105.601 8.49998C106.001 8.69998 106.301 9.09998 106.501 9.49998C106.701 9.89998 106.801 10.4 106.801 11V32.8C106.801 33.4 106.701 33.8 106.501 34.3C106.301 34.7 106.001 35.1 105.501 35.3C105.101 35.5 104.601 35.7 104.101 35.7C103.301 35.7 102.701 35.4 102.201 34.9C101.801 34.2 101.601 33.5 101.601 32.7Z" fill="#224A9A"></path>
+<path class="letters" d="M127.7 19.6V32.2C127.7 33.2 127.6 34 127.3 34.6C127 35.2 126.3 35.5 125.2 35.5C124.5 35.5 123.9 35.3 123.5 35C123.1 34.6 122.8 34.1 122.6 33.4C121.2 35 119.5 35.8 117.5 35.8C115.9 35.8 114.4 35.4 113 34.5C111.7 33.7 110.6 32.5 109.8 31C109 29.5 108.7 27.8 108.7 25.9C108.7 24.1 109.1 22.4 109.9 20.9C110.7 19.4 111.7 18.2 113.1 17.3C114.4 16.4 115.9 16 117.5 16C118.5 16 119.4 16.2 120.4 16.6C121.3 17 122 17.6 122.6 18.3C122.7 17.7 123 17.2 123.4 16.8C123.9 16.4 124.5 16.2 125.1 16.2C126.2 16.2 126.9 16.5 127.2 17.1C127.5 17.8 127.7 18.6 127.7 19.6ZM114 25.9C114 26.8 114.2 27.6 114.5 28.4C114.8 29.2 115.3 29.8 115.9 30.3C116.5 30.8 117.3 31 118.2 31C119.5 31 120.5 30.5 121.2 29.4C121.9 28.4 122.3 27.2 122.3 25.8C122.3 24.9 122.1 24.1 121.8 23.3C121.5 22.5 121 21.8 120.4 21.3C119.8 20.8 119 20.5 118.2 20.5C117.3 20.5 116.5 20.8 115.9 21.3C115.3 21.8 114.8 22.5 114.5 23.3C114.2 24.2 114 25.1 114 25.9Z" fill="#224A9A"></path>
+<path class="tv_lines" d="M32.0489 38.2078L9.7048 39.1057L7.30462 36.9473V35.5486L4.38641 27.1739L2.84961 20.0597L3.62665 16.7616L15.9211 15.1212L29.5106 16.7616L34.4491 18.0394L36.1068 20.0597L33.5685 35.5486L32.0489 38.2078Z" fill="white"></path>
+<path class="tv_lines" d="M6.60352 34.844C10.7784 34.844 12.5315 29.922 12.5315 29.922C12.5315 29.922 15.1429 22.8409 21.542 23.2773C26.7842 23.6945 27.5722 21.882 27.47 17.1248" stroke="#F6822B" stroke-width="3.14738" stroke-linecap="square" stroke-linejoin="round"></path>
+<path class="tv_lines" d="M14.3711 38.97C17.028 37.6421 17.3796 34.3584 18.0907 31.7995C19.4192 27.0192 24.4673 28.4884 27.3899 27.8159C32.4784 26.645 34.0321 21.4421 34.0321 16.3962" stroke="#F6822B" stroke-width="2.09825"></path>
+<path class="tv" d="M31.5999 15.1C29.7999 14.8 26.5999 14.1 22.2999 13.7C22.4999 12.3 22.9999 10.3 24.1999 8.7C24.3999 8.8 24.5999 8.8 24.7999 8.8C25.7999 8.8 26.5999 8 26.5999 6.9C26.5999 5.9 25.7999 5.1 24.6999 5.1C23.6999 5.1 22.8999 5.9 22.8999 7C22.8999 7.2 22.8999 7.4 22.9999 7.6C21.3999 9.5 20.7999 11.9 20.5999 13.6C19.6999 13.5 18.6999 13.5 17.6999 13.4C17.4999 11.9 16.6999 8.9 14.5999 6.7C14.6999 6.5 14.7999 6.2 14.7999 5.9C14.8999 4.8 13.9999 4 12.9999 4C11.9999 4 11.1999 4.8 11.1999 5.9C11.1999 6.9 11.9999 7.7 13.0999 7.7C13.1999 7.7 13.3999 7.7 13.4999 7.6C15.2999 9.3 15.8999 11.8 16.1999 13.2C13.1999 13.1 9.7999 13.2 6.0999 13.6C0.299899 14.3 1.0999 19 1.0999 19C1.0999 19 1.9999 26.4 4.4999 36.2C5.4999 40.2 10.8999 39.9 10.8999 39.9L13.2999 39.8L12.1999 41.1C12.1999 41.1 11.3999 42.2 12.7999 42.3C14.1999 42.3 15.3999 42.6 15.7999 42C15.9999 41.7 16.7999 40.6 17.4999 39.7L22.1999 39.5C22.8999 40.5 23.6999 41.6 23.9999 41.9C24.3999 42.5 25.5999 42.2 26.9999 42.2C28.3999 42.2 27.5999 41 27.5999 41L26.1999 39.4L29.9999 39.3C33.2999 39.3 34.0999 37.8 34.5999 35.8C36.3999 28.9 36.9999 25.7 37.1999 20.9C37.4999 16.2 35.1999 15.7 31.5999 15.1ZM34.0999 21.9C33.8999 25.8 33.3999 28.4 31.8999 34.1C31.4999 35.8 30.7999 36.9 28.0999 37L12.2999 37.6C12.2999 37.6 7.8999 37.8 6.9999 34.6C4.8999 26.6 4.1999 20.5 4.1999 20.5C4.1999 20.5 3.4999 16.6 8.1999 16.1C18.7999 15.1 26.3999 16.7 29.2999 17.2C32.2999 17.8 34.2999 18.2 34.0999 21.9Z" fill="#224A9A"></path>
+</svg>
+</a></div>
+		<nav id="page-nav">
+			<ul>
+										<li class=" ">
+					<a href="#" class="">
+												Fluency Club
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Videos
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Review
+					</a>
+				</li>
+							<li class=" active">
+					<a href="index.html" class="active">
+												Dashboard
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Dictionary
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Lessons
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Subscribe
+					</a>
+				</li>
+			
+			</ul>
+		</nav>
+		<div class="user-opts">
+			<a href="#" class="select-lang">
+				<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" width="30" height="30" class="lang-indicator">
+			</a>
+			<div class="lang-dropdown dropdown">
+				<ul>
+					<li class="label" style="font-weight:bold;font-size:14px">Learn</li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-es.png" alt="Product-Language-Spanish" class="lang-ind"> Spanish
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-fr.png" alt="Product-Language-French" class="lang-ind"> French
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" class="lang-ind"> German
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-it.png" alt="Product-Language-Italian" class="lang-ind"> Italian
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-zh.png" alt="Product-Language-Chinese" class="lang-ind"> Chinese
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-en.png" alt="Product-Language-English" class="lang-ind"> English
+					</a></li>
+									</ul>
+			</div>
+
+			<a href="#" class="user"> <i class="fa fa-user"></i> marcstudent <i class="fa fa-chevron-down"></i></a>
+			<div class="user-dropdown dropdown">
+				<ul>
+					<li><a href="#"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+											<li><a href="index.html"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+															<li><a href="#"><i class="fa fa-dollar"></i> Subscriptions &amp; Payment</a></li>
+										<li><a href="#"><i class="fa fa-group"></i> Classes</a></li>
+															<li><a href="#"><i class="fa fa-trophy"></i> Leaderboard &amp; Scores</a></li>
+					<li class="group"><a href="#">Log Out</a></li>
+											<li class="group label">Translate Page</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-en.png" alt="Translation-Language-English" class="flag-indicator"> 
+									English <span class="check">✓</span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-es.png" alt="Translation-Language-Español" class="flag-indicator"> 
+									Español <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-fr.png" alt="Translation-Language-Français" class="flag-indicator"> 
+									Français <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-it.png" alt="Translation-Language-Italiano" class="flag-indicator"> 
+									Italiano <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-pt.png" alt="Translation-Language-Português" class="flag-indicator"> 
+									Português <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-de.png" alt="Translation-Language-Deutsch" class="flag-indicator"> 
+									Deutsch <span class="check"></span>
+
+								</a>
+							</li>
+																				</ul>
+			</div>
+		</div>
+		<div id="site-hamburger"><i class="fa fa-navicon"></i></div>
+	</div>
+		<div class="mobile_slide">
+		<div class="mobile_scroll">
+			<div class="mobile_product_name">Yabla German</div>
+			<div class="close_link"><i class="fa fa-times"></i></div>
+			<ul class="links">
+							<li>
+					<a href="#" class="">
+												Fluency Club
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Videos
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Review
+					</a>
+				</li>
+							<li>
+					<a href="index.html" class="active">
+												Dashboard
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Dictionary
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Lessons
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Subscribe
+					</a>
+				</li>
+						</ul>
+			<ul class="learn_options">
+				<li class="label">Learn</li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-es.png" alt="Product-Language-Spanish" class="lang-ind"> Spanish
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-fr.png" alt="Product-Language-French" class="lang-ind"> French
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" class="lang-ind"> German
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-it.png" alt="Product-Language-Italian" class="lang-ind"> Italian
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-zh.png" alt="Product-Language-Chinese" class="lang-ind"> Chinese
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-en.png" alt="Product-Language-English" class="lang-ind"> English
+				</a></li>
+							</ul>
+		</div>
+		
+	</div>
+</header>
+
+<div id="highscores" class="container">
+<div class="notes top">
+Scores are updated daily at midnight America/New York time.</div>
+<div> </div>
+
+<div class="all_scores">
+	<div class="score_block">
+		<h2><img src="assets/img/best_all_around.svg" alt="trophy" class="trophy"> Best All-Around</h2>
+		<p>Experience Points (XP) awarded for all activities.</p>
+		<div class="period_selector">
+			<a href="#" class="7">7 Days</a>
+			<a href="#" class="30 selected">30 Days</a>
+			<a href="#" class="90">90 Days</a>
+			<a href="#" class="all">All Time</a>
+		</div>
+		<ul class="xp xp_7">
+				<li>
+			<span class="rank">1</span> AlpenReader21 <span class="score">15,756 XP</span>
+		</li>
+				<li>
+			<span class="rank">2</span> TulipLinguist47 <span class="score">9,106 XP</span>
+		</li>
+				<li>
+			<span class="rank">3</span> CobaltScribe33 <span class="score">6,038 XP</span>
+		</li>
+				<li>
+			<span class="rank">4</span> MapleVoyager58 <span class="score">4,366 XP</span>
+		</li>
+				<li>
+			<span class="rank">5</span> SunnyPilot72 <span class="score">3,412 XP</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">2,675 XP</span>
+		</li>
+				<li>
+			<span class="rank">7</span> QuietBaker19 <span class="score">2,468 XP</span>
+		</li>
+				<li>
+			<span class="rank">8</span> BriskLearner64 <span class="score">1,766 XP</span>
+		</li>
+				<li>
+			<span class="rank">9</span> AmberPainter86 <span class="score">1,407 XP</span>
+		</li>
+				<li>
+			<span class="rank">10</span> LuckyGardener41 <span class="score">785 XP</span>
+		</li>
+		</ul>
+		<ul class="xp xp_30">
+				<li>
+			<span class="rank">1</span> CobaltScribe33 <span class="score">35,764 XP</span>
+		</li>
+				<li>
+			<span class="rank">2</span> MapleVoyager58 <span class="score">22,731 XP</span>
+		</li>
+				<li>
+			<span class="rank">3</span> SunnyPilot72 <span class="score">16,207 XP</span>
+		</li>
+				<li>
+			<span class="rank">4</span> QuietBaker19 <span class="score">10,580 XP</span>
+		</li>
+				<li>
+			<span class="rank">5</span> BriskLearner64 <span class="score">8,658 XP</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">6,575 XP</span>
+		</li>
+				<li>
+			<span class="rank">7</span> AmberPainter86 <span class="score">5,260 XP</span>
+		</li>
+				<li>
+			<span class="rank">8</span> LuckyGardener41 <span class="score">4,126 XP</span>
+		</li>
+				<li>
+			<span class="rank">9</span> VelvetClimber27 <span class="score">2,821 XP</span>
+		</li>
+				<li>
+			<span class="rank">10</span> SparrowSinger53 <span class="score">1,967 XP</span>
+		</li>
+		</ul>
+		<ul class="xp xp_90">
+				<li>
+			<span class="rank">1</span> SunnyPilot72 <span class="score">31,386 XP</span>
+		</li>
+				<li>
+			<span class="rank">2</span> QuietBaker19 <span class="score">23,300 XP</span>
+		</li>
+				<li>
+			<span class="rank">3</span> BriskLearner64 <span class="score">16,234 XP</span>
+		</li>
+				<li>
+			<span class="rank">4</span> AmberPainter86 <span class="score">13,381 XP</span>
+		</li>
+				<li>
+			<span class="rank">5</span> LuckyGardener41 <span class="score">11,843 XP</span>
+		</li>
+				<li>
+			<span class="rank">6</span> VelvetClimber27 <span class="score">10,164 XP</span>
+		</li>
+				<li>
+			<span class="rank">7</span> SparrowSinger53 <span class="score">9,245 XP</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">8</span> marcstudent <span class="score">7,617 XP</span>
+		</li>
+				<li>
+			<span class="rank">9</span> NordicWalker38 <span class="score">6,864 XP</span>
+		</li>
+				<li>
+			<span class="rank">10</span> TulipPilot69 <span class="score">4,515 XP</span>
+		</li>
+		</ul>
+		<ul class="xp xp_all">
+				<li>
+			<span class="rank">1</span> BriskLearner64 <span class="score">574,148 XP</span>
+		</li>
+				<li>
+			<span class="rank">2</span> AmberPainter86 <span class="score">356,275 XP</span>
+		</li>
+				<li>
+			<span class="rank">3</span> LuckyGardener41 <span class="score">234,276 XP</span>
+		</li>
+				<li>
+			<span class="rank">4</span> VelvetClimber27 <span class="score">139,185 XP</span>
+		</li>
+				<li>
+			<span class="rank">5</span> SparrowSinger53 <span class="score">86,406 XP</span>
+		</li>
+				<li>
+			<span class="rank">6</span> NordicWalker38 <span class="score">62,411 XP</span>
+		</li>
+				<li>
+			<span class="rank">7</span> TulipPilot69 <span class="score">43,035 XP</span>
+		</li>
+				<li>
+			<span class="rank">8</span> AmberLinguist15 <span class="score">33,972 XP</span>
+		</li>
+				<li>
+			<span class="rank">9</span> AlpenReader21 <span class="score">22,754 XP</span>
+		</li>
+				<li>
+			<span class="rank">10</span> TulipLinguist47 <span class="score">17,698 XP</span>
+		</li>
+				<li class="user_score ">
+			marcstudent <span class="score">10,050 XP</span>
+		</li>
+		</ul>
+	</div>
+
+	<div class="score_block">
+		<h2><img src="assets/img/multichoice.svg" alt="trophy" class="trophy"> Multiple Choice Pros</h2>
+		<p>Play the Yabla multiple choice game.</p>
+		<div class="period_selector">
+			<a href="#" class="7">7 Days</a>
+			<a href="#" class="30 selected">30 Days</a>
+			<a href="#" class="90">90 Days</a>
+			<a href="#" class="all">All Time</a>
+		</div>
+		<ul class="mc mc_7">
+				<li>
+			<span class="rank">1</span> SunnyPilot72 <span class="score">1,542 points</span>
+		</li>
+				<li>
+			<span class="rank">2</span> QuietBaker19 <span class="score">943 points</span>
+		</li>
+				<li>
+			<span class="rank">3</span> BriskLearner64 <span class="score">561 points</span>
+		</li>
+				<li>
+			<span class="rank">4</span> AmberPainter86 <span class="score">414 points</span>
+		</li>
+				<li>
+			<span class="rank">5</span> LuckyGardener41 <span class="score">328 points</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">262 points</span>
+		</li>
+				<li>
+			<span class="rank">7</span> VelvetClimber27 <span class="score">250 points</span>
+		</li>
+				<li>
+			<span class="rank">8</span> SparrowSinger53 <span class="score">193 points</span>
+		</li>
+				<li>
+			<span class="rank">9</span> NordicWalker38 <span class="score">133 points</span>
+		</li>
+				<li>
+			<span class="rank">10</span> TulipPilot69 <span class="score">78 points</span>
+		</li>
+		</ul>
+		<ul class="mc mc_30">
+				<li>
+			<span class="rank">1</span> BriskLearner64 <span class="score">3,285 points</span>
+		</li>
+				<li>
+			<span class="rank">2</span> AmberPainter86 <span class="score">2,254 points</span>
+		</li>
+				<li>
+			<span class="rank">3</span> LuckyGardener41 <span class="score">1,682 points</span>
+		</li>
+				<li>
+			<span class="rank">4</span> VelvetClimber27 <span class="score">1,067 points</span>
+		</li>
+				<li>
+			<span class="rank">5</span> SparrowSinger53 <span class="score">784 points</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">650 points</span>
+		</li>
+				<li>
+			<span class="rank">7</span> NordicWalker38 <span class="score">584 points</span>
+		</li>
+				<li>
+			<span class="rank">8</span> TulipPilot69 <span class="score">369 points</span>
+		</li>
+				<li>
+			<span class="rank">9</span> AmberLinguist15 <span class="score">287 points</span>
+		</li>
+				<li>
+			<span class="rank">10</span> AlpenReader21 <span class="score">194 points</span>
+		</li>
+		</ul>
+		<ul class="mc mc_90">
+				<li>
+			<span class="rank">1</span> LuckyGardener41 <span class="score">2,969 points</span>
+		</li>
+				<li>
+			<span class="rank">2</span> VelvetClimber27 <span class="score">2,308 points</span>
+		</li>
+				<li>
+			<span class="rank">3</span> SparrowSinger53 <span class="score">1,687 points</span>
+		</li>
+				<li>
+			<span class="rank">4</span> NordicWalker38 <span class="score">1,344 points</span>
+		</li>
+				<li>
+			<span class="rank">5</span> TulipPilot69 <span class="score">1,204 points</span>
+		</li>
+				<li>
+			<span class="rank">6</span> AmberLinguist15 <span class="score">1,033 points</span>
+		</li>
+				<li>
+			<span class="rank">7</span> AlpenReader21 <span class="score">893 points</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">8</span> marcstudent <span class="score">770 points</span>
+		</li>
+				<li>
+			<span class="rank">9</span> TulipLinguist47 <span class="score">732 points</span>
+		</li>
+				<li>
+			<span class="rank">10</span> CobaltScribe33 <span class="score">439 points</span>
+		</li>
+		</ul>
+		<ul class="mc mc_all">
+				<li>
+			<span class="rank">1</span> SparrowSinger53 <span class="score">62,226 points</span>
+		</li>
+				<li>
+			<span class="rank">2</span> NordicWalker38 <span class="score">38,447 points</span>
+		</li>
+				<li>
+			<span class="rank">3</span> TulipPilot69 <span class="score">23,126 points</span>
+		</li>
+				<li>
+			<span class="rank">4</span> AmberLinguist15 <span class="score">15,345 points</span>
+		</li>
+				<li>
+			<span class="rank">5</span> AlpenReader21 <span class="score">9,139 points</span>
+		</li>
+				<li>
+			<span class="rank">6</span> TulipLinguist47 <span class="score">6,596 points</span>
+		</li>
+				<li>
+			<span class="rank">7</span> CobaltScribe33 <span class="score">4,947 points</span>
+		</li>
+				<li>
+			<span class="rank">8</span> MapleVoyager58 <span class="score">3,499 points</span>
+		</li>
+				<li>
+			<span class="rank">9</span> SunnyPilot72 <span class="score">2,479 points</span>
+		</li>
+				<li>
+			<span class="rank">10</span> QuietBaker19 <span class="score">1,923 points</span>
+		</li>
+				<li class="user_score ">
+			marcstudent <span class="score">1,050 points</span>
+		</li>
+		</ul>
+	</div>
+
+	<div class="score_block">
+		<h2><img src="assets/img/vocabulary_review.svg" alt="trophy" class="trophy"> Vocabulary Champs</h2>
+		<p>Add words to your vocab list and review them.</p>
+		<div class="period_selector">
+			<a href="#" class="7">7 Days</a>
+			<a href="#" class="30 selected">30 Days</a>
+			<a href="#" class="90">90 Days</a>
+			<a href="#" class="all">All Time</a>
+		</div>
+		<ul class="vocab vocab_7">
+				<li>
+			<span class="rank">1</span> VelvetClimber27 <span class="score">165 words</span>
+		</li>
+				<li>
+			<span class="rank">2</span> SparrowSinger53 <span class="score">90 words</span>
+		</li>
+				<li>
+			<span class="rank">3</span> NordicWalker38 <span class="score">58 words</span>
+		</li>
+				<li>
+			<span class="rank">4</span> TulipPilot69 <span class="score">42 words</span>
+		</li>
+				<li>
+			<span class="rank">5</span> AmberLinguist15 <span class="score">33 words</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">26 words</span>
+		</li>
+				<li>
+			<span class="rank">7</span> AlpenReader21 <span class="score">24 words</span>
+		</li>
+				<li>
+			<span class="rank">8</span> TulipLinguist47 <span class="score">19 words</span>
+		</li>
+				<li>
+			<span class="rank">9</span> CobaltScribe33 <span class="score">13 words</span>
+		</li>
+				<li>
+			<span class="rank">10</span> MapleVoyager58 <span class="score">8 words</span>
+		</li>
+		</ul>
+		<ul class="vocab vocab_30">
+				<li>
+			<span class="rank">1</span> NordicWalker38 <span class="score">311 words</span>
+		</li>
+				<li>
+			<span class="rank">2</span> TulipPilot69 <span class="score">225 words</span>
+		</li>
+				<li>
+			<span class="rank">3</span> AmberLinguist15 <span class="score">158 words</span>
+		</li>
+				<li>
+			<span class="rank">4</span> AlpenReader21 <span class="score">110 words</span>
+		</li>
+				<li>
+			<span class="rank">5</span> TulipLinguist47 <span class="score">83 words</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">6</span> marcstudent <span class="score">63 words</span>
+		</li>
+				<li>
+			<span class="rank">7</span> CobaltScribe33 <span class="score">51 words</span>
+		</li>
+				<li>
+			<span class="rank">8</span> MapleVoyager58 <span class="score">37 words</span>
+		</li>
+				<li>
+			<span class="rank">9</span> SunnyPilot72 <span class="score">28 words</span>
+		</li>
+				<li>
+			<span class="rank">10</span> QuietBaker19 <span class="score">20 words</span>
+		</li>
+		</ul>
+		<ul class="vocab vocab_90">
+				<li>
+			<span class="rank">1</span> AmberLinguist15 <span class="score">286 words</span>
+		</li>
+				<li>
+			<span class="rank">2</span> AlpenReader21 <span class="score">201 words</span>
+		</li>
+				<li>
+			<span class="rank">3</span> TulipLinguist47 <span class="score">160 words</span>
+		</li>
+				<li>
+			<span class="rank">4</span> CobaltScribe33 <span class="score">131 words</span>
+		</li>
+				<li>
+			<span class="rank">5</span> MapleVoyager58 <span class="score">111 words</span>
+		</li>
+				<li>
+			<span class="rank">6</span> SunnyPilot72 <span class="score">98 words</span>
+		</li>
+				<li>
+			<span class="rank">7</span> QuietBaker19 <span class="score">83 words</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">8</span> marcstudent <span class="score">73 words</span>
+		</li>
+				<li>
+			<span class="rank">9</span> BriskLearner64 <span class="score">67 words</span>
+		</li>
+				<li>
+			<span class="rank">10</span> AmberPainter86 <span class="score">43 words</span>
+		</li>
+		</ul>
+		<ul class="vocab vocab_all">
+				<li>
+			<span class="rank">1</span> TulipLinguist47 <span class="score">5,468 words</span>
+		</li>
+				<li>
+			<span class="rank">2</span> CobaltScribe33 <span class="score">3,349 words</span>
+		</li>
+				<li>
+			<span class="rank">3</span> MapleVoyager58 <span class="score">2,155 words</span>
+		</li>
+				<li>
+			<span class="rank">4</span> SunnyPilot72 <span class="score">1,316 words</span>
+		</li>
+				<li>
+			<span class="rank">5</span> QuietBaker19 <span class="score">888 words</span>
+		</li>
+				<li>
+			<span class="rank">6</span> BriskLearner64 <span class="score">566 words</span>
+		</li>
+				<li>
+			<span class="rank">7</span> AmberPainter86 <span class="score">422 words</span>
+		</li>
+				<li>
+			<span class="rank">8</span> LuckyGardener41 <span class="score">299 words</span>
+		</li>
+				<li>
+			<span class="rank">9</span> VelvetClimber27 <span class="score">228 words</span>
+		</li>
+				<li>
+			<span class="rank">10</span> SparrowSinger53 <span class="score">163 words</span>
+		</li>
+				<li class="user_score ">
+			marcstudent <span class="score">96 words</span>
+		</li>
+		</ul>
+	</div>
+
+	<div class="score_block">
+		<h2><img src="assets/img/current_chain.svg" alt="trophy" class="trophy"> Don't break the chain <span class="period">current streak</span></h2>
+		<p>Watch a video every day!</p>
+		<ul>
+				<li>
+			<span class="rank">1</span> CobaltScribe33 <span class="score">31 days</span>
+		</li>
+				<li>
+			<span class="rank">2</span> MapleVoyager58 <span class="score">19 days</span>
+		</li>
+				<li>
+			<span class="rank">3</span> SunnyPilot72 <span class="score">14 days</span>
+		</li>
+				<li>
+			<span class="rank">4</span> QuietBaker19 <span class="score">9 days</span>
+		</li>
+				<li>
+			<span class="rank">5</span> BriskLearner64 <span class="score">7 days</span>
+		</li>
+				<li>
+			<span class="rank">6</span> AmberPainter86 <span class="score">6 days</span>
+		</li>
+				<li class="is_leader">
+			<span class="rank">7</span> marcstudent <span class="score">5 days</span>
+		</li>
+				<li>
+			<span class="rank">8</span> LuckyGardener41 <span class="score">4 days</span>
+		</li>
+				<li>
+			<span class="rank">9</span> VelvetClimber27 <span class="score">3 days</span>
+		</li>
+				<li>
+			<span class="rank">10</span> SparrowSinger53 <span class="score">2 days</span>
+		</li>
+		</ul>
+	</div>
+</div>
+</div>
+
+<div class="score_link_wrap">
+<a href="#" class="score_history_link">Your Score Details</a>
+</div>
+
+<footer id="footer">
+	<div class="container">
+		<div class="row main-footer">
+			<ul>
+				<li><h3 class="reg">Yabla Languages</h3></li>
+				<li><a href="#">Learn Spanish</a></li>
+								
+					<li><a href="#">Learn French</a></li>
+					<li><a href="#">Learn Italian</a></li>
+								<li><a href="#">Learn German</a></li>
+								
+					<li><a href="#">Learn Chinese</a></li>
+								<li><a href="#">Learn English</a></li>
+			</ul>
+
+			<ul>
+				<li><h3 class="reg">Get Yabla</h3></li>
+				<li><a href="#">Buy Individual subscription</a></li>
+				<li><a href="#">Buy School/Organization subscription</a></li>
+				<li><a href="#">QUOTE for School/Organization</a></li>
+				<li><a href="#">Signup for students</a></li>
+				<li><a href="#">Sign up with access code</a></li>
+				<li><a href="#">Send a Gift</a></li>
+
+			</ul>
+
+			<ul>
+				<li><h3 class="reg">Help</h3></li>
+				<li><a href="#">Individuals - Getting Started</a></li>
+				<li><a href="#">Individuals - FAQ</a></li>
+				<li><a href="#">Individuals - Video Tutorials</a></li>
+				<li><a href="#">School Accounts - Getting Started</a></li>
+				<li><a href="#">School Accounts - FAQ</a></li>
+				<li><a href="#">School Accounts - Video Tutorials</a></li>
+				<li><a href="#">Contact</a></li>
+							</ul>
+
+			<ul>
+
+				<li><h3 class="reg">Yabla</h3></li>
+													<li><a href="#" aria-label="Mailing List">Yabla Newsletter Signup</a></li>
+								<li><a href="#" aria-label="iOS Link"><span class="fa fa-apple"></span> iOS App</a></li>
+
+				<!-- tvOS app available for all languages-->
+									<li>
+						<a href="#" aria-label="Apple TV">
+							<span class="fa fa-apple"></span> tvOS App						</a>
+					</li>
+				
+								<li><a href="#" aria-label="Leaderboard">Leaderboard</a></li>
+																<li><a href="#" aria-label="Scoreboard">Your Scores</a></li>
+				<li><a href="#" aria-label="Activity Board">Your Activity</a></li>
+												<li></li>
+				    				<li class="blog-section">
+        				<h3 class="blog-header reg">Blogs</h3>
+        				            				<a href="#" title="Yabla German Blog" target="_blank">Yabla German Blog</a>
+        				    				</li>
+								<li>
+					<div class="social">
+						<ul>
+							<li><a href="#" aria-label="Facebook" target="_blank"><span class="fa fa-facebook"></span></a></li>
+							<li><a href="#" aria-label="Instagram" target="_blank"><span class="fa fa-instagram"></span></a></li>
+							<li><a href="#" aria-label="X Platform" target="_blank"><span class="fa fa-twitter"></span></a></li>
+						</ul>
+					</div>
+				</li>		
+
+			</ul>
+		</div>
+		<div class="row secondary-footer">
+			<div class="footer-logo">
+				<a href="#" aria-label="Yabla">Yabla</a>
+			</div>
+
+			<div class="col-md-9 foot_links">
+				<ul>
+					<li><a href="#" aria-label="About">About</a></li>
+					<li><a href="#" aria-label="Educators">For Educators</a></li>
+					<li><a href="#" aria-label="Affiliate Link">Affiliate Program</a></li>
+					<li><a href="#" aria-label="Terms">Terms</a></li>
+					<li><a href="#" aria-label="Privacy">Privacy</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+$.post = $.get = function(){ return $.Deferred().resolve({}).promise(); };
+document.addEventListener('click', function(e){
+	var a = e.target.closest && e.target.closest('a[href="#"]');
+	if (a) e.preventDefault();
+}, true);
+</script>
+<script>
+$(function(){
+
+	function hideDropdowns(){
+		$('.dropdown').hide();
+		edMenuDismiss(true);
+	}
+	$('header .user').on('click touchend',function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		var $user_dd = $('header .user-dropdown');
+		if($user_dd.is(':visible')) {
+			$(window).off('.user-dd');
+			$user_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$user_dd.show();
+		$(window).on('click.user-dd touchend.user-dd',function (e){
+			console.log("window click ");
+			console.log(e);
+			if($(e.target).closest('.dropdown').length) {
+				console.log("event contains target");
+				return;
+			}
+			$user_dd.hide();
+			$(window).off('.user-dd');
+		});
+	});
+	$('header .select-lang').on('click touchend',function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		var $lang_dd = $('header .lang-dropdown');
+		if($lang_dd.is(':visible')) {
+			$(window).off('.lang-dd');
+			$lang_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$lang_dd.show();
+		$(window).on('click.lang-dd touchend.lang-dd',function (e){
+			if($(e.target).closest('.dropdown').length) return;
+			$lang_dd.hide();
+			$(window).off('.lang-dd touchend.lang-dd');
+		});
+	});
+	$('header .translate-link').on('click touchend',function(e){
+		e.stopPropagation();
+		var $translate_dd = $('header .translate-dropdown');
+		if($translate_dd.is(':visible')) {
+			$(window).off('.lang-dd');
+			$translate_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$translate_dd.show();
+		$(window).on('click.trans-dd touchend.trans-dd',function (e){
+			if($(e.target).closest('.dropdown').length) return;
+			$translate_dd.hide();
+			$(window).off('.trans-dd');
+		});
+	});
+	$('header .mobile_slide').on('touchend click',function(e){
+		e.stopPropagation();
+	});
+	$('header .mobile_slide .close_link').on('touchend click',function(){
+		$('header .mobile_slide').removeClass('active');
+		$('body').off('.burger');
+	});
+	$('header #site-hamburger').on('click',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		$('header .mobile_slide').addClass('active');
+		$('body').on('touchend.burger click.burger',function(e){
+			if($(e.target).closest('.mobile_slide').length) {
+				return;
+			} else {
+				$('header .mobile_slide').removeClass('active');
+				$('body').off('.burger');
+			}
+		});
+	});
+
+
+	$('.ed_menu_btn').on('click touchend',function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		
+		if($(this).hasClass('showing')) {
+			edMenuDismiss();
+		} else {
+			hideDropdowns();
+			edMenuShow();
+			$('body').on('click.ed_cancel touchend.ed_cancel',function(e){
+				if($(e.target).closest('#modal_master').length) {
+					return;
+				}
+				
+				edMenuDismiss();
+				$(this).off('.ed_cancel');
+			});
+		}
+	})
+
+	$('.ed_menu').find('a').on('click touchend',function(e){
+		e.stopPropagation();
+	}).end()
+
+	var ed_interval;
+	var history_pushes = 0;
+	function  edMenuShow() {
+		if(history_pushes == 0) {
+			window.history.pushState({ action: 'ed_menu_show' }, 'Educators Menu');
+			history_pushes++;
+			$(window).on('popstate.ed_pop',function(e) {
+				history_pushes--;
+				edMenuDismiss();
+			});
+		}
+		
+		clearTimeout(ed_interval);
+		$('.ed_menu').show().stop().removeClass('hiding');
+		$('.ed_menu_btn').addClass('showing');
+		// refresh if expired...
+		$.get('ed_menu_check.php',
+			{ last_changed_at: $('.ed_menu').data('last_changed_at') },
+			function(data){
+				if(data.html) {
+					// a bit ugly, but prevents flickering
+					$('.ed_menu .ed_menu_inner').replaceWith( $(data.html).find('.ed_menu_inner') );
+				}
+				
+			});
+	}
+	function edMenuDismiss(fast) {
+		// 
+		if(history_pushes == 1) {
+			window.history.back();
+			return;
+		}
+		$('.ed_menu').addClass('hiding');
+		ed_interval = setTimeout(function(){
+			$('.ed_menu').hide();
+		},fast ? 0 : 400)
+		
+		$('.ed_menu_btn').removeClass('showing');
+		$(window).off('.ed_pop');
+		
+	}
+	$('.ed_menu .invite').on('click',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		var $dialog = $('.ed_code_signup')
+			.addClass('hide_teacher_text hide_student_text')
+			.removeClass('hide_' + $(this).data('user_type') + '_text');
+
+		$dialog.find('[name=code_url]').val( $(this).data('url') );
+		$dialog.find('.text_code').text( $(this).data('code') );
+		Modal_Master.show($('.ed_code_signup'));
+		$dialog.find('[name=code_url]').focus();
+	})
+
+})
+
+</script>
+<script>
+$(function(){
+	$('.period_selector a').on('click touchstart', function(e){
+		e.preventDefault();
+		$(this).closest('.period_selector').find('a').removeClass('selected');
+		$(this).addClass('selected');
+		var matches = $(this).prop('className').match(/(\d+|all)/);
+		$(this).closest('.score_block').find('ul').hide().filter('[class$=_' + matches[1] + ']').show();
+	});
+});
+</script>
+</body></html>

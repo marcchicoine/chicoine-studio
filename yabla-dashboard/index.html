@@ -1516,6 +1516,13 @@ document.addEventListener('click', function(e){
 }
 </style>
 <style id="static-responsive-fixes">
+/* Extra 8px between the welcome title and the news / chart cards */
+@media screen and (min-width: 621px) and (max-width: 1023px) {
+	#header { margin-bottom: 8px; }
+}
+@media screen and (min-width: 1024px) {
+	#content section { margin-top: 108px; }
+}
 /* Phone: TV on the left, Set Goal / Your Activity stacked in a column beside it */
 @media screen and (max-width: 620px) {
 	.goal_container.videos_watched {
@@ -1670,7 +1677,7 @@ document.addEventListener('click', function(e){
 											<li><a href="#"><i class="fa fa-tachometer"></i> Dashboard</a></li>
 															<li><a href="#"><i class="fa fa-dollar"></i> Subscriptions &amp; Payment</a></li>
 										<li><a href="#"><i class="fa fa-group"></i> Classes</a></li>
-															<li><a href="#"><i class="fa fa-trophy"></i> Leaderboard &amp; Scores</a></li>
+															<li><a href="leaderboard.html"><i class="fa fa-trophy"></i> Leaderboard &amp; Scores</a></li>
 					<li class="group"><a href="#">Log Out</a></li>
 											<li class="group label">Translate Page</li>
 													<li class="translation">
@@ -1792,33 +1799,6 @@ document.addEventListener('click', function(e){
 	
 	
 	
-	<style>
-	@media (max-width: 620px) {
-		.short_alert{
-			display: inline;
-		}
-		.full_alert{
-			display:none;
-		}
-	}
-	@media (min-width: 620px) {
-		.short_alert{
-			display: none;
-		}
-		.full_alert{
-			display:inline;
-		}
-	}
-
-</style>
-	<span class="full_alert">
-		<div style="padding:8px 0; text-align: center; background-color: #F6822B; color: white; font-size:18px">
-			Your subscription has expired. Please <a href="#">Subscribe</a> to continue using Yabla German.		</div>
-	</span>
-	<span class="short_alert">
-		<div style="padding:8px 0; text-align: center; background-color: #F6822B; color: white; font-size:18px">
-			Your subscription has expired. Please <a href="#">re-subscribe.</a>		</div>
-	</span>
 	<div id="localized_strings">
 		<div class="fitb">Fill In The Blank</div>
 		<div class="multiple_choice">Multiple Choice</div>
@@ -1863,9 +1843,9 @@ document.addEventListener('click', function(e){
 			<img src="assets/img/scores_icon.png">
 
 			<div class="buttons">
-				<a href="#" class="scores_button btn yabla-orange">
+				<a href="leaderboard.html" class="scores_button btn yabla-orange">
 					Your Scores				</a>
-				<a href="#" class="leaderboard_button btn yabla-orange">
+				<a href="leaderboard.html" class="leaderboard_button btn yabla-orange">
 					Leaderboard				</a>
 			</div>
 		</section>
@@ -2283,8 +2263,8 @@ document.addEventListener('click', function(e){
 							<span class="fa fa-apple"></span> tvOS App						</a>
 					</li>
 				
-								<li><a href="#" aria-label="Leaderboard">Leaderboard</a></li>
-																<li><a href="#" aria-label="Scoreboard">Your Scores</a></li>
+								<li><a href="leaderboard.html" aria-label="Leaderboard">Leaderboard</a></li>
+																<li><a href="leaderboard.html" aria-label="Scoreboard">Your Scores</a></li>
 				<li><a href="#" aria-label="Activity Board">Your Activity</a></li>
 												<li></li>
 				    				<li class="blog-section">
