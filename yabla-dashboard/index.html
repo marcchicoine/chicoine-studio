@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+<title>Yabla German - Dashboard</title>
+
+
+
+<!-- favicon images for all different resolutions -->
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+
+<link href="assets/css/fonts.css" rel="stylesheet" type="text/css">
+<!-- <link href='/styles/google_fonts/font_stack.css?3' rel='stylesheet' type='text/css'> -->
+
+<link rel="stylesheet" href="assets/css/all.css">
+<link rel="stylesheet" href="assets/css/v4-shims.css">
+<link rel="stylesheet" type="text/css" href="assets/css/yabla-styles.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="assets/css/slick.css">
+<link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="assets/css/video_actions.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap');
+
+/* dont scroll body when modal is shown and scroll */
+
+body.dont_scroll_when_modal_shown {
+	overflow: hidden;
+}
+
+.page {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.page #footer {
+	margin-top: 0;
+	/* below deals with sidebar shadow */
+	position: relative;
+	z-index: 1;
+}
+
+#localized_strings {
+	display: none;
+}
+
+.floating_panel {
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.content .floating_panel {
+	box-shadow: none;
+	border: 1px solid #ccc;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	-webkit-backface-visibility: hidden;
+	transition: 0.5s;
+}
+
+.buttons .btn {
+	margin: 4px;
+	padding: 4px 12px;
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	border-radius: 200px;
+	width: 160px;
+	border: none;
+	color: white;
+	transition: 0.5s;
+}
+
+.buttons:hover .btn:hover {
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	box-shadow: 5px 5px 13px rgb(223 169 125 / 90%), inset 1px 1px 2px rgb(255 207 153 / 30%), inset -1px -1px 2px rgb(223 169 125 / 50%);
+	transition: 0.5s;
+	color: white;
+	border: none;
+	transition: 0.5s;
+}
+
+.update_goals.btn.yabla-orange {
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	color: white;
+	border-radius: 200px;
+	border: none;
+	transition: 0.5s;
+}
+
+.update_goals.btn.yabla-orange:hover {
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	box-shadow: 5px 5px 13px rgb(223 169 125 / 90%), inset 1px 1px 2px rgb(255 207 153 / 30%), inset -1px -1px 2px rgb(223 169 125 / 50%);
+	border-radius: 200px;
+	border: none;
+	color: white;
+	transition: 0.5s;
+}
+
+.exit_goals.btn.yabla-blue {
+	background: linear-gradient(195.28deg, #AF92FF -83%, #2B2EF6 77.88%);
+	border-radius: 200px;
+	border: none;
+	color: white;
+	transition: 0.5s;
+}
+
+.exit_goals.btn.yabla-blue:hover {
+	box-shadow: 5px 5px 13px rgba(125, 136, 223, 0.9), inset 1px 1px 2px rgba(161, 153, 255, 0.3), inset -1px -1px 2px rgba(179, 125, 223, 0.5);
+	border: none;
+	color: white;
+	transition: 0.5s;
+}
+
+main {
+	display: flex;
+	justify-content: stretch;
+	width: 100%;
+}
+
+#sidebar {
+	display: flex;
+	flex: 0 1 280px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 32px 16px 16px 16px;
+	background-color: #fff;
+	border-right: 1px solid #eee;
+	box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+}
+
+#sidebar section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 100%;
+}
+
+#sidebar section h2 {
+	font-size: 16px;
+}
+
+#content {
+	display: flex;
+	flex: 1;
+	align-items: flex-start;
+	justify-content: flex-start;
+	min-width: 0;
+	padding: 16px;
+	flex-wrap: wrap;
+}
+
+#content section {
+	display: inline-block;
+	position: relative;
+	padding: 0 10vw 0 10vw;
+	margin-bottom: 40px;
+}
+
+#content #chain_holder {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.tv {
+	position: relative;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.fillgauge {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	left: 46px;
+	top: 20px;
+}
+
+.tv_cutout {
+	position: relative;
+	width: 100px;
+	margin: 0 auto;
+}
+
+.goal_details {
+	color: #f78226;
+	text-align: center;
+}
+
+.goal_details h2 {
+	margin: 0;
+}
+
+.goal_percent {
+	position: absolute;
+	color: #224a9a;
+	vertical-align: middle;
+	text-align: center;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: x-large;
+	font-weight: bold;
+}
+
+#yabla_news .content {
+	margin: 0 auto;
+	border-radius: 32px;
+	overflow: hidden;
+	background-image: linear-gradient(135deg, white, rgba(232, 232, 232, 1));
+	padding: 32px 64px;
+	border-top: 16px solid linear-gradient(135deg, #FFD7B4 0%, #E47435 100%);
+}
+
+#yabla_news .btn {
+	background: none;
+	color: #f6822b;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+}
+
+#yabla_news .content .yabla_news_banner img:hover,
+#yabla_news .content,
+#more_news .btn:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: 0.5s;
+}
+
+#yabla_news .content,
+#long_news_container {
+	position: relative;
+	overflow: hidden;
+}
+
+#yabla_news .content::before,
+#long_news_container::before {
+	content: "";
+	width: 100%;
+	height: 16px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	box-shadow: 5px 5px 13px rgb(223 169 125 / 90%), inset 1px 1px 2px rgb(255 207 153 / 30%), inset -1px -1px 2px rgb(223 169 125 / 50%);
+}
+
+.yabla_news_banner {
+	border-radius: 32px;
+	border-bottom-left-radius: 0;
+	position: relative;
+	padding: 16px;
+	padding-top: 0;
+	color: #f6822b;
+	transition: 0.5s;
+}
+
+.yabla_news_banner::after {
+	content: "";
+	background-image: linear-gradient(135deg, rgba(255, 215.16, 179.56, 1), rgba(228.44, 116.35, 53.30, 1));
+	height: 12px;
+	border-radius: 24px;
+	position: absolute;
+	bottom: 0;
+	left: 4px;
+	width: 100%;
+	transition: 0.5s;
+}
+
+.yabla_news_banner img {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 12px 12px 12px 0;
+	height: auto;
+	filter: drop-shadow(0px 8px 16px rgba(0, 12, 117, 0.33));
+	transition: 0.5s;
+}
+
+.yabla_news_banner h1 {
+	margin-bottom: 0;
+	margin-left: 40px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 auto;
+}
+
+#long_news_container h1.placeholder.banner {
+	display: none;
+}
+#long_news_container h1.placeholder.banner2 {
+	display: none;
+}
+#long_news_container h1.placeholder.banner3 {
+	display: none;
+}
+#long_news_container h1.placeholder.banner4 {
+	display: none;
+}
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0.02em;
+}
+
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+}
+
+#news_div {
+	margin: 0 64px;
+	padding: 16px 0;
+}
+
+#news_div .news_item {
+	overflow: hidden;
+	padding: 16px 0;
+}
+
+#news_div .news_item:not(:first-child) {
+	border-top: 1px solid blue;
+}
+
+.news_title {
+	display: block;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 400;
+	color: #224A9A;
+}
+
+.news_title .date {
+	padding: 4px 8px;
+	float: right;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.news_item .program_name {
+	font-style: italic;
+}
+
+.news_item .program_name:after {
+	content: ',';
+}
+
+.news_item .program_name:last-child:after {
+	content: '';
+}
+
+#news_div .news_body {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 4px 0;
+	font-size: 16px;
+}
+
+.news_body {
+	padding: 0 16px;
+}
+
+.news_body p {
+	width: 100%;
+	padding: 5px 0;
+	overflow-y: auto;
+	text-align: left;
+	font-size: 90%;
+	line-height: initial;
+}
+
+.news_item.overflow {
+	display: none;
+}
+
+#more_news::before {
+	content: "";
+	background-image: linear-gradient(111deg, rgb(204.95, 214.79, 249.69), rgb(61.03, 78.94, 240.12));
+	height: 12px;
+	border-radius: 24px;
+	position: absolute;
+	top: 0;
+	left: 4px;
+	width: 100%;
+	transition: 0.5s;
+}
+
+#more_news {
+	color: #f78226;
+	font-size: 24px;
+	width: 90%;
+	width: 100%;
+	position: relative;
+	transition: 0.5s;
+}
+
+#more_news h1 {
+	font-size: 24px;
+	color: white;
+	font-weight: bold;
+	margin-left: 24px;
+	margin-top: 32px;
+}
+
+#long_news_container {
+	display: none;
+	background: white;
+	border-radius: 32px;
+	min-width: 50vw;
+	max-width: 70vw;
+	padding: 32px;
+	border-top: 16px solid linear-gradient(135deg, #FFD7B4 0%, #E47435 100%);
+}
+
+#long_news_container .modal_master_close {
+	z-index: 1;
+	font-size: 32px;
+	padding: 5px 10px;
+	color: grey;
+	top: 16px;
+	right: 8px;
+}
+
+#long_news_container .news_items {
+	padding: 16px;
+}
+
+#long_news_container .news_item {
+	margin: 8px 0;
+	padding: 16px 0;
+	border-bottom: 3px solid #ddd;
+}
+
+#long_news_container .news_item:last-child {
+	border: none;
+	box-shadow: none;
+}
+
+#long_news_container .news_item:first-child {
+	padding-top: 0;
+}
+
+#long_news_container .news_title {
+	font-size: 20px;
+	margin-bottom: 16px;
+}
+
+#long_news_container .news_title .sub_title {
+	font-weight: normal;
+}
+
+#long_news_container .news_item.Announcement .news_body p:last-child {
+	margin-bottom: 0;
+}
+
+#long_news_container .news_item.Lesson .news_body {
+	min-height: 2em;
+	max-height: 13em;
+	overflow: hidden;
+	position: relative;
+}
+
+#long_news_container .news_item.Lesson .news_body .more {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	height: 6em;
+	background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+	text-align: center;
+	padding-top: 5em;
+	text-shadow: 0 0 2px white;
+}
+
+.news_item .media_list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0 -8px;
+}
+
+.news_item .media_item {
+	width: 30%;
+	min-width: 256px;
+	height: 30%;
+	min-height: 260px;
+	margin: 8px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.news_item .media_item .title {
+	max-width: 100%;
+	height: 14px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.news_item .media_item .thumb {
+	position: relative;
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+
+.news_item .media_item .thumb img {
+	transition: transform 0.2s;
+}
+
+.news_item .media_item:hover .thumb img {
+	transform: scale(1.1);
+}
+
+.news_item .media_item .thumb .play.icon {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 300%;
+	color: #fff;
+}
+
+.news_item .media_item:hover .thumb .play.icon {
+	display: block;
+}
+
+.news_item .media_item .thumb .play.icon i {
+	text-shadow: 1px 2px 2px #333;
+}
+
+section#charts .content {
+	position: relative;
+	padding: 5em 1em 1em 1em;
+	border-radius: 32px;
+	background-image: linear-gradient(135deg, white, rgba(232, 232, 232, 1));
+}
+
+.chart_selector_list {
+	display: flex;
+	justify-content: stretch;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	list-style: none;
+	text-align: center;
+}
+
+.chart_selector {
+	flex: 1;
+	background: #224a9a;
+	border-right: 1px solid white;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+.chart_selector:first-child {
+	border-top-left-radius: 32px;
+}
+
+.chart_selector:last-child {
+	border-right: none;
+	border-top-right-radius: 32px;
+}
+
+.chart_selector:hover,
+.chart_selector.active {
+	background: linear-gradient(195.28deg, #FFC592 -83%, #F6822B 77.88%);
+	box-shadow: 5px 5px 13px rgb(223 169 125 / 90%), inset 1px 1px 2px rgb(255 207 153 / 30%), inset -1px -1px 2px rgb(223 169 125 / 50%);
+	transition: 0.5s;
+}
+
+.chart_selector .annotation {
+	display: block;
+	font-size: 80%;
+	color: #ccc;
+	padding-top: 4px;
+}
+
+.chart_holder {
+	display: none;
+	align-items: stretch;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	padding: 16px;
+	position: relative;
+}
+
+.chart_holder.active {
+	display: flex;
+}
+
+.chart_container {
+	flex: 1;
+	position: relative;
+	width: 40vw;
+	max-width: 560px;
+	margin: 0 auto;
+}
+
+.chart_resize_container {
+	position: relative;
+	padding-bottom: 50%;
+	height: 0;
+	width: 100%;
+}
+
+.legend {
+	display: flex;
+	justify-content: center;
+}
+
+.legend ul {
+	display: flex;
+	justify-content: center;
+}
+
+.legend ul li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 8px 0 8px 0;
+}
+
+.legend .toggle {
+	display: inline-block;
+	position: relative;
+	color: #fff;
+	height: 28px;
+	width: 56px;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	border-radius: 16px;
+	text-align: left;
+	cursor: pointer;
+	box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.legend .toggle::after,
+.legend .toggle_dummy::after {
+	position: absolute;
+	content: "";
+	width: 16px;
+	height: 16px;
+	background: white;
+	border: none;
+	border-radius: 12px;
+	top: 6px;
+	left: 58%;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+
+.legend .toggle.off {
+	background-color: #c4c4c4 !important;
+	text-align: right;
+	box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.legend .toggle.off::after {
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+	transform: translateX(-146%);
+}
+
+.legend .label {
+	padding: 8px;
+	white-space: nowrap;
+}
+
+.chart_title {
+	color: #f6822b;
+	text-align: center;
+}
+
+
+/*
+	#section_1{
+		//padding: 1em 4em 2em 4em;
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+	#section_1 > div, #subsection_2 > div{
+		margin-bottom: 20px;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+	} */
+
+#user_info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#gravatar {
+	border-radius: 50%;
+	height: 128px;
+}
+
+#greeting_text {
+	text-align: center;
+	font-size: 16px;
+	border-radius: 2em;
+	background-color: #224a9a;
+	color: #f78226;
+	padding: 8px 16px;
+	;
+	margin: 4px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+}
+
+#chain_holder h2 {
+	text-align: center;
+	color: #f6822b;
+	margin-bottom: 0;
+}
+
+section#badges_holder {
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: gray;
+	position: relative;
+	overflow: hidden;
+	display: none;
+}
+
+#badges_holder h2 {
+	color: #f6822b;
+	text-align: center;
+}
+
+#badges_row {
+	height: 80px;
+	width: 280px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#pig_row {
+	margin: 0 auto;
+	width: min-content;
+}
+
+#subsection_2 {
+	flex-grow: 2;
+}
+
+#grouping_2 {
+	min-width: 80%;
+	padding-top: 20px;
+}
+
+#grouping_2_sub {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+	align-items: center;
+}
+
+@keyframes swing {
+	0%,
+	100% {
+		transform: translateX(5px);
+	}
+	50% {
+		transform: translateX(-5px);
+	}
+}
+
+#grouping_3 {
+	flex-direction: row !important;
+	justify-content: center;
+	align-items: center;
+}
+
+#content #leaderboard_holder {
+	display: flex;
+	padding-right: 30px;
+	height: 200px;
+}
+
+#leaderboard_holder img {
+	width: 80px;
+	height: auto;
+}
+
+#chain_image {
+	width: 120px;
+	height: auto;
+}
+
+#header {
+	margin: 8px 0 0 0;
+	text-align: center;
+	width: 100%;
+}
+
+#header h1 {
+	font-size: 24px;
+	color: #4D61D4;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+}
+
+#header h2 {
+	font-weight: 400;
+	display: none;
+}
+
+#leaderboard_holder img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+/*Goal popup*/
+
+#goals_popup {
+	display: none;
+	text-align: center;
+}
+
+#goals_popup .popup_inner {
+	background: #fff;
+	padding: 2em;
+	border-radius: 1em;
+	max-width: 850px;
+	top: 50%;
+}
+
+#goals_popup label {
+	margin-right: 8px;
+}
+
+#goals_popup input.target {
+	max-width: 64px;
+	text-align: center;
+}
+
+#goals_popup .update_goals.btn {
+	margin-left: 8px;
+}
+
+#goals_popup .button_row {
+	margin-top: 2em;
+}
+
+#daily_goal {
+	position: relative;
+}
+
+.goal_progress {
+	padding: 10px;
+	border-bottom: 2px solid black;
+	font-size: x-large;
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+	color: red;
+}
+
+.goal_reached {
+	color: green;
+}
+
+.corner_ribbon {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	background-color: #f78226;
+	position: absolute;
+	padding: .5em 2em;
+	font-weight: bold;
+	top: 35px;
+	left: -40px;
+	color: white;
+	font-size: large;
+	opacity: .75;
+}
+
+.orange_button {
+	display: inline-block;
+	background-color: #f78226;
+	color: white;
+	width: 100%;
+	border-radius: .5em;
+	font-size: 1.5em;
+	padding: 0.5em;
+	margin-top: 10px;
+	box-shadow: 4px 8px 8px rgba(0, 0, 0, .25);
+	text-align: center;
+	width: 140px;
+}
+
+.orange_button:hover {
+	transform: scale(1.1, 1.1);
+}
+
+.badges {
+	display: inline-block;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.liquidFillGaugeText {
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+.goal_container.videos_watched {
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 1023px) {
+	main {
+		display: block;
+	}
+	section {
+		max-width: 100%;
+	}
+	#sidebar {
+		flex-direction: row;
+		align-items: top;
+		justify-content: space-evenly;
+		align-items: baseline;
+		width: 100%;
+		overflow: none;
+		border-right: none;
+		border-bottom: 1px solid #eee;
+		box-shadow: 0 3px 4px #ddd;
+	}
+	#sidebar section {
+		margin-bottom: unset;
+	}
+	#sidebar .buttons .btn {
+		font-size: 16px;
+	}
+	.chart_container {
+		width: 130vh;
+		max-width: 100%;
+		margin: 0 auto;
+	}
+	.tv_cutout {
+		position: relative;
+		width: 100px;
+		margin: 0 auto;
+	}
+	.fillgauge {
+		width: 80px;
+		height: 80px;
+		left: 46px;
+		top: 20px;
+	}
+	#user_info {
+		display: none !important;
+	}
+	#content {
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+	}
+	#yabla_news {
+		width: 100vw;
+	}
+	#charts {
+		width: 100vw;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.legend ul {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	#user_info {
+		display: none !important;
+	}
+	#sidebar {
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 16px 0;
+	}
+	#user_info {
+		display: none !important;
+	}
+	#sidebar section {
+		flex-direction: row;
+	}
+	#sidebar section h2 {
+		width: 160px;
+	}
+	#daily_goal {
+		width: 288px;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	.tv_cutout {
+		position: relative;
+		width: 64px;
+		margin: 0;
+	}
+	.fillgauge {
+		position: absolute;
+		width: 60px;
+		height: 48px;
+		left: 32px;
+		top: 14px;
+	}
+	.goal_container.videos_watched {
+		display: flex;
+		flex-direction: row;
+		width: 288px;
+		justify-content: center;
+		align-items: center;
+	}
+	#dbtc_Button {
+		display: none;
+	}
+	.goal_details {
+		display: flex;
+	}
+	.goal_details h2 {
+		display: none;
+	}
+	#leaderboard_holder {
+		width: 288px;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	#leaderboard_holder img {
+		width: 64px;
+	}
+	#chain_holder {
+		width: 288px;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	#chain_image {
+		width: 80px;
+		margin-right: 8px;
+	}
+	#chain_holder h2 {
+		width: 100%;
+	}
+	#header h1 {
+		display: none;
+	}
+	.content.floating_panel {
+		padding: 16px !important;
+	}
+	#long_news_container {
+		min-width: 300px;
+		padding: 4vw;
+		background-image: none;
+	}
+	#long_news_container .modal_master_close {
+		padding: 4px;
+	}
+	#long_news_container .news_title {
+		font-size: 16px;
+	}
+	.news_title .date {
+		padding: 0;
+		font-size: 12px;
+	}
+	.news_title {
+		font-size: 16px;
+	}
+	#long_news_container .news_item {
+		padding: 0 !important;
+	}
+	#long_news_container .news_items {
+		padding: 0;
+		width: auto;
+	}
+	#long_news_container .news_item.Lesson .news_body {
+		padding: 0;
+		width: 240px;
+	}
+	#news_div {
+		margin: 0;
+		padding: 0;
+	}
+	.news_item .media_list {
+		justify-content: center;
+		min-height: 0;
+		padding-left: 24px;
+	}
+	.news_item .media_list {
+		min-height: 200px;
+		padding-left: 6vw;
+	}
+	#more_news h1 {
+		margin: 0;
+		font-size: 20px;
+		padding-top: 24px;
+		padding-bottom: 0;
+	}
+	.yabla_news_banner {
+		padding: 0 0 8px 0;
+	}
+	.chart_holder {
+		padding: 48px 8px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	#content {
+		height: 800px;
+		justify-content: center;
+		align-content: flex-start;
+	}
+	#content section {
+		max-width: 32vw;
+		padding: 0;
+		margin: 100px auto 0 auto;
+	}
+	.content.floating_panel {
+		min-height: 420px;
+	}
+	.tv_cutout {
+		position: relative;
+		width: 100px;
+		margin: 0 auto;
+	}
+	.fillgauge {
+		width: 80px;
+		height: 80px;
+		left: 10px;
+		top: 20px;
+	}
+	.mainTiles {
+		display: flex;
+		width: 100%;
+		flex-wrap: wrap;
+		flex-flow: row-reverse;
+	}
+	#header {
+		height: 0;
+	}
+	.chart_container {
+		width: 32vw;
+	}
+	.chart_title {
+		font-size: 1.2vw;
+	}
+	.chart_resize_container {
+		width: 100%;
+		width: 90%;
+	}
+	.legend ul {
+		flex-wrap: wrap;
+		justify-content: left;
+	}
+	.legend ul li {
+		justify-content: left;
+		width: 200px;
+	}
+	#news_div {
+		margin: 0;
+	}
+	.news_title {
+		font-size: 16px;
+	}
+	#news_div .news_body {
+		font-size: 14px;
+	}
+	#more_news h1 {
+		padding: 24px 0 0 0;
+		margin: 0;
+		font-size: 16px;
+	}
+	#greeting_text {
+		font-size: 16px;
+	}
+	#gravatar {
+		height: 40px;
+	}
+	#user_info {
+		display: flex;
+		flex-direction: row !important;
+	}
+	#greeting_text {
+		background-color: #224a9a00;
+		margin: 0;
+	}
+	.goal_container.videos_watched {
+		width: 100px;
+	}
+	#sidebar {
+		padding: 24px;
+	}
+	#chain_holder {
+		margin-top: 16px;
+	}
+	#leaderboard_holder {
+		margin-top: 16px;
+	}
+	</style>
+
+
+
+<script>
+	var CDN_HOST = "";
+	var LOGGED_IN = true;
+	var IS_USER_K12 = false;
+	var BLOCK_COMMENTS = false;
+</script>
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/ogv.js"></script><style type="text/css">ogvjs { display: inline-block; position: relative; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0,0,0,0); </style>
+
+<script>
+$(function(){
+
+	function hideDropdowns(){
+		$('.dropdown').hide();
+		edMenuDismiss(true);
+	}
+	$('header .user').on('click touchend',function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		var $user_dd = $('header .user-dropdown');
+		if($user_dd.is(':visible')) {
+			$(window).off('.user-dd');
+			$user_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$user_dd.show();
+		$(window).on('click.user-dd touchend.user-dd',function (e){
+			console.log("window click ");
+			console.log(e);
+			if($(e.target).closest('.dropdown').length) {
+				console.log("event contains target");
+				return;
+			}
+			$user_dd.hide();
+			$(window).off('.user-dd');
+		});
+	});
+	$('header .select-lang').on('click touchend',function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		var $lang_dd = $('header .lang-dropdown');
+		if($lang_dd.is(':visible')) {
+			$(window).off('.lang-dd');
+			$lang_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$lang_dd.show();
+		$(window).on('click.lang-dd touchend.lang-dd',function (e){
+			if($(e.target).closest('.dropdown').length) return;
+			$lang_dd.hide();
+			$(window).off('.lang-dd touchend.lang-dd');
+		});
+	});
+	$('header .translate-link').on('click touchend',function(e){
+		e.stopPropagation();
+		var $translate_dd = $('header .translate-dropdown');
+		if($translate_dd.is(':visible')) {
+			$(window).off('.lang-dd');
+			$translate_dd.hide();
+			return;
+		}
+		hideDropdowns();
+		$translate_dd.show();
+		$(window).on('click.trans-dd touchend.trans-dd',function (e){
+			if($(e.target).closest('.dropdown').length) return;
+			$translate_dd.hide();
+			$(window).off('.trans-dd');
+		});
+	});
+	$('header .mobile_slide').on('touchend click',function(e){
+		e.stopPropagation();
+	});
+	$('header .mobile_slide .close_link').on('touchend click',function(){
+		$('header .mobile_slide').removeClass('active');
+		$('body').off('.burger');
+	});
+	$('header #site-hamburger').on('click',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		$('header .mobile_slide').addClass('active');
+		$('body').on('touchend.burger click.burger',function(e){
+			if($(e.target).closest('.mobile_slide').length) {
+				return;
+			} else {
+				$('header .mobile_slide').removeClass('active');
+				$('body').off('.burger');
+			}
+		});
+	});
+
+
+	$('.ed_menu_btn').on('click touchend',function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		
+		if($(this).hasClass('showing')) {
+			edMenuDismiss();
+		} else {
+			hideDropdowns();
+			edMenuShow();
+			$('body').on('click.ed_cancel touchend.ed_cancel',function(e){
+				if($(e.target).closest('#modal_master').length) {
+					return;
+				}
+				
+				edMenuDismiss();
+				$(this).off('.ed_cancel');
+			});
+		}
+	})
+
+	$('.ed_menu').find('a').on('click touchend',function(e){
+		e.stopPropagation();
+	}).end()
+
+	var ed_interval;
+	var history_pushes = 0;
+	function  edMenuShow() {
+		if(history_pushes == 0) {
+			window.history.pushState({ action: 'ed_menu_show' }, 'Educators Menu');
+			history_pushes++;
+			$(window).on('popstate.ed_pop',function(e) {
+				history_pushes--;
+				edMenuDismiss();
+			});
+		}
+		
+		clearTimeout(ed_interval);
+		$('.ed_menu').show().stop().removeClass('hiding');
+		$('.ed_menu_btn').addClass('showing');
+		// refresh if expired...
+		$.get('ed_menu_check.php',
+			{ last_changed_at: $('.ed_menu').data('last_changed_at') },
+			function(data){
+				if(data.html) {
+					// a bit ugly, but prevents flickering
+					$('.ed_menu .ed_menu_inner').replaceWith( $(data.html).find('.ed_menu_inner') );
+				}
+				
+			});
+	}
+	function edMenuDismiss(fast) {
+		// 
+		if(history_pushes == 1) {
+			window.history.back();
+			return;
+		}
+		$('.ed_menu').addClass('hiding');
+		ed_interval = setTimeout(function(){
+			$('.ed_menu').hide();
+		},fast ? 0 : 400)
+		
+		$('.ed_menu_btn').removeClass('showing');
+		$(window).off('.ed_pop');
+		
+	}
+	$('.ed_menu .invite').on('click',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		var $dialog = $('.ed_code_signup')
+			.addClass('hide_teacher_text hide_student_text')
+			.removeClass('hide_' + $(this).data('user_type') + '_text');
+
+		$dialog.find('[name=code_url]').val( $(this).data('url') );
+		$dialog.find('.text_code').text( $(this).data('code') );
+		Modal_Master.show($('.ed_code_signup'));
+		$dialog.find('[name=code_url]').focus();
+	})
+
+})
+
+</script>
+
+
+
+
+                        
+        
+                
+        
+                
+
+                
+        
+                        
+          
+          
+            
+
+
+
+<script>
+var SCORES = {"month":{"2026-09-12":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-13":{"total":175,"choice":25,"cloze":25,"vocab":25,"dictation":25,"comprehension":25,"speak":25,"recall":0,"parrot":25},"2026-09-14":{"total":325,"choice":50,"cloze":50,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-09-15":{"total":100,"choice":25,"cloze":0,"vocab":25,"dictation":0,"comprehension":25,"speak":25,"recall":0,"parrot":0},"2026-09-16":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-17":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-18":{"total":275,"choice":50,"cloze":50,"vocab":50,"dictation":25,"comprehension":25,"speak":25,"recall":25,"parrot":25},"2026-09-19":{"total":425,"choice":100,"cloze":75,"vocab":50,"dictation":50,"comprehension":25,"speak":50,"recall":50,"parrot":25},"2026-09-20":{"total":175,"choice":25,"cloze":25,"vocab":25,"dictation":25,"comprehension":0,"speak":25,"recall":25,"parrot":25},"2026-09-21":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-22":{"total":100,"choice":25,"cloze":25,"vocab":0,"dictation":25,"comprehension":0,"speak":0,"recall":0,"parrot":25},"2026-09-23":{"total":300,"choice":50,"cloze":50,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":25,"parrot":25},"2026-09-24":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-25":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-09-26":{"total":200,"choice":50,"cloze":25,"vocab":25,"dictation":25,"comprehension":0,"speak":25,"recall":25,"parrot":25},"2026-09-27":{"total":550,"choice":100,"cloze":100,"vocab":75,"dictation":75,"comprehension":50,"speak":50,"recall":50,"parrot":50},"2026-09-28":{"total":350,"choice":75,"cloze":50,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-09-29":{"total":125,"choice":25,"cloze":25,"vocab":0,"dictation":25,"comprehension":0,"speak":25,"recall":25,"parrot":0},"2026-09-30":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-10-01":{"total":225,"choice":50,"cloze":25,"vocab":50,"dictation":25,"comprehension":25,"speak":0,"recall":25,"parrot":25},"2026-10-02":{"total":225,"choice":50,"cloze":50,"vocab":25,"dictation":25,"comprehension":25,"speak":0,"recall":25,"parrot":25},"2026-10-03":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-10-04":{"total":350,"choice":75,"cloze":50,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-10-05":{"total":375,"choice":75,"cloze":75,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-10-06":{"total":125,"choice":50,"cloze":25,"vocab":25,"dictation":0,"comprehension":0,"speak":0,"recall":25,"parrot":0},"2026-10-07":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-10-08":{"total":375,"choice":75,"cloze":50,"vocab":50,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":25},"2026-10-09":{"total":425,"choice":75,"cloze":75,"vocab":50,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":50},"2026-10-10":{"total":650,"choice":125,"cloze":100,"vocab":100,"dictation":75,"comprehension":75,"speak":50,"recall":75,"parrot":50},"2026-10-11":{"total":300,"choice":50,"cloze":50,"vocab":50,"dictation":25,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-10-12":{"total":425,"choice":75,"cloze":75,"vocab":75,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":25}},"week":{"2026-10-05":{"total":375,"choice":75,"cloze":75,"vocab":50,"dictation":50,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-10-06":{"total":125,"choice":50,"cloze":25,"vocab":25,"dictation":0,"comprehension":0,"speak":0,"recall":25,"parrot":0},"2026-10-07":{"total":0,"choice":0,"cloze":0,"vocab":0,"dictation":0,"comprehension":0,"speak":0,"recall":0,"parrot":0},"2026-10-08":{"total":375,"choice":75,"cloze":50,"vocab":50,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":25},"2026-10-09":{"total":425,"choice":75,"cloze":75,"vocab":50,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":50},"2026-10-10":{"total":650,"choice":125,"cloze":100,"vocab":100,"dictation":75,"comprehension":75,"speak":50,"recall":75,"parrot":50},"2026-10-11":{"total":300,"choice":50,"cloze":50,"vocab":50,"dictation":25,"comprehension":25,"speak":25,"recall":50,"parrot":25},"2026-10-12":{"total":425,"choice":75,"cloze":75,"vocab":75,"dictation":50,"comprehension":50,"speak":25,"recall":50,"parrot":25}},"base":{"month":{"total":3475,"choice":800,"cloze":650,"vocab":500,"dictation":450,"comprehension":300,"speak":250,"recall":325,"parrot":200},"week":{"total":7375,"choice":1575,"cloze":1275,"vocab":1050,"dictation":975,"comprehension":600,"speak":600,"recall":750,"parrot":550}}},
+	USAGE = {"month":{"2026-09-12":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-13":{"videos_watched":1,"games_played":2,"words_saved":4,"minutes":14},"2026-09-14":{"videos_watched":2,"games_played":3,"words_saved":6,"minutes":26},"2026-09-15":{"videos_watched":1,"games_played":1,"words_saved":3,"minutes":12},"2026-09-16":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-17":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-18":{"videos_watched":2,"games_played":2,"words_saved":5,"minutes":22},"2026-09-19":{"videos_watched":3,"games_played":4,"words_saved":8,"minutes":38},"2026-09-20":{"videos_watched":1,"games_played":2,"words_saved":2,"minutes":15},"2026-09-21":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-22":{"videos_watched":1,"games_played":1,"words_saved":3,"minutes":11},"2026-09-23":{"videos_watched":2,"games_played":3,"words_saved":7,"minutes":27},"2026-09-24":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-25":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-09-26":{"videos_watched":1,"games_played":2,"words_saved":4,"minutes":18},"2026-09-27":{"videos_watched":3,"games_played":5,"words_saved":9,"minutes":41},"2026-09-28":{"videos_watched":2,"games_played":3,"words_saved":6,"minutes":29},"2026-09-29":{"videos_watched":1,"games_played":1,"words_saved":2,"minutes":10},"2026-09-30":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-10-01":{"videos_watched":2,"games_played":2,"words_saved":5,"minutes":24},"2026-10-02":{"videos_watched":1,"games_played":3,"words_saved":4,"minutes":19},"2026-10-03":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-10-04":{"videos_watched":2,"games_played":4,"words_saved":7,"minutes":31},"2026-10-05":{"videos_watched":3,"games_played":3,"words_saved":8,"minutes":36},"2026-10-06":{"videos_watched":1,"games_played":2,"words_saved":3,"minutes":16},"2026-10-07":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-10-08":{"videos_watched":2,"games_played":3,"words_saved":6,"minutes":28},"2026-10-09":{"videos_watched":2,"games_played":4,"words_saved":7,"minutes":33},"2026-10-10":{"videos_watched":4,"games_played":6,"words_saved":11,"minutes":47},"2026-10-11":{"videos_watched":2,"games_played":3,"words_saved":5,"minutes":25},"2026-10-12":{"videos_watched":3,"games_played":4,"words_saved":8,"minutes":34}},"week":{"2026-10-05":{"videos_watched":3,"games_played":3,"words_saved":8,"minutes":36},"2026-10-06":{"videos_watched":1,"games_played":2,"words_saved":3,"minutes":16},"2026-10-07":{"videos_watched":0,"games_played":0,"words_saved":0,"minutes":0},"2026-10-08":{"videos_watched":2,"games_played":3,"words_saved":6,"minutes":28},"2026-10-09":{"videos_watched":2,"games_played":4,"words_saved":7,"minutes":33},"2026-10-10":{"videos_watched":4,"games_played":6,"words_saved":11,"minutes":47},"2026-10-11":{"videos_watched":2,"games_played":3,"words_saved":5,"minutes":25},"2026-10-12":{"videos_watched":3,"games_played":4,"words_saved":8,"minutes":34}}},
+	GOALS = {"videos_watched":{"target":5,"current":3,"progress":0.6,"progress_pct":60,"title":"Videos Watched"}},
+	PRODUCT_ID = 5,
+	IS_DEV = false;
+
+</script>
+<script src="assets/js/modal_master.js"></script>
+<script src="assets/js/modal_player.js"></script>
+<script src="assets/js/Chart.bundle.js"></script>
+<script src="assets/js/d3.v3.min.js" charset="utf-8"></script>
+<script src="assets/js/liquidFillGauge.js" language="JavaScript"></script>
+<!-- <script src="/js/Chart.bundle.min.js"></script> -->
+
+<script>
+$.post = $.get = function(){ return $.Deferred().resolve({}).promise(); };
+document.addEventListener('click', function(e){
+	var a = e.target.closest && e.target.closest('a[href="#"]');
+	if (a) e.preventDefault();
+}, true);
+</script>
+<script src="assets/js/dashboard.js"></script>
+
+
+
+
+                          <!-- Allow logout from anywhere -->
+  
+
+
+<style type="text/css">/* Chart.js */
+/*
+ * DOM element rendering detection
+ * https://davidwalsh.name/detect-node-insertion
+ */
+@keyframes chartjs-render-animation {
+	from { opacity: 0.99; }
+	to { opacity: 1; }
+}
+
+.chartjs-render-monitor {
+	animation: chartjs-render-animation 0.001s;
+}
+
+/*
+ * DOM element resizing detection
+ * https://github.com/marcj/css-element-queries
+ */
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink {
+	position: absolute;
+	direction: ltr;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: -1;
+}
+
+.chartjs-size-monitor-expand > div {
+	position: absolute;
+	width: 1000000px;
+	height: 1000000px;
+	left: 0;
+	top: 0;
+}
+
+.chartjs-size-monitor-shrink > div {
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	left: 0;
+	top: 0;
+}
+</style>
+<style id="static-responsive-fixes">
+/* Phone: TV on the left, Set Goal / Your Activity stacked in a column beside it */
+@media screen and (max-width: 620px) {
+	.goal_container.videos_watched {
+		position: relative;
+		display: grid;
+		grid-template-columns: 64px max-content;
+		column-gap: 16px;
+		row-gap: 8px;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+	}
+	.goal_container.videos_watched .tv_cutout { grid-column: 1; grid-row: 1 / span 2; }
+	.goal_container.videos_watched .goal_details { grid-column: 2; grid-row: 1; justify-content: center; }
+	.goal_container.videos_watched > .buttons { grid-column: 2; grid-row: 2; }
+	.goal_container.videos_watched .btn {
+		display: block;
+		min-width: 150px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+	.goal_container.videos_watched .buttons,
+	.goal_container.videos_watched .btn { margin-top: 0; margin-bottom: 0; }
+	.goal_container.videos_watched .fillgauge { left: 2px; top: 14px; }
+}
+</style></head>
+<body class="page ">
+
+	
+	
+
+
+
+		
+	
+		<script>
+	// handle overlapping of username with page-nav
+	document.addEventListener('DOMContentLoaded', function () {
+		var absoluteDiv = document.querySelector('.user-opts');
+		var relativeDiv = document.querySelector('#page-nav ul li:last-child');
+		if (absoluteDiv && relativeDiv) { 
+			function checkOverlap(relativeDiv, absoluteDiv) {
+				var relativeRect = relativeDiv.getBoundingClientRect();
+				var absoluteRect = absoluteDiv.getBoundingClientRect();
+
+				return !(relativeRect.right < absoluteRect.left ||
+							 relativeRect.left > absoluteRect.right ||
+							 relativeRect.bottom < absoluteRect.top ||
+							 relativeRect.top > absoluteRect.bottom);
+			}
+
+			function handleOverlap() {
+				if (checkOverlap(relativeDiv, absoluteDiv)) {
+					$('header.logged-in').addClass('username_overlap_fix');
+					$('#site-title').addClass('username_overlap_fix');
+					$('#page-nav').addClass('username_overlap_fix');
+					$('#user-opts').addClass('username_overlap_fix');
+					window.removeEventListener('resize', handleOverlap)
+				}
+			}
+			window.addEventListener('resize', handleOverlap)
+			handleOverlap();
+		}
+	})
+</script>
+<header class="logged-in  nav-items-7">
+	<div class="container">
+		<div id="site-title"><a href="#"><svg width="130" height="45" viewBox="0 0 130 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="letters" d="M47.1004 33.7999L41.2004 19.7C41.0004 19.2 40.9004 18.8 40.9004 18.4C40.9004 17.8 41.2004 17.2999 41.7004 16.7999C42.2004 16.3999 42.8004 16.2 43.4004 16.2C44.0004 16.2 44.6004 16.4 45.0004 16.7C45.5004 17 45.8004 17.5 46.0004 18L49.6004 27.6L53.5004 18C53.7004 17.4 54.1004 17 54.5004 16.7C55.0004 16.4 55.5004 16.2 56.1004 16.2C56.7004 16.2 57.3004 16.3999 57.8004 16.7999C58.3004 17.1999 58.6004 17.7 58.6004 18.4C58.6004 18.9 58.5004 19.3 58.3004 19.7L49.7004 41C49.1004 42.3 48.3004 43 47.2004 43C46.4004 43 45.7004 42.7999 45.2004 42.2999C44.7004 41.8999 44.4004 41.2999 44.4004 40.7999C44.4004 40.3999 44.5004 39.8999 44.7004 39.2999L47.1004 33.7999Z" fill="#224A9A"></path>
+<path class="letters" d="M78.1006 19.6V32.2C78.1006 33.2 78.0006 34 77.7006 34.6C77.4006 35.2 76.7006 35.5 75.6006 35.5C74.9006 35.5 74.3006 35.3 73.9006 35C73.5006 34.6 73.2006 34.1 73.0006 33.4C71.6006 35 69.9006 35.8 67.9006 35.8C66.3006 35.8 64.8006 35.4 63.4006 34.5C62.1006 33.7 61.0006 32.5 60.2006 31C59.4006 29.5 59.1006 27.8 59.1006 25.9C59.1006 24.1 59.5006 22.4 60.3006 20.9C61.1006 19.4 62.1006 18.2 63.5006 17.3C64.8006 16.4 66.3006 16 67.9006 16C68.9006 16 69.8006 16.2 70.8006 16.6C71.7006 17 72.4006 17.6 73.0006 18.3C73.1006 17.7 73.4006 17.2 73.8006 16.8C74.3006 16.4 74.9006 16.2 75.5006 16.2C76.6006 16.2 77.3006 16.5 77.6006 17.1C78.0006 17.8 78.1006 18.6 78.1006 19.6ZM64.5006 25.9C64.5006 26.8 64.7006 27.6 65.0006 28.4C65.3006 29.2 65.8006 29.8 66.4006 30.3C67.0006 30.8 67.8006 31 68.7006 31C70.0006 31 71.0006 30.5 71.7006 29.4C72.4006 28.4 72.8006 27.2 72.8006 25.8C72.8006 24.9 72.6006 24.1 72.3006 23.3C72.0006 22.5 71.5006 21.8 70.9006 21.3C70.3006 20.8 69.5006 20.5 68.7006 20.5C67.8006 20.5 67.0006 20.8 66.4006 21.3C65.8006 21.8 65.3006 22.5 65.0006 23.3C64.7006 24.2 64.5006 25.1 64.5006 25.9Z" fill="#224A9A"></path>
+<path class="letters" d="M80.8008 32.7V10.9C80.8008 10.1 81.0008 9.4 81.5008 8.9C82.0008 8.3 82.7008 8 83.5008 8C84.0008 8 84.5008 8.1 84.9008 8.4C85.3008 8.6 85.6008 9 85.8008 9.4C86.0008 9.8 86.1008 10.3 86.1008 10.9V17.8C86.8008 17.2 87.6008 16.8 88.4008 16.5C89.3008 16.2 90.2008 16 91.1008 16C92.9008 16 94.5008 16.5 95.8008 17.4C97.1008 18.4 98.1008 19.6 98.7008 21.2C99.4008 22.7 99.7008 24.4 99.7008 26.1C99.7008 27.7 99.3008 29.3 98.6008 30.7C97.9008 32.2 96.8008 33.4 95.5008 34.3C94.2008 35.2 92.6008 35.7 90.9008 35.7C89.9008 35.7 89.0008 35.5 88.1008 35.1C87.2008 34.7 86.5008 34.1 86.0008 33.4C85.6008 34.8 84.7008 35.5 83.3008 35.5C82.5008 35.5 81.9008 35.2 81.4008 34.7C81.0008 34.2 80.8008 33.5 80.8008 32.7ZM86.1008 25.7C86.1008 27.1 86.5008 28.3 87.2008 29.4C87.9008 30.5 88.9008 31 90.3008 31C91.2008 31 91.9008 30.7 92.6008 30.2C93.2008 29.7 93.7008 29 94.0008 28.3C94.3008 27.5 94.5008 26.7 94.5008 25.9C94.5008 25 94.3008 24.2 94.0008 23.4C93.7008 22.6 93.2008 21.9 92.6008 21.4C92.0008 20.9 91.2008 20.6 90.3008 20.6C89.4008 20.6 88.6008 20.8 88.0008 21.3C87.4008 21.8 86.9008 22.4 86.6008 23.2C86.3008 24 86.1008 24.9 86.1008 25.7Z" fill="#224A9A"></path>
+<path class="letters" d="M101.601 32.7V10.9C101.601 10.1 101.801 9.39997 102.301 8.89997C102.801 8.39997 103.401 8.09998 104.201 8.09998C104.701 8.09998 105.201 8.19998 105.601 8.49998C106.001 8.69998 106.301 9.09998 106.501 9.49998C106.701 9.89998 106.801 10.4 106.801 11V32.8C106.801 33.4 106.701 33.8 106.501 34.3C106.301 34.7 106.001 35.1 105.501 35.3C105.101 35.5 104.601 35.7 104.101 35.7C103.301 35.7 102.701 35.4 102.201 34.9C101.801 34.2 101.601 33.5 101.601 32.7Z" fill="#224A9A"></path>
+<path class="letters" d="M127.7 19.6V32.2C127.7 33.2 127.6 34 127.3 34.6C127 35.2 126.3 35.5 125.2 35.5C124.5 35.5 123.9 35.3 123.5 35C123.1 34.6 122.8 34.1 122.6 33.4C121.2 35 119.5 35.8 117.5 35.8C115.9 35.8 114.4 35.4 113 34.5C111.7 33.7 110.6 32.5 109.8 31C109 29.5 108.7 27.8 108.7 25.9C108.7 24.1 109.1 22.4 109.9 20.9C110.7 19.4 111.7 18.2 113.1 17.3C114.4 16.4 115.9 16 117.5 16C118.5 16 119.4 16.2 120.4 16.6C121.3 17 122 17.6 122.6 18.3C122.7 17.7 123 17.2 123.4 16.8C123.9 16.4 124.5 16.2 125.1 16.2C126.2 16.2 126.9 16.5 127.2 17.1C127.5 17.8 127.7 18.6 127.7 19.6ZM114 25.9C114 26.8 114.2 27.6 114.5 28.4C114.8 29.2 115.3 29.8 115.9 30.3C116.5 30.8 117.3 31 118.2 31C119.5 31 120.5 30.5 121.2 29.4C121.9 28.4 122.3 27.2 122.3 25.8C122.3 24.9 122.1 24.1 121.8 23.3C121.5 22.5 121 21.8 120.4 21.3C119.8 20.8 119 20.5 118.2 20.5C117.3 20.5 116.5 20.8 115.9 21.3C115.3 21.8 114.8 22.5 114.5 23.3C114.2 24.2 114 25.1 114 25.9Z" fill="#224A9A"></path>
+<path class="tv_lines" d="M32.0489 38.2078L9.7048 39.1057L7.30462 36.9473V35.5486L4.38641 27.1739L2.84961 20.0597L3.62665 16.7616L15.9211 15.1212L29.5106 16.7616L34.4491 18.0394L36.1068 20.0597L33.5685 35.5486L32.0489 38.2078Z" fill="white"></path>
+<path class="tv_lines" d="M6.60352 34.844C10.7784 34.844 12.5315 29.922 12.5315 29.922C12.5315 29.922 15.1429 22.8409 21.542 23.2773C26.7842 23.6945 27.5722 21.882 27.47 17.1248" stroke="#F6822B" stroke-width="3.14738" stroke-linecap="square" stroke-linejoin="round"></path>
+<path class="tv_lines" d="M14.3711 38.97C17.028 37.6421 17.3796 34.3584 18.0907 31.7995C19.4192 27.0192 24.4673 28.4884 27.3899 27.8159C32.4784 26.645 34.0321 21.4421 34.0321 16.3962" stroke="#F6822B" stroke-width="2.09825"></path>
+<path class="tv" d="M31.5999 15.1C29.7999 14.8 26.5999 14.1 22.2999 13.7C22.4999 12.3 22.9999 10.3 24.1999 8.7C24.3999 8.8 24.5999 8.8 24.7999 8.8C25.7999 8.8 26.5999 8 26.5999 6.9C26.5999 5.9 25.7999 5.1 24.6999 5.1C23.6999 5.1 22.8999 5.9 22.8999 7C22.8999 7.2 22.8999 7.4 22.9999 7.6C21.3999 9.5 20.7999 11.9 20.5999 13.6C19.6999 13.5 18.6999 13.5 17.6999 13.4C17.4999 11.9 16.6999 8.9 14.5999 6.7C14.6999 6.5 14.7999 6.2 14.7999 5.9C14.8999 4.8 13.9999 4 12.9999 4C11.9999 4 11.1999 4.8 11.1999 5.9C11.1999 6.9 11.9999 7.7 13.0999 7.7C13.1999 7.7 13.3999 7.7 13.4999 7.6C15.2999 9.3 15.8999 11.8 16.1999 13.2C13.1999 13.1 9.7999 13.2 6.0999 13.6C0.299899 14.3 1.0999 19 1.0999 19C1.0999 19 1.9999 26.4 4.4999 36.2C5.4999 40.2 10.8999 39.9 10.8999 39.9L13.2999 39.8L12.1999 41.1C12.1999 41.1 11.3999 42.2 12.7999 42.3C14.1999 42.3 15.3999 42.6 15.7999 42C15.9999 41.7 16.7999 40.6 17.4999 39.7L22.1999 39.5C22.8999 40.5 23.6999 41.6 23.9999 41.9C24.3999 42.5 25.5999 42.2 26.9999 42.2C28.3999 42.2 27.5999 41 27.5999 41L26.1999 39.4L29.9999 39.3C33.2999 39.3 34.0999 37.8 34.5999 35.8C36.3999 28.9 36.9999 25.7 37.1999 20.9C37.4999 16.2 35.1999 15.7 31.5999 15.1ZM34.0999 21.9C33.8999 25.8 33.3999 28.4 31.8999 34.1C31.4999 35.8 30.7999 36.9 28.0999 37L12.2999 37.6C12.2999 37.6 7.8999 37.8 6.9999 34.6C4.8999 26.6 4.1999 20.5 4.1999 20.5C4.1999 20.5 3.4999 16.6 8.1999 16.1C18.7999 15.1 26.3999 16.7 29.2999 17.2C32.2999 17.8 34.2999 18.2 34.0999 21.9Z" fill="#224A9A"></path>
+</svg>
+</a></div>
+		<nav id="page-nav">
+			<ul>
+										<li class=" ">
+					<a href="#" class="">
+												Fluency Club
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Videos
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Review
+					</a>
+				</li>
+							<li class=" active">
+					<a href="#" class="active">
+												Dashboard
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Dictionary
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Lessons
+					</a>
+				</li>
+							<li class=" ">
+					<a href="#" class="">
+												Subscribe
+					</a>
+				</li>
+			
+			</ul>
+		</nav>
+		<div class="user-opts">
+			<a href="#" class="select-lang">
+				<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" width="30" height="30" class="lang-indicator">
+			</a>
+			<div class="lang-dropdown dropdown">
+				<ul>
+					<li class="label" style="font-weight:bold;font-size:14px">Learn</li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-es.png" alt="Product-Language-Spanish" class="lang-ind"> Spanish
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-fr.png" alt="Product-Language-French" class="lang-ind"> French
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" class="lang-ind"> German
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-it.png" alt="Product-Language-Italian" class="lang-ind"> Italian
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-zh.png" alt="Product-Language-Chinese" class="lang-ind"> Chinese
+					</a></li>
+										<li><a href="#">
+						<img src="assets/img/icon-lang-en.png" alt="Product-Language-English" class="lang-ind"> English
+					</a></li>
+									</ul>
+			</div>
+
+			<a href="#" class="user"> <i class="fa fa-user"></i> marcstudent <i class="fa fa-chevron-down"></i></a>
+			<div class="user-dropdown dropdown">
+				<ul>
+					<li><a href="#"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+											<li><a href="#"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+															<li><a href="#"><i class="fa fa-dollar"></i> Subscriptions &amp; Payment</a></li>
+										<li><a href="#"><i class="fa fa-group"></i> Classes</a></li>
+															<li><a href="#"><i class="fa fa-trophy"></i> Leaderboard &amp; Scores</a></li>
+					<li class="group"><a href="#">Log Out</a></li>
+											<li class="group label">Translate Page</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-en.png" alt="Translation-Language-English" class="flag-indicator"> 
+									English <span class="check">✓</span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-es.png" alt="Translation-Language-Español" class="flag-indicator"> 
+									Español <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-fr.png" alt="Translation-Language-Français" class="flag-indicator"> 
+									Français <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-it.png" alt="Translation-Language-Italiano" class="flag-indicator"> 
+									Italiano <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-pt.png" alt="Translation-Language-Português" class="flag-indicator"> 
+									Português <span class="check"></span>
+
+								</a>
+							</li>
+													<li class="translation">
+								<a href="#"> 
+									<img src="assets/img/icon-de.png" alt="Translation-Language-Deutsch" class="flag-indicator"> 
+									Deutsch <span class="check"></span>
+
+								</a>
+							</li>
+																				</ul>
+			</div>
+		</div>
+		<div id="site-hamburger"><i class="fa fa-navicon"></i></div>
+	</div>
+		<div class="mobile_slide">
+		<div class="mobile_scroll">
+			<div class="mobile_product_name">Yabla German</div>
+			<div class="close_link"><i class="fa fa-times"></i></div>
+			<ul class="links">
+							<li>
+					<a href="#" class="">
+												Fluency Club
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Videos
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Review
+					</a>
+				</li>
+							<li>
+					<a href="#" class="active">
+												Dashboard
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Dictionary
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Lessons
+					</a>
+				</li>
+							<li>
+					<a href="#" class="">
+												Subscribe
+					</a>
+				</li>
+						</ul>
+			<ul class="learn_options">
+				<li class="label">Learn</li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-es.png" alt="Product-Language-Spanish" class="lang-ind"> Spanish
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-fr.png" alt="Product-Language-French" class="lang-ind"> French
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-de.png" alt="Product-Language-German" class="lang-ind"> German
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-it.png" alt="Product-Language-Italian" class="lang-ind"> Italian
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-zh.png" alt="Product-Language-Chinese" class="lang-ind"> Chinese
+				</a></li>
+								<li><a href="#">
+					<img src="assets/img/icon-lang-en.png" alt="Product-Language-English" class="lang-ind"> English
+				</a></li>
+							</ul>
+		</div>
+		
+	</div>
+</header>
+
+
+
+	
+	
+	
+	<style>
+	@media (max-width: 620px) {
+		.short_alert{
+			display: inline;
+		}
+		.full_alert{
+			display:none;
+		}
+	}
+	@media (min-width: 620px) {
+		.short_alert{
+			display: none;
+		}
+		.full_alert{
+			display:inline;
+		}
+	}
+
+</style>
+	<span class="full_alert">
+		<div style="padding:8px 0; text-align: center; background-color: #F6822B; color: white; font-size:18px">
+			Your subscription has expired. Please <a href="#">Subscribe</a> to continue using Yabla German.		</div>
+	</span>
+	<span class="short_alert">
+		<div style="padding:8px 0; text-align: center; background-color: #F6822B; color: white; font-size:18px">
+			Your subscription has expired. Please <a href="#">re-subscribe.</a>		</div>
+	</span>
+	<div id="localized_strings">
+		<div class="fitb">Fill In The Blank</div>
+		<div class="multiple_choice">Multiple Choice</div>
+		<div class="scribe">Scribe</div>
+		<div class="recall">Revo</div>
+		<div class="speak">Speak</div>
+		<div class="parrot">Parrot</div>
+		<div class="comprehension">Comprehension</div>
+		<div class="vocabulary">Vocabulary</div>
+		<div class="total">Total</div>
+		<div class="videos_watched">Videos Watched</div>
+		<div class="games_played">Games Played</div>
+		<div class="minutes_on_site">Minutes On Site</div>
+	</div>
+<main>
+	<div id="sidebar">
+		<section id="user_info">
+			<img id="gravatar" src="assets/img/gravatar.png">
+			<div id="greeting_text">Hi marcstudent</div>
+		</section>
+
+		<section id="daily_goal">
+						<div class="goal_container videos_watched">
+					<svg id="fillgauge_videos_watched" class="fillgauge" width="150px" height="100px">
+					<g><text class="liquidFillGaugeText" text-anchor="middle" font-size="15px" transform="translate(40,45.25)" style="fill: rgb(186, 197, 249);">0%</text><defs><clippath id="clipWavefillgauge_videos_watched" transform="translate(-26.66666666666667,84)"><path d="M0,84L0.6666666666666667,84L1.3333333333333335,84L2,84L2.666666666666667,84L3.3333333333333335,84L4,84L4.666666666666667,84L5.333333333333334,84L6,84L6.666666666666667,84L7.333333333333334,84L8,84L8.666666666666668,84L9.333333333333334,84L10,84L10.666666666666668,84L11.333333333333334,84L12,84L12.666666666666666,84L13.333333333333334,84L14.000000000000002,84L14.666666666666668,84L15.333333333333332,84L16,84L16.666666666666668,84L17.333333333333336,84L18.000000000000004,84L18.666666666666668,84L19.333333333333332,84L20,84L20.666666666666668,84L21.333333333333336,84L22,84L22.666666666666668,84L23.333333333333336,84L24,84L24.666666666666668,84L25.333333333333332,84L26,84L26.666666666666668,84L27.333333333333332,84L28.000000000000004,84L28.666666666666668,84L29.333333333333336,84L30,84L30.666666666666664,84L31.333333333333336,84L32,84L32.66666666666667,84L33.333333333333336,84L34,84L34.66666666666667,84L35.333333333333336,84L36.00000000000001,84L36.66666666666667,84L37.333333333333336,84L38,84L38.666666666666664,84L39.333333333333336,84L40,84L40.666666666666664,84L41.333333333333336,84L42,84L42.66666666666667,84L43.333333333333336,84L44,84L44.66666666666667,84L45.333333333333336,84L46.00000000000001,84L46.66666666666667,84L47.333333333333336,84L48,84L48.666666666666664,84L49.333333333333336,84L50,84L50.666666666666664,84L51.333333333333336,84L52,84L52.66666666666667,84L53.333333333333336,84L54,84L54.666666666666664,84L55.33333333333334,84L56.00000000000001,84L56.66666666666667,84L57.333333333333336,84L58,84L58.66666666666667,84L59.333333333333336,84L60,84L60.666666666666664,84L61.33333333333333,84L62.00000000000001,84L62.66666666666667,84L63.333333333333336,84L64,84L64.66666666666667,84L65.33333333333334,84L66,84L66.66666666666667,84L67.33333333333333,84L68,84L68.66666666666667,84L69.33333333333334,84L70,84L70.66666666666667,84L71.33333333333333,84L72.00000000000001,84L72.66666666666667,84L73.33333333333334,84L74,84L74.66666666666667,84L75.33333333333334,84L76,84L76.66666666666667,84L77.33333333333333,84L78,84L78.66666666666667,84L79.33333333333334,84L80,84L80.66666666666667,84L81.33333333333333,84L82.00000000000001,84L82.66666666666667,84L83.33333333333334,84L84,84L84.66666666666667,84L85.33333333333334,84L86,84L86.66666666666667,84L87.33333333333333,84L88,84L88.66666666666667,84L89.33333333333334,84L90,84L90.66666666666667,84L91.33333333333333,84L92.00000000000001,84L92.66666666666667,84L93.33333333333334,84L94,84L94.66666666666667,84L95.33333333333334,84L96,84L96.66666666666667,84L97.33333333333333,84L98,84L98.66666666666667,84L99.33333333333334,84L100,84L100.66666666666667,84L101.33333333333333,84L102.00000000000001,84L102.66666666666667,84L103.33333333333334,84L104,84L104.66666666666667,84L105.33333333333334,84L106,84L106.66666666666667,84L106.66666666666667,-4L106,-3.95075336238055L105.33333333333334,-3.804226065180616L104.66666666666667,-3.564026096753466L104,-3.236067977499789L103.33333333333334,-2.8284271247461863L102.66666666666667,-2.351141009169897L102.00000000000001,-1.815961998958189L101.33333333333333,-1.2360679774997883L100.66666666666667,-0.6257378601609185L100,8.575003516577825e-15L99.33333333333334,0.6257378601609214L98.66666666666667,1.2360679774997911L98,1.8159619989581917L97.33333333333333,2.351141009169899L96.66666666666667,2.8284271247461885L96,3.2360679774997907L95.33333333333334,3.564026096753467L94.66666666666667,3.804226065180617L94,3.9507533623805506L93.33333333333334,4L92.66666666666667,3.95075336238055L92.00000000000001,3.804226065180616L91.33333333333333,3.5640260967534663L90.66666666666667,3.236067977499789L90,2.8284271247461867L89.33333333333334,2.3511410091698974L88.66666666666667,1.8159619989581894L88,1.2360679774997887L87.33333333333333,0.6257378601609189L86.66666666666667,6.125709918283119e-15L86,-0.6257378601609209L85.33333333333334,-1.2360679774997905L84.66666666666667,-1.8159619989581912L84,-2.3511410091698988L83.33333333333334,-2.828427124746188L82.66666666666667,-3.2360679774997902L82.00000000000001,-3.564026096753467L81.33333333333333,-3.804226065180617L80.66666666666667,-3.9507533623805506L80,-4L79.33333333333334,-3.95075336238055L78.66666666666667,-3.8042260651806163L78,-3.5640260967534663L77.33333333333333,-3.2360679774997894L76.66666666666667,-2.828427124746187L76,-2.351141009169898L75.33333333333334,-1.8159619989581899L74.66666666666667,-1.2360679774997891L74,-0.6257378601609195L73.33333333333334,7.595286077259942e-15L72.66666666666667,0.6257378601609205L72.00000000000001,1.23606797749979L71.33333333333333,1.8159619989581908L70.66666666666667,2.3511410091698988L70,2.8284271247461876L69.33333333333334,3.23606797749979L68.66666666666667,3.5640260967534667L68,3.804226065180617L67.33333333333333,3.9507533623805515L66.66666666666667,4L66,3.9507533623805515L65.33333333333334,3.8042260651806163L64.66666666666667,3.56402609675347L64,3.23606797749979L63.333333333333336,2.8284271247461876L62.66666666666667,2.3511410091698925L62.00000000000001,1.8159619989581903L61.33333333333333,1.236067977499783L60.666666666666664,0.6257378601609199L60,0L59.333333333333336,-0.6257378601609199L58.66666666666667,-1.236067977499783L58,-1.8159619989581903L57.333333333333336,-2.3511410091698925L56.66666666666667,-2.8284271247461876L56.00000000000001,-3.23606797749979L55.33333333333334,-3.56402609675347L54.666666666666664,-3.8042260651806163L54,-3.9507533623805515L53.333333333333336,-4L52.66666666666667,-3.9507533623805515L52,-3.8042260651806146L51.333333333333336,-3.5640260967534734L50.666666666666664,-3.23606797749979L50,-2.8284271247461876L49.333333333333336,-2.351141009169893L48.666666666666664,-1.8159619989581843L48,-1.23606797749979L47.333333333333336,-0.6257378601609205L46.66666666666667,-4.898587196589413e-16L46.00000000000001,0.6257378601609195L45.333333333333336,1.2360679774997891L44.66666666666667,1.8159619989581834L44,2.351141009169892L43.333333333333336,2.828427124746187L42.66666666666667,3.2360679774997894L42,3.564026096753473L41.333333333333336,3.804226065180614L40.666666666666664,3.9507533623805515L40,4L39.333333333333336,3.9507533623805515L38.666666666666664,3.8042260651806146L38,3.5640260967534734L37.333333333333336,3.2360679774997902L36.66666666666667,2.828427124746188L36.00000000000001,2.3511410091698934L35.333333333333336,1.8159619989581848L34.66666666666667,1.2360679774997905L34,0.6257378601609209L33.333333333333336,9.797174393178826e-16L32.66666666666667,-0.6257378601609189L32,-1.2360679774997887L31.333333333333336,-1.8159619989581863L30.666666666666664,-2.3511410091698943L30,-2.8284271247461894L29.333333333333336,-3.236067977499787L28.666666666666668,-3.5640260967534707L28.000000000000004,-3.804226065180614L27.333333333333332,-3.950753362380551L26.666666666666668,-4L26,-3.9507533623805515L25.333333333333332,-3.8042260651806146L24.666666666666668,-3.5640260967534703L24,-3.2360679774997907L23.333333333333336,-2.8284271247461934L22.666666666666668,-2.3511410091698934L22,-1.8159619989581852L21.333333333333336,-1.2360679774997911L20.666666666666668,-0.6257378601609284L20,-1.4695761589768238e-15L19.333333333333332,0.6257378601609255L18.666666666666668,1.2360679774997883L18.000000000000004,1.8159619989581826L17.333333333333336,2.351141009169891L16.666666666666668,2.8284271247461916L16,3.236067977499789L15.333333333333332,3.5640260967534725L14.666666666666668,3.8042260651806137L14.000000000000002,3.950753362380551L13.333333333333334,4L12.666666666666666,3.9507533623805515L12,3.804226065180615L11.333333333333334,3.5640260967534707L10.666666666666668,3.2360679774997907L10,2.828427124746194L9.333333333333334,2.351141009169894L8.666666666666668,1.8159619989581857L8,1.2360679774997916L7.333333333333334,0.6257378601609289L6.666666666666667,1.959434878635765e-15L6,-0.625737860160925L5.333333333333334,-1.2360679774997878L4.666666666666667,-1.815961998958182L4,-2.3511410091698908L3.3333333333333335,-2.828427124746191L2.666666666666667,-3.2360679774997885L2,-3.564026096753469L1.3333333333333335,-3.8042260651806137L0.6666666666666667,-3.950753362380551L0,-4Z" T="0.283" transform="translate(7.546666486740111,0)"></path></clippath></defs><g clip-path="url(#clipWavefillgauge_videos_watched)"><rect x="0" y="0" width="80" height="80" fill="#F6822B"></rect><text class="liquidFillGaugeText" text-anchor="middle" font-size="15px" transform="translate(40,45.25)" style="fill: rgb(78, 95, 241);">0%</text></g></g></svg>
+					<img class="tv_cutout" src="assets/img/tv_cutout.svg">
+				<div class="goal_details">
+					<h2>
+						Daily Goal: 5 Videos					</h2>
+					<div class="buttons">
+						<div class="goal_popup_open btn yabla-orange">
+							Set Goal						</div>
+					</div>
+				</div>
+				<div class="buttons">
+					<a class="btn yabla-orange" href="#">Your Activity</a>
+				</div>						
+			</div>
+					</section>
+
+		<section id="leaderboard_holder">
+			<img src="assets/img/scores_icon.png">
+
+			<div class="buttons">
+				<a href="#" class="scores_button btn yabla-orange">
+					Your Scores				</a>
+				<a href="#" class="leaderboard_button btn yabla-orange">
+					Leaderboard				</a>
+			</div>
+		</section>
+
+		<section id="chain_holder">
+			<img id="chain_image" src="assets/img/dont_break_the_chain_icon.png">
+			<h2>Current Chain: 5 Days</h2>
+			<div class="buttons">
+				<a href="#" class="btn yabla-orange" id="dbtc_Button">
+					Watch More Videos				</a>
+			</div>
+		</section>
+
+		<section id="badges_holder">
+			<h2>Recent Badges...</h2>
+			<div id="badges_row"></div>
+			<div id="pig_row"><img src="assets/img/pig.svg"></div>
+			<div class="corner_ribbon">Coming Soon!</div>
+		</section>
+	</div>
+
+	<div id="content">
+		<div id="header">
+			<h1>Welcome to the Dashboard!</h1>
+						<h2>Set personal goals and track your progress, scores, and usage. Also, be sure to check out <span style="font-weight:bold">Yabla News</span> below to keep updated.</h2>
+					</div>
+
+				<div class="mainTiles">
+		<section id="yabla_news">
+			<div class="content floating_panel">
+				<div class="yabla_news_banner">
+				     <img src="assets/img/newsIcon.svg">
+				     <h1>Yabla News</h1>
+				</div>
+				<div id="news_div">
+											<div class="news_item">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">October 12, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Nouns and Adjectives with <i> Rat</i>
+															</div>
+						</div>
+											<div class="news_item">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">October 5, 2026</div>
+															</h2>
+							<div class="news_body">
+																	<i>Schief</i>  and Related Verbs
+															</div>
+						</div>
+											<div class="news_item">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">September 28, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Contrastive and Corrective Connectors, Part II
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">September 21, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Contrastive and Corrective Connectors, Part I
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">September 14, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Political Action
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">September 7, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Describing Comfort in German
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">August 30, 2026</div>
+															</h2>
+							<div class="news_body">
+																	 <i>Vertrauen</i> and  <i>sich trauen</i>
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">August 23, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Bread
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">August 17, 2026</div>
+															</h2>
+							<div class="news_body">
+																	Talking About Success and Failure
+															</div>
+						</div>
+											<div class="news_item overflow">
+							<h2 class="news_title">
+																	New Lesson Published									<div class="date">August 9, 2026</div>
+															</h2>
+							<div class="news_body">
+																	"To Miss" and "To Miss Out"
+															</div>
+						</div>
+									</div>
+				<div id="more_news"><h1 class="btn yabla-orange">More News...</h1></div>
+			</div>
+		</section>
+		
+		<div id="long_news_container">
+			<div class="modal_master_close"><i class="fa fa-times-circle-o"></i></div>
+			<div class="yabla_news_banner">
+			     <img src="assets/img/newsIcon.svg">
+			     <h1>Yabla News Feed</h1>
+			</div>
+			<ul class="news_items">
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																														New Lessons															
+							<span class="sub_title">Nouns and Adjectives with <i> Rat</i></span>
+							<div class="date">October 12, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">We've looked at verbs related to <i>raten</i> in <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">several previous lessons</a>, but what about the noun <i>der Rat</i>? First of all, it does not refer to the animal, which is <i>die Ratte</i> in German. <i>Der Rat</i> has two related meanings, as well as an archaic meaning that we'll also examine.</p> <h1 class="placeholder banner2">banner2 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><em>Der Rat</em> means "the advice" or "the counsel." The noun <em>der Ratschlag</em> is a synonym.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="732024" data-id="16534" data-source="youtube" data-source_id="4YS20YQbVE4" data-time_in="516.8667" data-time_out="519.6" data-transcript="+Der+Rat+der+Virologen+ist+ja+eindeutig%3A"> <p><i><strong>Der Rat</strong> der Virologen ist ja eindeutig.</i></p> <p><strong>The advice </strong>of virologists is clear.</p> <p>Caption 31, <a href="#" target="_blank"> Coronavirus: Fernsehansprache von Angela Merkel - Part 3</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1122182" data-id="22320" data-source="" data-source_id="" data-time_in="11.6000" data-time_out="18.266666666667" data-transcript="+Auch+f%C3%BCr+Bitten+und+Ratschl%C3%A4ge+wird+diese+Satzform+benutzt."> <p><i>Auch für Bitten und <strong>Ratschläge</strong> wird diese Satzform benutzt. </i></p> <p>This sentence form is also used for requests and <strong>advice</strong>.</p> <p>Caption 5, <a href="#" target="_blank"> Deutsch mit Eylin: Der Imperativ</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">But <em>der Rat</em> also refers to the group of people who give advice, so it means not only "the counsel," but also "the council." There are many different types of councils in Germany, so you'll often encounter the word in compound nouns.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="81174" data-id="1797" data-source="" data-source_id="" data-time_in="129.8000" data-time_out="138.13333333333" data-transcript="+Wir+regen+an%2C+den+parlamentarischen+Beirat++f%C3%BCr+nachhaltige+Entwicklung+beim+Bundestag++mit+der+Kontrolle+der+Nachhaltigkeitspr%C3%BCfung+auch+zu+beauftragen."> <p><i>Wir regen an, den parlamentarischen<strong> Beirat </strong>für nachhaltige Entwicklung beim Bundestag mit der Kontrolle der Nachhaltigkeitsprüfung auch zu beauftragen. </i></p> <p>We encourage the parliamentary <strong>council</strong> for sustainable development in the Bundestag [German Parliament] to assign the control of sustainability testing, as well.</p> <p>Captions 37-39, <a href="#" target="_blank"> Angela Merkel: Beim Nachhaltigkeitsrat - Part 2</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="625143" data-id="13072" data-source="" data-source_id="" data-time_in="113.0000" data-time_out="127.6000" data-transcript="+Welche+Organisation+in+einer+Firma+hilft+den+Arbeitnehmern+und+Arbeitnehmerinnen+bei+Problemen+mit+dem+Arbeitgeber+oder+der+Arbeitgeberin%3F+Der+Betriebsrat."> <p><i>Welche Organisation in einer Firma hilft den Arbeitnehmern und Arbeitnehmerinnen bei Problemen mit dem Arbeitgeber oder der Arbeitgeberin? Der <strong>Betriebsrat</strong>. </i></p> <p>Which organization in a company helps the employees in case of problems with their employer? The <strong>works council</strong>.</p> <p>Captions 27-29, <a href="#" target="_blank"> Bundesrepublik: Deutschland Einbürgerungstest</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">There are also a few related adjectives to learn:&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="298796" data-id="6216" data-source="" data-source_id="" data-time_in="54.8000" data-time_out="59.533333333333" data-transcript="+Er+war+ratlos.+Pl%C3%B6tzlich+h%C3%B6rte+er+Musik.+Jemand+spielte+auf+einem+Dudelsack."> <p><i>Er war <strong>ratlos</strong>. Plötzlich hörte er Musik. Jemand spielte auf einem Dudelsack. </i></p> <p>He was <strong>at a loss</strong>. Suddenly, he heard music. Someone was playing the bagpipes.</p> <p>Caption 20, <a href="#" target="_blank"> Märchen - Sagenhaft: Hans mein Igel</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1276137" data-id="11536" data-source="youtube" data-source_id="v3bTI1PCG0c" data-time_in="47.0667" data-time_out="52.066666666667" data-transcript="+Bei+nassen+Fahrbahnen%2C+etwa+nach+Regen+ist+es+beispielsweise+ratsam%2C+abrupter+aufzukommen%2C"> <p><i>Bei nassen Fahrbahnen, etwa nach Regen ist es beispielsweise<strong> ratsam</strong>, abrupter aufzukommen.</i></p> <p>On wet runways, for example after rain, it is <strong>advisable </strong>to land more abruptly.</p> <p>Captions 18-20, <a href="#" target="_blank"> Flugreisen: Was dir Fluggesellschaften nicht verraten…</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Finally, you may have seen the nouns <em>der Hausrat</em> and <em>der Vorrat</em>. These relate to an archaic meaning of the word <em>der Rat</em>, which is a store of provisions, means, or help.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="173742" data-id="3704" data-source="" data-source_id="" data-time_in="65.3333" data-time_out="69.266666666667" data-transcript="+Sch%C3%B6n+und+gut%2C+nur+jedes+Mal+den+halben+Hausrat+zum+Camping+mitzuschleppen%2C"> <p><i>Schön und gut, nur jedes Mal den halben <strong>Hausrat</strong> zum Camping mitzuschleppen ...</i></p> <p>Fine and dandy, but dragging around half of the household supplies every time...</p> <p>Caption 23, <a href="#" target="_blank"> Glamping: Camping mit Stil</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1077330" data-id="20546" data-source="youtube" data-source_id="m3u5EPIXN_A" data-time_in="96.6000" data-time_out="102.8" data-transcript="+Der+fertige+Honig+dient+der+aktuellen+Ern%C3%A4hrung+des+Bienenvolkes%2C+der+Aufzucht+der+Brut+und+als+Vorrat+f%C3%BCr+den+Winter."> <p><i>Der fertige Honig dient der aktuellen Ernährung des Bienenvolkes, der Aufzucht der Brut und als <strong>Vorrat </strong>für den Winter. </i></p> <p>The finished honey is used as day-to-day nutrition for the bee colony, for raising the brood, and as a <strong>supply</strong> for the winter.</p> <p>Captions 31-32, <a href="#" target="_blank"> Für Tierfreunde Aktion Tier: Die Honigbiene</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Have a look at our previous lessons on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);"><em>erraten</em> vs. <em>raten</em></a> and <a class="inline-link" href="#" style="color: rgb(0, 0, 238);">other related verbs</a>. And as always, you'll find additional examples on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>.</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																																								Lessons																								
+							<span class="sub_title"><i>Schief</i>  and Related Verbs</span>
+							<div class="date">October 5, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">As an adjective or adverb, the word <em>schief</em> essentially means "crooked" or "askew." In these first two examples, it is used to describe a painting hanging on a wall:&nbsp;<br> &nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="731746" data-id="15079" data-source="" data-source_id="" data-time_in="128.0000" data-time_out="129" data-transcript="+Das+h%C3%A4ngt+doch+nicht+schief%21"> <p><i>Das hängt doch nicht <strong>schief</strong>! </i></p> <p>That's not <strong>crooked</strong>!</p> <p>Caption 25, <a href="#" target="_blank"> Die Pfefferkörner: Alles auf Anfang</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="728110" data-id="15079" data-source="" data-source_id="" data-time_in="137.8000" data-time_out="143.13333333333" data-transcript="+Noch+schiefer.+So+was+von+schief."> <p><i>Noch <strong>schiefer</strong>. So was von <strong>schief</strong>. </i></p> <p>Even <strong>more crooked</strong>. So <strong>crooked</strong>.</p> <p>Caption 27, <a href="#" target="_blank"> Die Pfefferkörner: Alles auf Anfang</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <h1 class="placeholder banner4">banner4 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">But <em>schief</em> can refer to more than just physical position. For example, here it describes the way someone looks at another person, suggesting a strange, suspicious, or disapproving look:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="348196" data-id="7399" data-source="" data-source_id="" data-time_in="136.0000" data-time_out="138.4" data-transcript="+Das+war+ein...+Er+tauchte+direkt+unter+dir+ab.+-Er+kuckte+mich+auch+ganz+schief+an.+-Ja."> <p><i>Er tauchte direkt unter dir ab. -Er kuckte mich auch ganz <strong>schief</strong> an. -Ja. </i></p> <p>He dove down directly under you. -He looked very<strong> askance </strong>at me, too. -Yes.</p> <p>Caption 23, <a href="#" target="_blank"> Abenteuer Nordsee: Unter Riesenhaien und Tintenfischen - Part 2</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The common verbs <i>schieflaufen</i> and <i>schiefgehen</i> essentially have the same meaning:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="111433" data-id="2507" data-source="" data-source_id="" data-time_in="242.1333" data-time_out="252.2" data-transcript="+Jeder+normale+oder+vern%C3%BCnftige+Zauberer+w%C3%BCrde+jetzt+abbrechen%2C+denn+es+k%C3%B6nnen+eine+Menge+Dinge+schieflaufen."> <p><i>Jeder normale oder vernünftige Zauberer würde jetzt abbrechen, denn es können eine Menge Dinge <strong>schieflaufen</strong>. </i></p> <p>Any normal and reasonable magician would now call it off, because, a lot of things can <strong>go wrong</strong>.</p> <p>Captions 55-56, <a href="#" target="_blank"> Magie: Die Zaubershow</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="475994" data-id="10597" data-source="youtube" data-source_id="v_-ujHGGdbA" data-time_in="120.8667" data-time_out="126.46666666667" data-transcript="+OK%2C+da+ist+wohl+was+schiefgelaufen."> <p><i>OK, da ist wohl was <strong>schiefgelaufen</strong>. </i></p> <p>OK, something <strong>went wrong</strong> there indeed.</p> <p>Caption 30, <a href="#" target="_blank"> Nachhaltige Ernährung: Animation</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1234052" data-id="23918" data-source="" data-source_id="" data-time_in="51.8000" data-time_out="56.133333333333" data-transcript="+Ich+wusste+ja+ganz+genau%2C+dass+nichts+schiefgehen+w%C3%BCrde."> <p><i>Ich wusste ja ganz genau, dass nichts <strong>schiefgehen </strong>würde. </i></p> <p>I knew perfectly well that nothing would <strong>go wrong</strong>.</p> <p>Captions 19-20, <a href="#" target="_blank"> Jan von München: Das tanzende Pferd</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1243594" data-id="24178" data-source="" data-source_id="" data-time_in="121.2000" data-time_out="123.86666666667" data-transcript="+Es+sind+viele+Dinge+schiefgegangen."> <p><i>Es <strong>sind </strong>viele Dinge <strong>schiefgegangen</strong>. </i></p> <p>A lot of things <strong>went wrong</strong>.</p> <p>Caption 42, <a href="#" target="_blank"> Sabine und Ivana Sabines Weltreise</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Look for the word <em>schief</em> integrated in different ways in <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a> videos. You can also look at our lessons that explain the related words <a class="inline-link" href="#" style="color: rgb(0, 0, 238);"><em>schräg</em></a> and <a class="inline-link" href="#" style="color: rgb(0, 0, 238);"><em>gerade</em></a>.&nbsp;</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Contrastive and Corrective Connectors, Part II</span>
+							<div class="date">September 28, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Last week, we looked at how words like <em>sondern</em>, <em>vielmehr</em>, and <em>stattdessen</em> are used not only to correct statements, but also to refine them. This week, we'll continue with some words that are used to compare and contrast: <em>hingegen</em>, <em>dagegen</em>, and <em>im Gegenteil</em>.&nbsp;</p> <h1 class="placeholder banner4">banner4 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Depending on the context, you might see <em>hingegen</em> translated as "by contrast," "in comparison," or "on the other hand."</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="318397" data-id="8129" data-source="youtube" data-source_id="EYbimhn2XqA" data-time_in="179.6000" data-time_out="183.73333333333" data-transcript="+In+Deutschland+hingegen+sind+es+nur+zwei+pro+tausend+Einwohner.+%5Bzwei+pro+tausend%5D"> <p><i>In Deutschland <strong>hingegen</strong> sind es nur zwei pro tausend Einwohner.&nbsp;</i></p> <p>In Germany, <strong>by contras</strong>t, there are just two per thousand residents.&nbsp;</p> <p>Caption 52, <a href="#" target="_blank"> Flüchtlingskrise: 10 Vorurteile, die nicht stimmen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="372098" data-id="8274" data-source="" data-source_id="" data-time_in="120.1333" data-time_out="124.13333333333" data-transcript="+Radfahrer+m%C3%BCssen+sich+hingegen+vor+allem+ihrer+Verletzlichkeit+bewusst+werden."> <p><i>Radfahrer müssen sich <strong>hingegen</strong> vor allem ihrer Verletzlichkeit bewusst werden. </i></p> <p>Cyclists must, <strong>on the other hand</strong>, above all, become more conscious of their vulnerability.</p> <p>Caption 32, <a href="#" target="_blank"> Crashtest: Fahrradfahrer profitieren kaum vom Fußgängerschutz am Auto</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The word <em>dagegen</em> can be used to express being against something, and the first example below shows how it expresses opposition to something that was previously mentioned. The second example shows its contrastive function, which is very similar to how<em> hingegen</em> is used.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="990235" data-id="20697" data-source="" data-source_id="" data-time_in="81.0000" data-time_out="86.533333333333" data-transcript="+und+andere+wieder+benutzen+dagegen+ein+Nasenspray."> <p><i>Und andere wieder benutzen <strong>dagegen</strong> ein Nasenspray. </i></p> <p>And others use a nasal spray <strong>against it</strong>.</p> <p>Caption 21, <a href="#" target="_blank"> Deutsch mit Eylin: Erkältungszeit</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="318600" data-id="7441" data-source="" data-source_id="" data-time_in="72.6667" data-time_out="82.266666666667" data-transcript="+Im+See+drin+ist+es+dagegen+verh%C3%A4ltnism%C3%A4%C3%9Fig+warm%2C+denn+das+Eis+isoliert."> <p><i>Im See drin ist es <strong>dagegen </strong>verhältnismäßig warm, denn das Eis isoliert. </i></p> <p>Inside the lake, it is warm<strong> in comparison</strong>, because the ice insulates.</p> <p>Caption 13, <a href="#" target="_blank"> Alpenseen: Kühle Schönheiten</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The word <em>das Gegenteil </em>means "the opposite," so <em>im Gegenteil </em>essentially means "on the contrary." It can be used in a sentence, but also on its own.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="655491" data-id="14714" data-source="" data-source_id="" data-time_in="164.1333" data-time_out="168.53333333333" data-transcript="+Er+ist+im+Gegenteil+sogar+ein+sehr+n%C3%BCtzlicher+Waldbewohner%2C"> <p><i>Er ist<strong> im Gegenteil </strong>sogar ein sehr nützlicher Waldbewohner.</i></p> <p><strong>On the contrary</strong>, it is actually a very valuable forest dweller.</p> <p>Caption 33, <a href="#" target="_blank"> Die letzten Paradiese: Die Schönheit der Alpen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="438882" data-id="10967" data-source="" data-source_id="" data-time_in="70.4667" data-time_out="78.533333333333" data-transcript="+Im+Gegenteil.+In+vielen+trendigen+Caf%C3%A9s+ist+Filterkaffee+wieder+richtig+angesagt."> <p><i><strong>Im Gegenteil</strong>. In vielen trendigen Cafés ist Filterkaffee wieder richtig angesagt. </i></p> <p><strong>On the contrary</strong>. In many trendy cafés, filter coffee is really popular again.</p> <p>Caption 14, <a href="#" target="_blank"> Eva zeigt uns: Wie man Kaffee kocht</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Look out for <em>hingegen</em>, <em>dagegen</em>, and <em>im Gegenteil</em> in <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a> videos, and pay attention to how they are used in context.</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Contrastive and Corrective Connectors, Part I</span>
+							<div class="date">September 21, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">This week, we'll look at words that have a negating and/or corrective function. These may simply be used to communicate the idea "X is wrong, but Y is correct," or they may be used to clarify or refine a statement. Let's look at the German words <em>sondern</em>,&nbsp;<em>vielmehr</em>,&nbsp;<em>eher,&nbsp;</em>and&nbsp;<em>stattdessen</em>.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The conjunction <em>sondern</em> connects two contrasting elements and generally comes directly after the comma separating them. Together with <em>nicht</em> or <em>keine</em>, <em>sondern</em> serves to negate and correct the first statement made in the sentence.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="302274" data-id="7437" data-source="" data-source_id="" data-time_in="278.4667" data-time_out="283.4" data-transcript="+Es+sind+aber+keine+Pflanzen%2C+sondern+winzige+Tierchen%2C+Einzeller%2C"> <p><i>Es sind aber keine Pflanzen, <strong>sondern</strong> winzige Tierchen, Einzeller.</i></p> <p>These are not plants, <strong>but rather </strong>tiny little animals, single-celled organisms.</p> <p>Caption 46, <a href="#" target="_blank"> Alpenseen Kühle: Schönheiten - Part 6</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="356761" data-id="3628" data-source="youtube" data-source_id="nt3gzXp4s9A" data-time_in="6.0667" data-time_out="13.933333333333" data-transcript="+Ihr+eigentliches+Heimatland+ist+nicht+Deutschland%2C+sondern+%C3%96sterreich."> <p><i>Ihr eigentliches Heimatland ist nicht Deutschland, <strong>sondern </strong>Österreich. </i></p> <p>Her real homeland is not Germany, <strong>but</strong> Austria.</p> <p>Caption 3, <a href="#" target="_blank"> Christina Stürmer: Wir leben den Moment</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The word <em>vielmehr</em> doesn't necessarily require negation and can also be translated as "in fact" or "more precisely."&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="984343" data-id="20098" data-source="" data-source_id="" data-time_in="54.7333" data-time_out="57.733333333333" data-transcript="+Ich+glaube+vielmehr%2C+dass+es+gro%C3%9Fe+Insekten+sind."> <p><i>Ich glaube <strong>vielmehr</strong>, dass es große Insekten sind. </i></p> <p>I <strong>rather </strong>think they are big insects.</p> <p>Caption 16, <a href="#" target="_blank"> Es war einmal... der Weltraum: Die Saurier</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="168598" data-id="4142" data-source="" data-source_id="" data-time_in="72.7333" data-time_out="78.733333333333" data-transcript="+Mittlerweile+wei%C3%9F+man%2C+dass+sie+vielmehr+Relikte+aus+der+Entstehungszeit+unseres+Sonnensystems+sind%2C"> <p><i>Mittlerweile weiß man, dass sie <strong>vielmehr</strong> Relikte aus der Entstehungszeit unseres Sonnensystems sind.</i></p> <p>In the meantime we know that they are <strong>more likely</strong> relics from the time of origin of our solar system.</p> <p>Captions 20-21, <a href="#" target="_blank"> Unser Universum: Asteroiden - Gefahr aus dem All?</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">In addition to meaning "earlier"/"sooner" and "more"/"to a greater extent," <em>eher</em> can also have a corrective or contrastive function and can even be combined with <em>sondern</em>.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="210549" data-id="4949" data-source="" data-source_id="" data-time_in="112.9333" data-time_out="120.13333333333" data-transcript="+Stra%C3%9Fenlage+ist+aber+auch+im+Land+der+unbegrenzten+M%C3%B6glichkeiten+nicht+die+St%C3%A4rke+des+Trabi%2C+da+geht+es+eher+gem%C3%BCtlich+zu."> <p><i>Straßenlage ist aber auch im Land der unbegrenzten Möglichkeiten nicht die Stärke des Trabi, da geht es <strong>eher </strong>gemütlich zu. </i></p> <p>[Its] road handling ability, however, even in the land of unlimited possibilities, is not a strength of the Trabi, there <strong>instead</strong> it runs along quite leisurely.</p> <p>Captions 39-40, <a href="#" target="_blank"> Der Trabi: Das Kultauto aus dem Osten</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="729888" data-id="16086" data-source="" data-source_id="" data-time_in="277.0000" data-time_out="281.73333333333" data-transcript="+Diese+Fische+scheinen+uns+gegen%C3%BCber+nicht+scheu%2C+sondern+eher+neugierig+zu+sein."> <p><i>Diese Fische scheinen uns gegenüber nicht scheu, <strong>sondern eher </strong>neugierig zu sein. </i></p> <p>These fish do not seem to be shy towards us, <strong>but rather </strong>curious.</p> <p>Caption 67, <a href="#" target="_blank"> Evolution: Meeresbewohner</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Another relevant word is <em>stattdessen</em> ("instead"), which can also be combined with <em>sondern</em>:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="734049" data-id="16089" data-source="" data-source_id="" data-time_in="83.2667" data-time_out="93.4" data-transcript="+Entgegen+der+gel%C3%A4ufigen+Meinung+robben+die+kalifornischen+Seel%C3%B6wen+nicht%2C+wenn+sie+sich+fortbewegen.+Stattdessen+k%C3%B6nnen+sie+ihre+Hinterflossen+geschickt+unter+ihren+K%C3%B6rper+drehen"> <p><i>Entgegen der geläufigen Meinung robben die kalifornischen Seelöwen nicht, wenn sie sich fortbewegen. <strong>Stattdessen</strong> können sie ihre Hinterflossen geschickt unter ihren Körper drehen.</i></p> <p>Contrary to common belief, California sea lions don't crawl when they move around. <strong>Instead</strong>, they can skillfully turn their hind flippers underneath their body.</p> <p>Captions 24-27, <a href="#" target="_blank"> Evolution: Die Küsten</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1136048" data-id="22605" data-source="" data-source_id="" data-time_in="91.7333" data-time_out="103.53333333333" data-transcript="+F%C3%BCr+die+Reduktion+von+Plastik+benutze+ich+im+Alltag+keine+Plastikt%C3%BCten+bei+meinem+Einkauf%2C+sondern+nehme+stattdessen+einen+Stoffbeutel+oder+einen+eigenen+Rucksack+mit."> <p><i>Für die Reduktion von Plastik benutze ich im Alltag keine Plastiktüten bei meinem Einkauf, sondern nehme <strong>stattdessen</strong> einen Stoffbeutel oder einen eigenen Rucksack mit. </i></p> <p>For the reduction of plastic, I don't use plastic bags for my everyday shopping, but<strong> instead </strong>take a cloth bag or my own backpack with me.</p> <p>Captions 19-21, <a href="#" target="_blank"> Deutsch mit Paula: Nachhaltigkeit</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You will find these words in many videos on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>.</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Political Action</span>
+							<div class="date">September 14, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">With elections occurring this month in several German federal states, political action is currently a relevant topic. What are the options when a population is unhappy with the decisions of the current leadership? Protests, rallies, and marches are very common in Germany. The Berlin city website has <a class="inline-link" href="#" style="color: rgb(0, 0, 238);">a list of demonstrations</a> taking place on any given day.&nbsp;</p> <h1 class="placeholder banner3">banner3 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The word for "protest" in German is <em>die Demonstration</em>, and it's often shortened to <em>die Demo</em>.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="685053" data-id="15753" data-source="youtube" data-source_id="SPyG1jmBKec" data-time_in="138.4667" data-time_out="142.73333333333" data-transcript="+Die+Wege+der+beiden+M%C3%A4nner+kreuzten+sich+bei+der+entscheidenden+Demonstration"> <p><i>Die Wege der beiden Männer kreuzten sich<strong> bei der</strong> entscheidenden <strong>Demonstration</strong>.</i></p> <p>The paths of the two men crossed <strong>at the</strong> crucial <strong>protest</strong>.</p> <p>Caption 39, <a href="#" target="_blank"> 30 Jahre Mauerfall Deutschland: 30 Jahre nach dem Fall der Berliner Mauer - Part 1</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="685655" data-id="15754" data-source="youtube" data-source_id="SPyG1jmBKec" data-time_in="179.3333" data-time_out="183.86666666667" data-transcript="+%C3%84hm...+zu+Beginn+der+Demo+hatten+wir+uns+noch+untergehakt."> <p><i>Zu Beginn <strong>der</strong> <strong>Demo</strong> hatten wir uns noch untergehakt. </i></p> <p>At the beginning <strong>of the</strong> <strong>demonstration</strong> we still had our arms linked.</p> <p>Caption 3, <a href="#" target="_blank"> 30 Jahre Mauerfall Deutschland: 30 Jahre nach dem Fall der Berliner Mauer - Part 2</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Protests often involve a rally:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="998957" data-id="20935" data-source="" data-source_id="" data-time_in="18.6000" data-time_out="21.533333333333" data-transcript="+Bei+der+Kundgebung+in+Sichtweite+der+Baustelle+%5BPolitik+f%C3%BCr+heute+statt+von+gestern%5D"> <p><i><strong>Bei der Kundgebung</strong> in Sichtweite der Baustelle [Politik für heute statt von gestern] </i></p> <p><strong>At the rally</strong> within sight of the construction site [Politics for today instead of from yesterday]</p> <p>Caption 6, <a href="#" target="_blank"> Klimaschutz Protest gegen Ausbau von Stadtautobahn A100</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The German word <em>der Umzug</em> can mean "parade" or "procession." A protest march can be referred to more specifically as <em>der Demonstrationszug</em>.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="189519" data-id="5055" data-source="" data-source_id="" data-time_in="147.0667" data-time_out="150.53333333333" data-transcript="+Und+auch+jetzt+Kinderfasching+oder+am+Dienstag+in+Eggenstein+den+Umzug%3F"> <p><i>Und auch jetzt Kinderfasching oder am Dienstag in Eggenstein den <strong>Umzug</strong>? </i></p> <p>And also now at Children's Carnival or on Tuesday at the <strong>parade </strong>in Eggenstein?</p> <p>Caption 43, <a href="#" target="_blank"> Fasching: mit Cettina</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="249389" data-id="6447" data-source="" data-source_id="" data-time_in="88.0667" data-time_out="96.6000" data-transcript="+Mit+einem+Demonstrationszug+entlang+des+Terminal+eins+machten+rund+zweitausend+Gewerkschaftler+lautstark+auf+ihre+Forderungen+aufmerksam."> <p><i>Mit einem <strong>Demonstrationszug</strong> entlang des Terminal eins machten rund zweitausend Gewerkschaftler lautstark auf ihre Forderungen aufmerksam. </i></p> <p>With a <strong>protest march</strong> along Terminal One, around two thousand trade unionists loudly called attention to their demands.</p> <p>Captions 27-28, <a href="#" target="_blank"> Rheinmain im Blick Erneut Streik am Frankfurter Flughafen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">For people who can't travel to the protest, there is often a petition that can be signed:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="87164" data-id="1951" data-source="" data-source_id="" data-time_in="33.0000" data-time_out="36.866666666667" data-transcript="+Wir+w%C3%BCrden+uns+freuen%2C+wenn+alle+Menschen+auf+PETA+de+%5Bwww.peta.de%5D+unsere+Onlinepetition+unterst%C3%BCtzen%2C"> <p><i>Wir würden uns freuen, wenn alle Menschen auf PETA de [www.peta.de] unsere <strong>Onlinepetition </strong>unterstützen, </i></p> <p>We would be happy, if all people would support our<strong> online petition</strong> on PETA de [www.peta.de],</p> <p>Caption 13, <a href="#" target="_blank"> PETA-Aktion: Gegen das Wal-Massaker</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You can read our previous lesson about <a class="inline-link" href="#" style="color: rgb(0, 0, 238);">election vocabulary</a> on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Describing Comfort in German</span>
+							<div class="date">September 7, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The idea of comfort can be expressed in many different ways in German. One of the most common adjectives for the word "comfortable" is <em>bequem</em>, which can refer to physical comfort or convenience. It can describe clothing and furniture, but also ways of doing things and situations that make life easier.</p> <h1 class="placeholder banner2">banner2 PLACEHOLDER</h1> <blockquote class="cap_ref_container" data-caption_id="1254354" data-id="24346" data-source="" data-source_id="" data-time_in="37.0667" data-time_out="41.4" data-transcript="+Am+besten+mit+dem+Zug.+Das+ist+schnell+und+ist+bequem."> <p><i>Am besten mit dem Zug. Das ist schnell und ist <strong>bequem</strong>. </i></p> <p>The best way is by train. It's fast and <strong>comfortable</strong>.</p> <p>Captions 13-14, <a href="#" target="_blank"> Sabine und Ivana: planen eine Reise nach Nürnberg</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="652879" data-id="14461" data-source="youtube" data-source_id="eYaoCcvPd_U" data-time_in="49.2667" data-time_out="54.2000" data-transcript="+Sieht+bequem+aus.+-Na+los%2C+probier+die+Sachen+an."> <p><i>Sieht<strong> bequem</strong> aus. -Na los, probier die Sachen an. </i></p> <p>Looks <strong>comfortable</strong>. -Well go, try these things on.</p> <p>Caption 14, <a href="#" target="_blank"> Nicos Weg A1 Folge 60: Schick!</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><em>Gemütlich</em> suggests coziness and a warm, inviting atmosphere rather than simply physical comfort. You might describe an apartment or a relaxed evening as <em>gemütlich</em>.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1103496" data-id="22250" data-source="" data-source_id="" data-time_in="18.0000" data-time_out="21.266666666667" data-transcript="+Mach+es+dir+gem%C3%BCtlich+und+nimm+dir+Zeit%2C"> <p><i>Mach es dir <strong>gemütlich </strong>und nimm dir Zeit.</i></p> <p>Make yourself <strong>comfortable</strong> and take your time.</p> <p>Caption 6, <a href="#" target="_blank"> Deutsch für Anfänger #2: Begrüßen und verabschieden</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="578876" data-id="13839" data-source="youtube" data-source_id="YRWehEtSPQY" data-time_in="89.8667" data-time_out="94" data-transcript="+Die+K%C3%BCche+ist+sehr+gem%C3%BCtlich%2C+hier+sitzen+wir+oft."> <p><i>Die Küche ist sehr <strong>gemütlich</strong>, hier sitzen wir oft. </i></p> <p>The kitchen is very <strong>comfortable</strong>, we sit here often.</p> <p>Caption 30, <a href="#" target="_blank"> Nicos Weg A1 Folge 26: Meine Wohnung</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><em>Behaglich </em>is close to <em>gemütlich</em> but slightly more intimate, suggesting contentment, while <em>wohnlich</em> describes a room or other space that feels inviting as a place to live. <em>Komfortabel</em> suggests a high level of comfort, often thanks to good facilities or equipment, and can sometimes imply a degree of luxury.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="324909" data-id="8248" data-source="youtube" data-source_id="Xv1oLWaYMaM" data-time_in="39.1333" data-time_out="43.733333333333" data-transcript="+und+gerade+diese+Kombination+von+sportlich+und+komfortabel+gef%C3%A4llt+mir+besonders+gut+am+F-Pace"> <p><i>Und gerade diese Kombination von sportlich und <strong>komfortabel</strong> gefällt mir besonders gut am F-Pace.</i></p> <p>And precisely this combination of sporty and<strong> comfortable</strong> is what I like especially well about the F-Pace.</p> <p>Caption 10, <a href="#" target="_blank"> Auto-Bild-TV:&nbsp;Tops &amp; Flops der IAA</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Finally, there is the adjective <em>angenehm</em>, which is broader and means pleasant or agreeable.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="339221" data-id="7399" data-source="" data-source_id="" data-time_in="149.8000" data-time_out="154.73333333333" data-transcript="+Ein+Schlag+mit+der+gewaltigen+Schwanzflosse+w%C3%A4re+sicher+nicht+angenehm."> <p><i>Ein Schlag mit der gewaltigen Schwanzflosse wäre sicher nicht <strong>angenehm</strong>. </i></p> <p>A blow from the powerful tail fin certainly wouldn't be <strong>pleasant</strong>.</p> <p>Caption 28, <a href="#" target="_blank"> Abenteuer Nordsee: Unter Riesenhaien und Tintenfischen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You'll find these words used in various contexts on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>!</p> <div>&nbsp;</div> <div style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 20px 0px;">&nbsp;</div> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title"> <i>Vertrauen</i> and  <i>sich trauen</i></span>
+							<div class="date">August 30, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">In German, the main noun for "trust" is <em>das Vertrauen</em>.</p> <h1 class="placeholder banner6">banner6 PLACEHOLDER</h1> <blockquote class="cap_ref_container" data-caption_id="673573" data-id="15027" data-source="" data-source_id="" data-time_in="181.6667" data-time_out="187" data-transcript="+Beim+Canyoning+spielen+Teamgeist+und+das+gegenseitige+Vertrauen+eine+wichtige+Rolle."> <p><i>Beim Canyoning spielen Teamgeist und das gegenseitige <strong>Vertrauen</strong> eine wichtige Rolle. </i></p> <p>When canyoning, team spirit and mutual <strong>trust </strong>play an important role.</p> <p>Caption 22, <a href="#" target="_blank"> Die letzten Paradiese: Die Schönheit der Alpen 2</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>vertrauen</em> ("to trust") takes the dative case. To say "to trust one another," you can use <em>sich vertrauen</em>, with the reflexive pronoun <em>sich</em> having a reciprocal meaning.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1224978" data-id="23823" data-source="" data-source_id="" data-time_in="61.9333" data-time_out="65.4" data-transcript="+Also%2C+man+sollte+sich+gegenseitig+auf+jeden+Fall+vertrauen."> <p><i>Also, man sollte sich gegenseitig auf jeden Fall <strong>vertrauen</strong>. </i></p> <p>So, you should definitely <strong>trust each other</strong>.</p> <p>Caption 11, <a href="#" target="_blank"> Die Alpen von oben: S1 E2 Von Graz ins Ausseerland</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1142786" data-id="22359" data-source="" data-source_id="" data-time_in="150.8000" data-time_out="152.66666666667" data-transcript="+Bist+du+dir+sicher%2C+dass+du+ihr+vertrauen+kannst%3F"> <p><i>Bist du dir sicher, dass du ihr <strong>vertrauen</strong> kannst? </i></p> <p>Are you sure you can <strong>trust</strong> her?</p> <p>Caption 41, <a href="#" target="_blank"> Die Pfefferkörner:&nbsp;Das Wunderkind</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">As you might remember from our lesson on marriage, both <em>trauen</em> and <em>sich trauen</em> can be used when talking about getting married. But in other contexts, <em>sich trauen</em> means "to dare" or "to have the courage to do something."</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="411835" data-id="10485" data-source="youtube" data-source_id="5PST7Ld4wWU" data-time_in="86.8000" data-time_out="90.866666666667" data-transcript="+Aber+ob+sie+sich+das+traut%3F"> <p><i>Aber ob <strong>sie sich</strong> das <strong>traut</strong>? </i></p> <p>But will <strong>she</strong> <strong>dare</strong> to do it?</p> <p>Caption 20, <a href="#" target="_blank"> Max Giesinger: Wenn sie tanzt</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>anvertrauen</em> means to entrust something to another person’s care. Then, there is also <i>sich jemandem anvertrauen</i>, meaning to confide in someone.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="989463" data-id="20369" data-source="" data-source_id="" data-time_in="232.7333" data-time_out="235" data-transcript="+Jetzt+k%C3%B6nnen+wir+ihnen+eine+richtige+Aufgabe+anvertrauen."> <p><i>Jetzt können wir ihnen eine richtige Aufgabe <strong>anvertrauen</strong>. </i></p> <p>Now we can <strong>entrust</strong> them with a real task.</p> <p>Caption 36, <a href="#" target="_blank"> Es war einmal... der Weltraum: Planet Omega - Part 1</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">Finally, the adjective <em>vertraut </em>is used to refer to someone or something trusted or familiar.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1239405" data-id="24049" data-source="" data-source_id="" data-time_in="54.6000" data-time_out="57.6" data-transcript="+Die+Landschaft+ist+ihm+von+Geburt+an+vertraut."> <p><i>Die Landschaft ist ihm von Geburt an <strong>vertraut</strong>. </i></p> <p>The landscape has been <strong>familiar</strong> to him since birth.</p> <p>Caption 19, <a href="#" target="_blank"> Die Alpen von oben: S01 E03 Von Salzburg zum Königssee</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You'll find many more examples of <em>vertrauen</em>, <em>trauen</em>, and related words on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>!</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Bread</span>
+							<div class="date">August 23, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">This week's lesson is devoted to an integral part of German culture: bread!</p> <h1 class="placeholder banner2">banner2 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">In German bakeries, you will find both loaves and rolls for sale. The German word for a loaf is <em>der Laib</em>, but in everyday language Germans commonly just say <em>ein Brot</em> for "a loaf of bread," as you can see in this example:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="945144" data-id="19950" data-source="" data-source_id="" data-time_in="83.4000" data-time_out="87.4" data-transcript="+%E2%80%9EFrieda+hat+ein+Brot+gekauft%E2%80%9C"> <p><i>Frieda hat <strong>ein Brot</strong> gekauft.</i></p> <p>Frieda bought<strong> a loaf of bread</strong>.</p> <p>Caption 20, <a href="#" target="_blank"> Deutsch mit Eylin: Das Perfekt</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">There are, however, many different words for "bread roll" depending on what region of Germany you are in. In particular, <em>die Schrippe</em> is used in Berlin and the surrounding region, and <em>die Semmel</em> in Bavaria and Austria.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="429669" data-id="10775" data-source="youtube" data-source_id="keZdP9ETm4s" data-time_in="246.5333" data-time_out="252" data-transcript="+Ich+w%C3%BCrde+auch+manchmal+morgens+Br%C3%B6tchen+holen"> <p><i>Ich würde auch manchmal morgens <strong>Brötchen</strong> holen.</i></p> <p>I would also go out to get <strong>bread rolls</strong> in the morning</p> <p>Caption 32, <a href="#" target="_blank"> AnnenMayKantereit: 3. Stock</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1237012" data-id="24124" data-source="" data-source_id="" data-time_in="49.8000" data-time_out="55.466666666667" data-transcript="+%E2%80%9ESchrippe%E2%80%9C.+Das+ist+das+Berliner+Wort+f%C3%BCr+%E2%80%9EBr%C3%B6tchen%E2%80%9C."> <p><i>„<strong>Schrippe</strong>“. Das ist das Berliner Wort für „Brötchen“. </i></p> <p>"<strong>Bread roll</strong>." That's the Berlin word for "bread roll."</p> <p>Captions 16-17, <a href="#" target="_blank"> Deutsch mit Giada: In einer Bäckerei</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="728096" data-id="15079" data-source="" data-source_id="" data-time_in="44.3333" data-time_out="47.4" data-transcript="+Das+Zeug+geht+weg+wie+warme+Semmeln."> <p><i>Das Zeug geht weg wie warme <strong>Semmeln</strong>. </i></p> <p>The stuff is selling like warm <strong>rolls </strong>[idiom, selling quickly].</p> <p>Caption 11, <a href="#" target="_blank"> Die Pfefferkörner: Alles auf Anfang</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The many types of German bread can be divided into several main categories according to the flour used. Bread generally contains wheat flour (<em>das Weizenmehl</em>), but not exclusively, since rye flour (<em>das Roggenmehl</em>) is very popular.&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="635185" data-id="14451" data-source="youtube" data-source_id="dOdHXwy0cME" data-time_in="31.1333" data-time_out="37.6" data-transcript="+Ja%2C+ich+denke%2C+ich+nehme+ein+halbes+Wei%C3%9Fbrot+und+ein+halbes+Vollkornbrot."> <p><i>Ja, ich denke, ich nehme <strong>ein </strong>halbes <strong>Weißbrot</strong> und <strong>ein </strong>halbes <strong>Vollkornbrot</strong>. </i></p> <p>Yes, I think I'll take half <strong>a loaf of white bread </strong>and half <strong>a loaf of whole wheat brea</strong>d.</p> <p>Caption 9, <a href="#" target="_blank"> Nicos Weg: Was darf es sein?</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1006544" data-id="20802" data-source="" data-source_id="" data-time_in="28.5333" data-time_out="34.933333333333" data-transcript="+Und+dazu+eine+Scheibe+frisches+Roggenbrot+mit+kalter+Butter"> <p><i>Und dazu <strong>eine Scheibe</strong> frisches <strong>Roggenbrot </strong>mit kalter Butter.</i></p> <p>And with it,<strong> a slice </strong>of fresh <strong>rye bread </strong>with cold butter.</p> <p>Caption 8, <a href="#" target="_blank"> Deutsch mit Eylin: Geschmack beschreiben</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">In the last example, you can see the word for a slice of bread. When ordering at a bakery, it's also useful to know how to ask for half a loaf:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="635182" data-id="14451" data-source="youtube" data-source_id="dOdHXwy0cME" data-time_in="14.8000" data-time_out="19" data-transcript="+Die+H%C3%A4lfte.+Ein+halbes+Roggenbrot+kostet+einen+Euro+sechzig."> <p><i>Die Hälfte. <strong>Ein halbes Roggenbrot </strong>kostet einen Euro sechzig. </i></p> <p>Half. <strong>Half a loaf of rye bread </strong>costs one euro sixty.</p> <p>Caption 6, <a href="#" target="_blank"> Nicos Weg A1 Folge 50: Was darf es sein?</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">For more vocabulary and phrases, watch <a class="inline-link" href="#" style="color: rgb(0, 0, 238);">Giada's video about visiting a German bakery </a>on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>!</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">Talking About Success and Failure</span>
+							<div class="date">August 17, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The basic German word for "success" is <em>der Erfolg</em>. The adjective form is <em>erfolgreich</em>.&nbsp;</p> <h1 class="placeholder banner2">banner2 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="641677" data-id="13074" data-source="" data-source_id="" data-time_in="215.7333" data-time_out="221.4667" data-transcript="+Ich+w%C3%BCnsche+euch+viel+Erfolg+bei+der+Pr%C3%BCfung."> <p><i>Ich wünsche euch <strong>viel Erfolg </strong>bei der Prüfung. </i></p> <p>I wish you <strong>much success</strong> at the exam.</p> <p>Caption 42, <a href="#" target="_blank"> Bundesrepublik: Deutschland Einbürgerungstest</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="356762" data-id="3628" data-source="youtube" data-source_id="nt3gzXp4s9A" data-time_in="13.9333" data-time_out="18.266666666667" data-transcript="+Aber+hier+in+Deutschland+ist+sie+mindestens+genauso+bekannt+und+erfolgreich."> <p><i>Aber hier in Deutschland <strong>ist sie </strong>mindestens genauso bekannt und <strong>erfolgreich</strong>. </i></p> <p>But here in Germany<strong> she is</strong> at least as famous and <strong>successful</strong>.</p> <p>Caption 4, <a href="#" target="_blank"> Christina Stürmer: Wir leben den Moment</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1101855" data-id="21917" data-source="" data-source_id="" data-time_in="124.9333" data-time_out="129.9333" data-transcript="+Um+Erfolg+zu+haben%2C+m%C3%BCssen+sie+schneller+als+die+Fische+sein."> <p><i>Um <strong>Erfolg zu</strong> <strong>haben</strong>, müssen sie schneller als die Fische sein. </i></p> <p><strong>To be successful</strong>, they have to be faster than the fish.</p> <p>Caption 16, <a href="#" target="_blank"> Expeditionen ins Tierreich Die Feldberger Seen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>gelingen</em> is also used in connection with success. Take a careful look at how the sentence is structured:</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1035037" data-id="21072" data-source="" data-source_id="" data-time_in="218.0667" data-time_out="220.6" data-transcript="+Ich+hoffe%2C+euch+sind+die+Quarkkeulchen+auch+gelungen."> <p><i>Ich hoffe, <strong>euch </strong>sind die Quarkkeulchen auch <strong>gelungen</strong>. </i></p> <p>I hope<strong> you</strong> also <strong>succeeded</strong> in making the quark dumplings.</p> <p>Caption 46, <a href="#" target="_blank"> Bundesländer und ihre Rezepte: Sachsen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">"To fail"<em> </em>as in "to fail a test" is expressed with the verb <em>durchfallen. </em>You can also say <em>nicht bestehen </em>("to not pass")<em>.</em></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="827648" data-id="18009" data-source="" data-source_id="" data-time_in="260.5333" data-time_out="264.6" data-transcript="+Sie+ist+in+fast+allen+Pr%C3%BCfungen+des+Trainerkurses+durchgefallen."> <p><i><strong>Sie ist</strong> in fast allen Prüfungen des Trainerkurses <strong>durchgefallen</strong>. </i></p> <p><strong>She failed</strong> almost all of the exams in the trainer course.</p> <p>Caption 73, <a href="#" target="_blank"> Yabla Gerichtshof: Das verzogene Hündchen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>scheitern</em> indicates that a goal, plan, or attempt is not achieved.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="322698" data-id="7266" data-source="" data-source_id="" data-time_in="20.8667" data-time_out="25.466666666667" data-transcript="+Allerdings+scheiterte+sein+Fluchtversuch.+Die+Konsequenz%3A+das+DDR-Gef%C3%A4ngnis."> <p><i>Allerdings <strong>scheiterte</strong> sein Fluchtversuch. Die Konsequenz: das DDR-Gefängnis. </i></p> <p>However, his attempt to flee <strong>failed</strong>. The consequence: GDR [German Democratic Republic] prison.</p> <p>Caption 7, <a href="#" target="_blank"> 25 Jahre Mauerfall: Radtour durch die Geschichte</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>versagen</em> is more negative and indicates a failure to function or perform properly. It can be used for people, institutions, systems, or even parts of the body.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="214185" data-id="5663" data-source="" data-source_id="" data-time_in="119.0667" data-time_out="125.46666666667" data-transcript="+Er+l%C3%A4uft+Runden+im+Park%2C+bis+die+Beine+versagen"> <p><i>Er läuft Runden im Park, bis die Beine <strong>versagen</strong>.</i></p> <p>He runs laps in the park until his legs <strong>fail</strong>.</p> <p>Caption 21, <a href="#" target="_blank"> Maxim Meine Soldaten</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You'll find more examples of these verbs and phrases on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>!</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+								<li class="news_item Lesson">
+					<h2 class="news_title">
+																					Lessons							
+							<span class="sub_title">"To Miss" and "To Miss Out"</span>
+							<div class="date">August 9, 2026</div>
+											</h2>
+					<div class="news_body">
+												<p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">In German, there are several ways to express the meanings of both verbs above.</p> <h1 class="placeholder banner4">banner4 PLACEHOLDER</h1> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">When we speak about wishing for something that is absent, there are two verbs that are often used. First, there is <em>vermissen</em>. But it's also possible to use a construction with a dative object and the verb <i>fehlen</i>, which literally means "to be lacking" or "to be missing."</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="934575" data-id="19804" data-source="youtube" data-source_id="ldcDFJrnta8" data-time_in="106.0667" data-time_out="108.8" data-transcript="+Ich+hab+dich+mein+halbes+Leben+vermisst"> <p><i><strong>Ich habe dich</strong> mein halbes Leben <strong>vermisst</strong>.</i></p> <p><strong>I've missed you</strong> half my life.</p> <p>Caption 33, <a href="#" target="_blank"> Clueso: Mond feat. Elif</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="816092" data-id="17481" data-source="youtube" data-source_id="mIslwwwUbZo" data-time_in="143.1333" data-time_out="144.73333333333" data-transcript="+Ihr+habt+mir+auch+gefehlt."> <p><i><strong>Ihr habt mir</strong> auch <strong>gefehlt</strong>. </i></p> <p><strong>I've missed you</strong> too.</p> <p>Caption 37, <a href="#" target="_blank"> Heidi: Dunkle Vergangenheit</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="237709" data-id="5275" data-source="" data-source_id="" data-time_in="107.5333" data-time_out="111.26666666667" data-transcript="+Das+deutsche+Brot+fehlt+mir%2C+ich+vermisse+das+deutsche+Brot."> <p><i>Das deutsche Brot <strong>fehlt mir</strong>, <strong>ich vermisse </strong>das deutsche Brot. </i></p> <p><strong>I miss</strong> the German bread, <strong>I miss </strong>the German bread.</p> <p>Caption 28, <a href="#" target="_blank"> Deutschkurs in Blaubeuren: Relativsätze mit Präpositionen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p><br> &nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <i>verpassen</i> means "to miss" or "to miss out" in the sense of failing to catch, attend, or take advantage of something. It's not about feeling someone's or something's absence.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="1063650" data-id="20388" data-source="" data-source_id="" data-time_in="142.7333" data-time_out="146.66666666667" data-transcript="+Es+macht+also+nichts%2C+wenn+man+eine+Bahn+verpasst+hat%2C"> <p><i>Es macht also nichts, wenn man eine Bahn verpasst hat.</i></p> <p>So, it doesn't matter if you have missed a train.</p> <p>Caption 35, <a href="#" target="_blank"> Deutsch mit Eylin: Öffentliche Verkehrsmittel in Hamburg</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">The verb <em>versäumen</em> is similar to <em>verpassen</em>, but can have a stronger connotation of having neglected or failed to do something.</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="746485" data-id="15082" data-source="" data-source_id="" data-time_in="38.6000" data-time_out="41" data-transcript="+Sie+haben+schon+wieder+Ihren+Gespr%C3%A4chstermin+vers%C3%A4umt."> <p><i><strong>Sie haben </strong>schon wieder Ihren Gesprächstermin <strong>versäumt</strong>. </i></p> <p><strong>You've missed</strong> your appointment yet again.</p> <p>Caption 7, <a href="#" target="_blank"> Die Pfefferkörner: Alles auf Anfang</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="953991" data-id="19998" data-source="youtube" data-source_id="SYG_uRxpxYw" data-time_in="78.4000" data-time_out="81.666666666667" data-transcript="+Ich+m%C3%B6chte+keinen+Tag+vers%C3%A4umen"> <p><i>Ich möchte keinen Tag <strong>versäumen</strong>.</i></p> <p>I don't want <strong>to miss </strong>a day.</p> <p>Caption 29, <a href="#" target="_blank"> Emilio: Find Ich Dich</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p>&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">A more complex construction is <em>sich entgehen lassen</em>. The verb <em>entgehen</em> means "to escape" or "to evade," so it's "to let something escape you."&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <blockquote class="cap_ref_container" data-caption_id="330989" data-id="7398" data-source="" data-source_id="" data-time_in="280.0667" data-time_out="286" data-transcript="+Auch+Natali+will+sich+das+nicht+entgehen+lassen.+"> <p><i>Auch Natali will <strong>sich</strong> das nicht <strong>entgehen lassen</strong>. </i></p> <p>Natali doesn't want <strong>to let herself miss out </strong>on this either.</p> <p>Caption 50, <a href="#" target="_blank"> Abenteuer Nordsee: Unter Riesenhaien und Tintenfischen</a></p> <span class="btn btn-default play"><i class="fa fa-play">&nbsp;</i>Play Caption</span></blockquote> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">&nbsp;</p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;"><span style="font-weight: 700;">Further Learning</span></p> <p style="color: rgb(0, 0, 0); font-family: Helvetica, sans-serif; font-size: 16px; background-color: rgb(254, 254, 254); margin: 16px 0px;">You'll find more examples of these verbs and phrases on <a class="inline-link" href="#" style="color: rgb(0, 0, 238);" target="_blank">Yabla German</a>!</p> 
+						<a href="#" class="more">Full lesson</a>
+
+											</div>
+				</li>
+							</ul>
+		</div> <!-- End #long_news_container -->
+
+		<section id="charts">
+			<div class="content floating_panel">
+
+				<ul class="chart_selector_list">
+					<li class="chart_selector active" data-chart="usage">
+						Usage					</li>
+					<li class="chart_selector" data-chart="xp_cum">
+						Progress						<span class="annotation">Cumulative XP</span>
+					</li>
+					<li class="chart_selector" data-chart="xp_stacked">
+						Scores						<span class="annotation">Stacked XP</span>
+					</li>
+				</ul>
+
+				<div class="chart_holder active" id="usage">
+					<div class="chart_container">
+						<h2 class="chart_title">
+							Usage over the last							<select class="data_picker" id="usage_period" data-chart="usage">
+								<option value="monthly" selected="selected">month</option>
+								<option value="weekly">week</option>
+							</select>
+						</h2>
+						<div class="chart_resize_container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+							<canvas class="chart chartjs-render-monitor" style="display: block; height: 207px; width: 415px;" width="830" height="414"></canvas>
+						</div>
+					</div>
+					<div class="legend"><ul><li><span class="toggle" style="background-color: rgb(31, 120, 180);">&nbsp;</span><span class="label">Videos Watched</span></li><li><span class="toggle" style="background-color: rgb(246, 130, 43);">&nbsp;</span><span class="label">Games Played</span></li><li><span class="toggle" style="background-color: rgb(118, 220, 155);">&nbsp;</span><span class="label">Minutes On Site</span></li></ul></div>
+				</div>
+
+				<div class="chart_holder" id="xp">
+					<div class="chart_container">
+						<h2 class="chart_title">
+							Points gained over the last							<select class="data_picker" id="points_period" data-chart="xp">
+								<option value="monthly" selected="">month</option>
+								<option value="weekly">week</option>
+							</select>
+						</h2>
+						<div class="chart_resize_container">
+							<canvas class="chart chartjs-render-monitor" style="display: block; height: 0px; width: 0px;" height="0" width="0"></canvas>
+						</div>
+					</div>
+					<div class="legend"><ul><li><span class="toggle" style="background-color: rgb(118, 220, 155);">&nbsp;</span><span class="label">Total</span></li><li><span class="toggle" style="background-color: rgb(31, 120, 180);">&nbsp;</span><span class="label">Multiple Choice</span></li><li><span class="toggle" style="background-color: rgb(166, 206, 227);">&nbsp;</span><span class="label">Fill In The Blank</span></li><li><span class="toggle" style="background-color: rgb(244, 222, 120);">&nbsp;</span><span class="label">Vocabulary</span></li><li><span class="toggle" style="background-color: rgb(246, 130, 43);">&nbsp;</span><span class="label">Scribe</span></li><li><span class="toggle" style="background-color: rgb(147, 119, 212);">&nbsp;</span><span class="label">Comprehension</span></li><li><span class="toggle" style="background-color: rgb(165, 42, 42);">&nbsp;</span><span class="label">Speak</span></li><li><span class="toggle" style="background-color: rgb(220, 5, 5);">&nbsp;</span><span class="label">Revo</span></li><li><span class="toggle" style="background-color: rgb(0, 134, 0);">&nbsp;</span><span class="label">Parrot</span></li></ul></div>
+				</div>
+
+				<div class="chart_holder" id="xp_cum">
+					<div class="chart_container">
+						<h2 class="chart_title">
+							Progress over the last							<select class="data_picker" id="points_period_cum" data-chart="xp_cum">
+								<option value="monthly" selected="">month</option>
+								<option value="weekly">week</option>
+							</select>
+						</h2>
+						<div class="chart_resize_container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+							<canvas class="chart chartjs-render-monitor" style="display: block; height: 207px; width: 415px;" height="414" width="830"></canvas>
+						</div>
+					</div>
+					<div class="legend"><ul><li><span class="toggle" style="background-color: rgb(118, 220, 155);">&nbsp;</span><span class="label">Total</span></li><li><span class="toggle" style="background-color: rgb(31, 120, 180);">&nbsp;</span><span class="label">Multiple Choice</span></li><li><span class="toggle" style="background-color: rgb(166, 206, 227);">&nbsp;</span><span class="label">Fill In The Blank</span></li><li><span class="toggle" style="background-color: rgb(244, 222, 120);">&nbsp;</span><span class="label">Vocabulary</span></li><li><span class="toggle" style="background-color: rgb(246, 130, 43);">&nbsp;</span><span class="label">Scribe</span></li><li><span class="toggle" style="background-color: rgb(147, 119, 212);">&nbsp;</span><span class="label">Comprehension</span></li><li><span class="toggle" style="background-color: rgb(165, 42, 42);">&nbsp;</span><span class="label">Speak</span></li><li><span class="toggle" style="background-color: rgb(220, 5, 5);">&nbsp;</span><span class="label">Revo</span></li><li><span class="toggle" style="background-color: rgb(0, 134, 0);">&nbsp;</span><span class="label">Parrot</span></li></ul></div>
+				</div>
+
+				<div class="chart_holder" id="xp_stacked">
+					<div class="chart_container">
+						<h2 class="chart_title">
+							Points gained over the last							<select class="data_picker" id="points_period_cum_stack" data-chart="xp_stacked">
+								<option value="monthly" selected="">month</option>
+								<option value="weekly">week</option>
+							</select>
+						</h2>
+						<div class="chart_resize_container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+							<canvas class="chart chartjs-render-monitor" style="display: block; height: 207px; width: 415px;" height="414" width="830"></canvas>
+						</div>
+					</div>
+					<div class="legend"><ul><li><span class="toggle" style="background-color: rgb(31, 120, 180);">&nbsp;</span><span class="label">Multiple Choice</span></li><li><span class="toggle" style="background-color: rgb(166, 206, 227);">&nbsp;</span><span class="label">Fill In The Blank</span></li><li><span class="toggle" style="background-color: rgb(244, 222, 120);">&nbsp;</span><span class="label">Vocabulary</span></li><li><span class="toggle" style="background-color: rgb(246, 130, 43);">&nbsp;</span><span class="label">Scribe</span></li><li><span class="toggle" style="background-color: rgb(147, 119, 212);">&nbsp;</span><span class="label">Comprehension</span></li><li><span class="toggle" style="background-color: rgb(165, 42, 42);">&nbsp;</span><span class="label">Speak</span></li><li><span class="toggle" style="background-color: rgb(220, 5, 5);">&nbsp;</span><span class="label">Revo</span></li><li><span class="toggle" style="background-color: rgb(0, 134, 0);">&nbsp;</span><span class="label">Parrot</span></li></ul></div>
+				</div>
+
+				<div class="chart_holder" id="xp_cum_stacked">
+					<div class="chart_container">
+						<h2 class="chart_title">
+							Progress over the last							<select class="data_picker" id="points_period_cum_stack" data-chart="xp_cum_stacked">
+								<option value="monthly" selected="">month</option>
+								<option value="weekly">week</option>
+							</select>
+						</h2>
+						<div class="chart_resize_container">
+							<canvas class="chart chartjs-render-monitor" style="display: block; height: 0px; width: 0px;" height="0" width="0"></canvas>
+						</div>
+					</div>
+					<div class="legend"><ul><li><span class="toggle" style="background-color: rgb(31, 120, 180);">&nbsp;</span><span class="label">Multiple Choice</span></li><li><span class="toggle" style="background-color: rgb(166, 206, 227);">&nbsp;</span><span class="label">Fill In The Blank</span></li><li><span class="toggle" style="background-color: rgb(244, 222, 120);">&nbsp;</span><span class="label">Vocabulary</span></li><li><span class="toggle" style="background-color: rgb(246, 130, 43);">&nbsp;</span><span class="label">Scribe</span></li><li><span class="toggle" style="background-color: rgb(147, 119, 212);">&nbsp;</span><span class="label">Comprehension</span></li><li><span class="toggle" style="background-color: rgb(165, 42, 42);">&nbsp;</span><span class="label">Speak</span></li><li><span class="toggle" style="background-color: rgb(220, 5, 5);">&nbsp;</span><span class="label">Revo</span></li><li><span class="toggle" style="background-color: rgb(0, 134, 0);">&nbsp;</span><span class="label">Parrot</span></li></ul></div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</div>
+	</main>
+
+<div id="goals_popup">
+	<div class="popup_inner">
+		<h2>Daily Goals</h2>
+		<div class="goals">
+						<form class="goals_form videos_watched" method="POST">
+				<input name="action" value="update_goal_prefs" type="hidden">
+				<input name="goal_type" value="videos_watched" type="hidden">
+				<label>Videos Watched:</label>
+				<span class="current">3</span>
+				/
+				<input name="goal" value="5" class="target" type="number" min="1">
+				<button type="submit" class="update_goals btn yabla-orange">
+					Save				</button>
+			</form>
+					</div>
+		<div class="button_row">
+			<button class="exit_goals btn yabla-blue">Cancel</button>
+		</div>
+	</div>
+</div>
+
+
+	
+		<footer id="footer">
+	<div class="container">
+		<div class="row main-footer">
+			<ul>
+				<li><h3 class="reg">Yabla Languages</h3></li>
+				<li><a href="#">Learn Spanish</a></li>
+								
+					<li><a href="#">Learn French</a></li>
+					<li><a href="#">Learn Italian</a></li>
+								<li><a href="#">Learn German</a></li>
+								
+					<li><a href="#">Learn Chinese</a></li>
+								<li><a href="#">Learn English</a></li>
+			</ul>
+
+			<ul>
+				<li><h3 class="reg">Get Yabla</h3></li>
+				<li><a href="#">Buy Individual subscription</a></li>
+				<li><a href="#">Buy School/Organization subscription</a></li>
+				<li><a href="#">QUOTE for School/Organization</a></li>
+				<li><a href="#">Signup for students</a></li>
+				<li><a href="#">Sign up with access code</a></li>
+				<li><a href="#">Send a Gift</a></li>
+
+			</ul>
+
+			<ul>
+				<li><h3 class="reg">Help</h3></li>
+				<li><a href="#">Individuals - Getting Started</a></li>
+				<li><a href="#">Individuals - FAQ</a></li>
+				<li><a href="#">Individuals - Video Tutorials</a></li>
+				<li><a href="#">School Accounts - Getting Started</a></li>
+				<li><a href="#">School Accounts - FAQ</a></li>
+				<li><a href="#">School Accounts - Video Tutorials</a></li>
+				<li><a href="#">Contact</a></li>
+							</ul>
+
+			<ul>
+
+				<li><h3 class="reg">Yabla</h3></li>
+													<li><a href="#" aria-label="Mailing List">Yabla Newsletter Signup</a></li>
+								<li><a href="#" aria-label="iOS Link"><span class="fa fa-apple"></span> iOS App</a></li>
+
+				<!-- tvOS app available for all languages-->
+									<li>
+						<a href="#" aria-label="Apple TV">
+							<span class="fa fa-apple"></span> tvOS App						</a>
+					</li>
+				
+								<li><a href="#" aria-label="Leaderboard">Leaderboard</a></li>
+																<li><a href="#" aria-label="Scoreboard">Your Scores</a></li>
+				<li><a href="#" aria-label="Activity Board">Your Activity</a></li>
+												<li></li>
+				    				<li class="blog-section">
+        				<h3 class="blog-header reg">Blogs</h3>
+        				            				<a href="#" title="Yabla German Blog" target="_blank">Yabla German Blog</a>
+        				    				</li>
+								<li>
+					<div class="social">
+						<ul>
+							<li><a href="#" aria-label="Facebook" target="_blank"><span class="fa fa-facebook"></span></a></li>
+							<li><a href="#" aria-label="Instagram" target="_blank"><span class="fa fa-instagram"></span></a></li>
+							<li><a href="#" aria-label="X Platform" target="_blank"><span class="fa fa-twitter"></span></a></li>
+						</ul>
+					</div>
+				</li>		
+
+			</ul>
+		</div>
+		<div class="row secondary-footer">
+			<div class="footer-logo">
+				<a href="#" aria-label="Yabla">Yabla</a>
+			</div>
+
+			<div class="col-md-9 foot_links">
+				<ul>
+					<li><a href="#" aria-label="About">About</a></li>
+					<li><a href="#" aria-label="Educators">For Educators</a></li>
+					<li><a href="#" aria-label="Affiliate Link">Affiliate Program</a></li>
+					<li><a href="#" aria-label="Terms">Terms</a></li>
+					<li><a href="#" aria-label="Privacy">Privacy</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+	
+
+
+
+ 
+	 
+
+
+
+
+
+
+</body></html>
