@@ -158,6 +158,7 @@ $(function(){
 			labels: dates.map(truncateDateLabel),
 			datasets: Object.keys(points).filter(function(dataType) {
 				// if we don't have a lookup for the data type, skip it
+				if (['speak', 'recall', 'parrot'].indexOf(dataType) !== -1) return false;
 				return !!(dataTypeLookup[dataType] && dataTypeLookup[dataType].label);
 			}).map(function(dataType) {
 				// make the data set
