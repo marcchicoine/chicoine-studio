@@ -19,7 +19,7 @@ body {
 .site-footer {
   text-align: center;
   padding: 40px 20px;
-  font-size: 13px;
+  font-size: 15px;
   color: #9a9a9a;
 }
 .site-footer a {
@@ -35,13 +35,13 @@ body {
   text-align: center;
 }
 .page-title{
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
   color: #83d79b;
 }
 .page-sub{
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 17px;
+  font-weight: 400;
   color: #9a9a9a;
   margin-top: 8px;
 }
@@ -56,7 +56,7 @@ body {
   margin-bottom: 20px;
   border-bottom: solid 1px #d0d0d0;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .filter a{
@@ -166,11 +166,11 @@ body {
 
 #menuToggle input {
   display: block;
-  width: 40px;
-  height: 32px;
+  width: 54px;
+  height: 40px;
   position: absolute;
-  top: -7px;
-  left: -5px;
+  top: -8px;
+  left: -6px;
 
   cursor: pointer;
 
@@ -185,9 +185,9 @@ body {
  */
 #menuToggle span {
   display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
+  width: 46px;
+  height: 6px;
+  margin-bottom: 7px;
   position: relative;
   background: #6ed492;
   border-radius: 3px;
@@ -211,7 +211,7 @@ body {
  */
 #menuToggle input:checked ~ span {
   opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
+  transform: rotate(45deg) translate(-3px, -1px);
   background: #6ed492;
 }
 
@@ -239,7 +239,7 @@ body {
   width: 200px;
   margin: -100px 0 0 -50px;
   padding: 50px;
-  padding-top: 125px;
+  padding-top: 140px;
   left: -40px;
   background: #11111869;
   list-style-type: none;
@@ -318,7 +318,7 @@ padding: 24px;
   justify-content: left;
   align-items: stretch;
   flex-wrap: wrap;
-  font-size: 16px;
+  font-size: 18px;
   height: 100%;
   text-align: left !important;
   visibility: visible;
@@ -363,9 +363,9 @@ nav#navMobile {
 #menuToggle::after {
   content: "Menu";
   position: absolute;
-  left: 46px;
-  top: 6px;
-  font-size: 12px;
+  left: 64px;
+  top: 8px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -376,4 +376,8 @@ nav#navMobile {
 }
 #menuToggle:hover::after { color: #ffffff; }
 #menuToggle:has(input:checked)::after { opacity: 0; }
-#menuToggle input { width: 108px; }
+#menuToggle input { width: 140px; }
+/* Phones: slightly smaller overlay text so the hover/tap description fits the tile */
+@media (max-width: 600px) {
+  .hovertext { font-size: 15px; padding: 16px; }
+}

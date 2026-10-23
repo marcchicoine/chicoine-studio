@@ -19,13 +19,13 @@ body{
   text-align: center;
 }
 .page-title{
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
   color: #83d79b;
 }
 .page-sub{
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 17px;
+  font-weight: 400;
   color: #9a9a9a;
   margin-top: 8px;
 }
@@ -52,7 +52,7 @@ body{
 }
 .about-intro p{
   color: #4a4a4a;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 1.7;
   margin-bottom: 14px;
@@ -60,7 +60,7 @@ body{
 .about-intro p:last-child { margin-bottom: 0; }
 .about-intro p:first-child{
   color: #052837;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
 }
 
@@ -77,7 +77,7 @@ body{
   margin-bottom: 20px;
 }
 .about-section h2{
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #83d79b;
   margin-bottom: 14px;
@@ -89,7 +89,7 @@ body{
   list-style: none;
 }
 .about-list li{
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
   color: #4a4a4a;
   line-height: 1.6;
@@ -110,7 +110,7 @@ body{
   padding: 8px 16px;
   border: solid 1px #83d79b;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: 16px;
   transition: background .2s ease, color .2s ease;
 }
 .about-links a:hover{ background: #83d79b; color: #fff; }
@@ -120,7 +120,7 @@ body{
   display: inline-block;
   margin-top: 4px;
   color: #83d79b;
-  font-size: 18px;
+  font-size: 20px;
   text-decoration: none;
   border-bottom: solid 1px #83d79b;
   padding-bottom: 2px;
@@ -131,7 +131,7 @@ body{
 .site-footer {
   text-align: center;
   padding: 40px 20px;
-  font-size: 13px;
+  font-size: 15px;
   color: #9a9a9a;
 }
 .site-footer a {
@@ -157,11 +157,11 @@ body{
 #menuToggle a:hover{ color: #ffffff; }
 #menuToggle input{
   display: block;
-  width: 40px;
-  height: 32px;
+  width: 54px;
+  height: 40px;
   position: absolute;
-  top: -7px;
-  left: -5px;
+  top: -8px;
+  left: -6px;
   cursor: pointer;
   opacity: 0;
   z-index: 2;
@@ -169,9 +169,9 @@ body{
 }
 #menuToggle span{
   display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
+  width: 46px;
+  height: 6px;
+  margin-bottom: 7px;
   position: relative;
   background: #6ed492;
   border-radius: 3px;
@@ -185,7 +185,7 @@ body{
 #menuToggle span:nth-last-child(2){ transform-origin: 0% 100%; }
 #menuToggle input:checked ~ span{
   opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
+  transform: rotate(45deg) translate(-3px, -1px);
   background: #6ed492;
 }
 #menuToggle input:checked ~ span:nth-last-child(3){
@@ -201,7 +201,7 @@ body{
   width: 200px;
   margin: -100px 0 0 -50px;
   padding: 50px;
-  padding-top: 125px;
+  padding-top: 140px;
   left: -40px;
   background: #11111869;
   list-style-type: none;
@@ -237,9 +237,9 @@ nav#navMobile {
 #menuToggle::after {
   content: "Menu";
   position: absolute;
-  left: 46px;
-  top: 6px;
-  font-size: 12px;
+  left: 64px;
+  top: 8px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -250,4 +250,4 @@ nav#navMobile {
 }
 #menuToggle:hover::after { color: #ffffff; }
 #menuToggle:has(input:checked)::after { opacity: 0; }
-#menuToggle input { width: 108px; }
+#menuToggle input { width: 140px; }

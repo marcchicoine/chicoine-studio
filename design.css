@@ -19,7 +19,7 @@ body {
 .site-footer {
   text-align: center;
   padding: 40px 20px;
-  font-size: 13px;
+  font-size: 15px;
   color: #9a9a9a;
 }
 .site-footer a {
@@ -35,13 +35,13 @@ body {
   text-align: center;
 }
 .page-title{
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
   color: #83d79b;
 }
 .page-sub{
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 17px;
+  font-weight: 400;
   color: #9a9a9a;
   margin-top: 8px;
 }
@@ -56,7 +56,7 @@ body {
   margin-bottom: 20px;
   border-bottom: solid 1px #d0d0d0;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .filter a{
@@ -76,19 +76,19 @@ body {
   color: #ffffff;
 }
 
+/* One full-width tile per row, stacked and centered */
 .grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
-  padding: 10px;
-  /* -webkit-perspective: 1000px;
-  perspective: 1000px; */
-  width: 100vw;
-  max-width: 1200;
+  padding: 10px 0;
 }
 
 .grid-item {
-  max-width: 360px;
+  flex-shrink: 0;
   width: 100%;
-  height: 300px;
+  height: clamp(200px, 57vw, 280px);
   margin-bottom: 10px;
   border-radius: 4px;
   overflow: hidden;
@@ -96,14 +96,17 @@ body {
   position: relative;
 }
 
+/* White tile with the square image centered, scaled up so its empty white margin crops off.
+   Positioned slightly low because the mockups sit below center in their images. */
 .fancybox {
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  background-size: cover;
+  background-color: #fff;
+  background-size: auto 140%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center 55%;
   transition: all 0.5s;
 }
 
@@ -144,6 +147,9 @@ body {
 }
 .grid-item:nth-child(8) .fancybox {
   background-image: url(movemeantlowfi.gif);
+  background-color: #000; /* dark image: black edges blend in, white would show a box */
+  background-size: contain; /* no white margin to trim; keep the whole frame */
+  background-position: center;
 }
 
 .grid-item:nth-child(9) .fancybox {
@@ -193,11 +199,11 @@ body {
 
 #menuToggle input {
   display: block;
-  width: 40px;
-  height: 32px;
+  width: 54px;
+  height: 40px;
   position: absolute;
-  top: -7px;
-  left: -5px;
+  top: -8px;
+  left: -6px;
 
   cursor: pointer;
 
@@ -212,9 +218,9 @@ body {
  */
 #menuToggle span {
   display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
+  width: 46px;
+  height: 6px;
+  margin-bottom: 7px;
   position: relative;
   background: #6ed492;
   border-radius: 3px;
@@ -238,7 +244,7 @@ body {
  */
 #menuToggle input:checked ~ span {
   opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
+  transform: rotate(45deg) translate(-3px, -1px);
   background: #6ed492;
 }
 
@@ -266,7 +272,7 @@ body {
   width: 200px;
   margin: -100px 0 0 -50px;
   padding: 50px;
-  padding-top: 125px;
+  padding-top: 140px;
   left: -40px;
   background: #11111869;
   list-style-type: none;
@@ -338,6 +344,7 @@ body {
 }
 .hovertext {
   position: absolute;
+  width: 100%;
 opacity: 0;
 display: flex;
 z-index: 10;
@@ -345,7 +352,7 @@ padding: 24px;
   justify-content: left;
   align-items: stretch;
   flex-wrap: wrap;
-  font-size: 16px;
+  font-size: 18px;
   height: 100%;
   text-align: left !important;
   
@@ -387,9 +394,9 @@ nav#navMobile {
 #menuToggle::after {
   content: "Menu";
   position: absolute;
-  left: 46px;
-  top: 6px;
-  font-size: 12px;
+  left: 64px;
+  top: 8px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -400,4 +407,10 @@ nav#navMobile {
 }
 #menuToggle:hover::after { color: #ffffff; }
 #menuToggle:has(input:checked)::after { opacity: 0; }
-#menuToggle input { width: 108px; }
+#menuToggle input { width: 140px; }
+/* Phones: taller tiles + slightly smaller overlay text so the hover/tap description fits */
+@media (max-width: 600px) {
+  .grid-item { height: 300px; }
+  .fancybox { background-size: auto 115%; }
+  .hovertext { font-size: 15px; padding: 16px; }
+}
