@@ -447,4 +447,8 @@ nav#navMobile {
   .grid-item { height: 300px; }
   .fancybox, .fbreplace { background-size: auto 115%; }
   .hovertext { font-size: 15px; padding: 16px; }
+  /* Phones: tuck the menu into the top-left corner, above the tabs. The dropdown is anchored to the
+     button, so its left offset changes with it to keep the open menu fully on screen. */
+  #menuToggle { top: 16px; left: 16px; }
+  #menu { left: 0; }
 }

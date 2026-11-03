@@ -261,3 +261,9 @@ nav#navMobile {
 #menuToggle:hover::after { color: #ffffff; }
 #menuToggle:has(input:checked)::after { opacity: 0; }
 #menuToggle input { width: 140px; }
+/* Phones: tuck the menu into the top-left corner, above the tabs. The dropdown is anchored to the
+   button, so its left offset changes with it to keep the open menu fully on screen. */
+@media (max-width: 600px) {
+  #menuToggle { top: 16px; left: 16px; }
+  #menu { left: 0; }
+}
