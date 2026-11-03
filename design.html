@@ -5,7 +5,7 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Experience Design — Marc Chicoine</title>
-  <meta name="description" content="UX/UI and interactive experience design work by Marc Chicoine.">
+  <meta name="description" content="UX/UI, interactive, and web development work by Marc Chicoine.">
   <link rel="canonical" href="https://www.chicoine.studio/design.html">
 
   <link rel="icon" type="image/svg+xml" href="cstudio.svg">
@@ -15,14 +15,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Marc Chicoine">
   <meta property="og:title" content="Experience Design — Marc Chicoine">
-  <meta property="og:description" content="UX/UI and interactive experience design work by Marc Chicoine.">
+  <meta property="og:description" content="UX/UI, interactive, and web development work by Marc Chicoine.">
   <meta property="og:url" content="https://www.chicoine.studio/design.html">
   <meta property="og:image" content="https://www.chicoine.studio/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Experience Design — Marc Chicoine">
-  <meta name="twitter:description" content="UX/UI and interactive experience design work by Marc Chicoine.">
+  <meta name="twitter:description" content="UX/UI, interactive, and web development work by Marc Chicoine.">
   <meta name="twitter:image" content="https://www.chicoine.studio/og-image.png">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
@@ -56,7 +56,6 @@
       <ul id="menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="artfolio.html">Graphic Design</a></li>
-        <li><a href="code.html">Web Development</a></li>
         <li><a href="fineart.html">Fine Art</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="https://drive.google.com/file/d/1Tetuh7_DzDMSskuR87zXKFglA2AhxmJ0/view?usp=sharing">Resume</a></li>
@@ -67,15 +66,16 @@
 <!-- partial:index.partial.html -->
 <header class="page-head">
   <h1 class="page-title">Experience Design</h1>
-  <p class="page-sub">UX/UI and interactive experience work — click any piece to explore.</p>
+  <p class="page-sub">UX/UI, interactive, and web development work — click any piece to explore.</p>
 </header>
   <div class="wrapper">
     <div class="filter">
 <!--       <a href="#" data-filter="" class=" ya" id=""><p>all</p></a> -->
-      <a href="#" data-filter=".propertySponge" class="ps current">UX | UI</a>
+      <a href="#" data-filter=".propertySponge" data-slug="ux-ui" class="ps current">UX | UI</a>
 <!--             <a href="#" data-filter=".darkDays" class=" dd" > <p>type and editorial</p></a> -->
             <!-- <a href="#" data-filter=".treachery" class="ta"><p>logo and brand</p></a> -->
-            <a href="#" data-filter=".experimental" class="">Interactive</a>
+            <a href="#" data-filter=".experimental" data-slug="interactive" class="">Interactive</a>
+            <a href="#" data-filter=".webdev" data-slug="web-development" class="">Web Development</a>
 
     </div>
 
@@ -204,10 +204,84 @@ Urban Archive
             <br><br>
                  My Contribution
                       <br><br>
-                      Research, Interviews, Writing, Book Production, Lesson Development, Dance Choreography, Video and Spatial Production, Front-end Development.<br><br> 
+                      Research, Interviews, Writing, Book Production, Lesson Development, Dance Choreography, Video and Spatial Production, Front-end Development.<br><br>
                         </p>
         </a>
       </div>
+
+      <!-- web development tab: thumbnails are set by position in design.css (nth-child 9-14) -->
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="yabla-mobile-funnel-prototype/index.html">
+          <p class="hovertext">
+            Yabla Website Funnel
+            <br> <br>
+            HTML, CSS, Vanilla JS
+            <br> <br>
+            Designed and developed a website funnel to increase conversions.<br><br>
+          </p>
+        </a>
+      </div>
+
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="https://www.davidwinter.xyz/">
+          <p class="hovertext">
+            David Winter Portfolio Website
+            <br> <br>
+            HTML, CSS, JS
+            <br> <br>
+            Designed and developed an interactive portfolio for internationally recognized artist David Winter.<br><br>
+          </p>
+        </a>
+      </div>
+
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="https://marcchicoine.github.io/darkdays/">
+          <p class="hovertext">
+            Dark Days Website
+            <br> <br>
+            HTML, CSS, Vanilla JS
+            <br> <br>
+            Designed and developed an interactive website companion to the Dark Days Newspaper<br><br>
+          </p>
+        </a>
+      </div>
+
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="propertysponge-prototype/index.html">
+          <p class="hovertext">
+            Property Sponge Prototype
+            <br> <br>
+            HTML, CSS, Vanilla JS
+            <br> <br>
+            Designed and developed front-end responsive prototype to demo the real estate app.<br><br>
+          </p>
+        </a>
+      </div>
+
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="index.html">
+          <p class="hovertext">
+            My Portfolio Site
+            <br> <br>
+            HTML, CSS, Vanilla JS, parallax.js
+            <br> <br>
+            Yes, this website... I know, how meta...<br><br>
+          </p>
+        </a>
+      </div>
+
+      <div class="grid-item webdev">
+        <a class="fbreplace" target="_blank" rel="noopener" href="https://marcchicoine.github.io/senet/">
+          <p class="hovertext">
+            Senet: The Game of Passing
+            <br> <br>
+            HTML, CSS, Phaser.js, Three.js
+            <br> <br>
+            Front-end and game design for an interactive boardgame based on the Egyptian boardgame of the dead.<br><br>
+          </p>
+        </a>
+      </div>
+      <!-- end web development tab -->
 <!--       <div class="grid-item  yabla propertySponge tab">
           <a class="fancybox" href="googleexpeditions.html">
 

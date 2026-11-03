@@ -152,8 +152,41 @@ body {
   background-position: center;
 }
 
-.grid-item:nth-child(9) .fancybox {
-  background-image: url(eep.jpg);
+/* web development tab (tiles 9-14): same white tile + scaled square mockup as the .fancybox tiles above */
+.fbreplace {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #fff;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-position: center 55%;
+  transition: all 0.5s;
+}
+.grid-item:hover .fbreplace {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+.grid-item:nth-child(9) .fbreplace {
+  background-image: url(landingpage.jpg);
+}
+.grid-item:nth-child(10) .fbreplace {
+  background-image: url(davidwinter.jpg);
+}
+.grid-item:nth-child(11) .fbreplace {
+  background-image: url(dark-days.gif);
+}
+.grid-item:nth-child(12) .fbreplace {
+  background-image: url(psprototypegif.gif);
+}
+.grid-item:nth-child(13) .fbreplace {
+  background-image: url(mywebsite.gif);
+  background-size: auto 100%; /* phone fills most of this image's height, so don't enlarge it past the tile */
+  background-position: center;
+}
+.grid-item:nth-child(14) .fbreplace {
+  background-image: url(sensmall.gif);
 }
 
 
@@ -359,7 +392,8 @@ padding: 24px;
   
 }
 .hovertext:hover,
-a.fancybox:focus-visible .hovertext {
+a.fancybox:focus-visible .hovertext,
+a.fbreplace:focus-visible .hovertext {
   visibility: visible;
 opacity: 1;
 background-color: #6ed492;
@@ -411,6 +445,6 @@ nav#navMobile {
 /* Phones: taller tiles + slightly smaller overlay text so the hover/tap description fits */
 @media (max-width: 600px) {
   .grid-item { height: 300px; }
-  .fancybox { background-size: auto 115%; }
+  .fancybox, .fbreplace { background-size: auto 115%; }
   .hovertext { font-size: 15px; padding: 16px; }
 }
